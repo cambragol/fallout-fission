@@ -1,6 +1,6 @@
 html {
     font-size: 62.5%;
-    font-family: Gothic821 Cn BT,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-family: JH_Fallout,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
     line-height: 1
 }
 
@@ -13,6 +13,15 @@ body {
     font-family: 'Gothic821 Cn BT';
     src: url('Gothic821CondensedBT-Regular.woff2') format('woff2'),
         url('Gothic821CondensedBT-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'JH_Fallout';
+    src: url('JHFallout.woff2') format('woff2'),
+        url('JHFallout.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
