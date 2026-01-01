@@ -41,7 +41,7 @@ a:link,a:hover,a:visited,a:active {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 .imageWrapper {
@@ -54,7 +54,7 @@ a:link,a:hover,a:visited,a:active {
 }
 
 .headerBackground {
-    height: 115px;
+    height: 80px;
     background-color: rgba(0,0,0,0.1)
 }
 
@@ -77,7 +77,11 @@ a:link,a:hover,a:visited,a:active {
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: 115px 650px auto auto;
     grid-column-gap: 30px;
-    grid-template-areas: "h h h h h h h h h h h h" "p p p p p p p i i i i i" "c c c c c c c c c c c c" "f f f f f f f f f f f f";
+    grid-template-areas:
+        "h h h h h h h h h h h h"
+        "p p p p p i i i i i i i"
+        "c c c c c c c c c c c c"
+        "f f f f f f f f f f f f";
 }
 
 .subPageContainer {
@@ -117,14 +121,14 @@ a:link,a:hover,a:visited,a:active {
 header {
     grid-area: h;
     display: flex;
-    margin-right: -15px
+    margin-right: -15px;
 }
 
 .logo {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    height: 115px;
+    height: 80px;
     margin-right: 30px
 }
 
@@ -170,7 +174,7 @@ header {
     width: 100%;
     align-items: center;
     justify-content: flex-end;
-    height: 115px;
+    height: 80px;
     white-space: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
@@ -240,11 +244,12 @@ nav>ul li a:hover,nav>ul li a:active {
 }
 
 .appInfo {
-    grid-area: i;
+    grid-area: p;
     display: flex;
-    flex-wrap: wrap;
     padding-top: 68px;
-    align-content: flex-start
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: flex-end;
 }
 
 @media only screen and (max-width: 992px) {
@@ -312,11 +317,12 @@ nav>ul li a:hover,nav>ul li a:active {
     align-items: flex-start;
     margin-top: 25px;
     flex: 0 1 auto;
-    line-height: 1.5
+    line-height: 1.5;
 }
 
 .appDescription {
-    color: #fff
+    color: #fff;
+    text-align: right;
 }
 
 @media only screen and (max-width: 992px) {
@@ -361,7 +367,7 @@ nav>ul li a:hover,nav>ul li a:active {
 }
 
 .iphonePreview {
-    grid-area: p;
+    grid-area: i;
     background-image: url("assets/black.png");
     background-size: 580px auto;
     background-repeat: no-repeat;
