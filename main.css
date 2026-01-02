@@ -88,7 +88,7 @@ a:active	{ color: #375e76; }
     grid-column-gap: 30px;
     grid-template-areas:
         "h h h h h h h h h h h h"
-        "p p p p p i i i i i i i"
+        "p p p p i i i i i i i i"
         "c c c c c c c c c c c c"
         "f f f f f f f f f f f f";
 }
@@ -424,17 +424,17 @@ nav>ul li a:hover,nav>ul li a:active {
 .iphonePreview {
     grid-area: i;
     background-image: url("assets/black.png");
-    background-size: 580px auto;
+    background-size: 750px auto;
     background-repeat: no-repeat;
     margin-top: 68px;
 }
 
 .iphoneScreen {
-    width: 444px;
+    width: 576px;
     -webkit-clip-path: url(#screenMask);
     clip-path: url(#screenMask);
-    margin-left: 68px;
-    margin-top: 20px;
+    margin-left: 88px;
+    margin-top: 25px;
 }
 
 .videoContainer {
