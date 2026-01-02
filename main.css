@@ -28,11 +28,11 @@ h3 {
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #fff
+    background-color: #707070;
 }
 
 a:link,a:hover,a:visited,a:active {
-    color: #1d63ea;
+    color: #213c64;
     text-decoration: none
 }
 
@@ -42,6 +42,8 @@ a:link,a:hover,a:visited,a:active {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    text-shadow: rgba(255, 255, 255, 0.2) 0 1px 0;
+
 }
 
 .imageWrapper {
@@ -133,11 +135,12 @@ header {
 }
 
 .logo>p {
-    color: #fff;
     white-space: nowrap;
     display: flex;
     font-weight: bold;
-    margin-left: 15px
+    margin-left: 15px;
+	color: #c4cbcd;
+	text-shadow: rgba(0, 0, 0, 0.33) 0 1px 2px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -223,7 +226,8 @@ nav>ul li:last-child {
 
 nav>ul li a:link,nav>ul li a:visited {
     text-decoration: none;
-    color: rgba(255,255,255,0.6)
+    color: #c4cbcd;
+	text-shadow: rgba(0, 0, 0, 0.33) 0 1px 2px;
 }
 
 nav>ul li a:hover,nav>ul li a:active {
@@ -282,7 +286,12 @@ nav>ul li a:hover,nav>ul li a:active {
 }
 
 .appName {
-    color: #fff
+	margin: 0 0 0.5em;
+	color: #c4cbcd;
+	font-weight: bold;
+	text-shadow: rgba(0, 0, 0, 0.33) 0 1px 2px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
 }
 
 .appPrice {
@@ -321,7 +330,9 @@ nav>ul li a:hover,nav>ul li a:active {
 }
 
 .appDescription {
-    color: #fff;
+	margin: 0 0 0.5em;
+	color: #c4cbcd;
+	text-shadow: rgba(0, 0, 0, 0.33) 0 1px 2px;
     text-align: right;
 }
 
@@ -488,7 +499,7 @@ nav>ul li a:hover,nav>ul li a:active {
 }
 
 .iconTop {
-    color: #1d63ea
+    color: #32598c;
 }
 
 .socialIconBack {
@@ -508,7 +519,7 @@ nav>ul li a:hover,nav>ul li a:active {
 }
 
 .featureText>p {
-    color: #666;
+    color: #0c0c0c;
     margin-top: 8px;
     line-height: 1.5
 }
@@ -587,7 +598,7 @@ footer {
 }
 
 .footerText {
-    color: #666;
+    color: #0c0c0c;
     display: block;
     line-height: 1.5;
     width: 100%;
