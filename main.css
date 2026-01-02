@@ -37,7 +37,7 @@ h3 {
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #ffffff;
+    background-color: #707070;
 }
 
 a:link,a:hover,a:visited,a:active {color: #fcdc30;text-decoration: none}
