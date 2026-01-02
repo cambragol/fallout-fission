@@ -88,7 +88,7 @@ a:active	{ color: #375e76; }
     grid-column-gap: 30px;
     grid-template-areas:
         "h h h h h h h h h h h h"
-        "p p p p p i i i i i i i"
+        "p p p p i i i i i i i i"
         "c c c c c c c c c c c c"
         "f f f f f f f f f f f f";
 }
@@ -258,9 +258,10 @@ nav>ul li a:hover,nav>ul li a:active {
     grid-area: p;
     display: flex;
     padding-top: 68px;
+    justify-content: center;
+    flex-direction: row-reverse;
     flex-wrap: wrap;
     align-content: flex-start;
-    justify-content: flex-end;
 }
 
 @media only screen and (max-width: 992px) {
@@ -350,15 +351,50 @@ nav>ul li a:hover,nav>ul li a:active {
     }
 }
 
-.downloadButtonsContainer {
-    display: inline-block;
-    margin-top: 42px;
-    filter: drop-shadow(0px 5px 10px rgba(0,0,0,0.1)) drop-shadow(0px 1px 1px rgba(0,0,0,0.2))
+.downloadButtonsContainer{
+    width: 80%;
+	margin-top:20px;
 }
+
+.download
+{
+	-webkit-transition: background-color 0.2s ease-out;
+	color: white;
+	line-height: 1.5em;
+	text-shadow: black 0 -1px 0;
+	text-decoration: none;
+	font-weight: normal;
+	font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+	text-align: center;
+	display: block;
+	position: relative;
+	padding: 1px 16px 16px;
+	margin: 0 0 20px;
+	background: #234 url("assets/glow_oval_256_clipped.png") 50% 150% no-repeat;
+	background: url("assets/glow_oval_256_clipped.png") 50% 150% no-repeat,
+				#234 url("assets/gradient_20_reversed.png") 0 100% repeat-x;
+	-webkit-border-radius: 24px;
+	-moz-border-radius: 24px;
+	border: 1px solid #132528;
+	border-color: rgba(0, 0, 0, 0.33);
+	-moz-box-shadow: rgba(255, 255, 255, 0.33) 0 0.5px 0;
+	-webkit-box-shadow: rgba(255, 255, 255, 0.33) 0 1px 0;
+}
+.download:hover,
+.download:focus		{ background-color: #740000 !important; }
+.download:active	{ background-color: #4c0400 !important; }
+
+
+.download-icon          {display: block;margin: -20px auto 0; margin-bottom: 5px;}
+.new				    { position: absolute; top: -10px; right: -16px; }
+.package-version        {text-transform: uppercase;font-weight: bold;letter-spacing: 1px; }
+.package-version .beta  { text-transform: none; font-weight: normal; letter-spacing: 0; }
+.package-architectures  { display: block; margin-top: 0.5em; color: #b1babc; font-size: 95%; }
 
 @media only screen and (max-width: 992px) {
     .downloadButtonsContainer {
-        text-align:center
+        text-align:center;
+		width: 40%;
     }
 }
 
@@ -388,17 +424,17 @@ nav>ul li a:hover,nav>ul li a:active {
 .iphonePreview {
     grid-area: i;
     background-image: url("assets/black.png");
-    background-size: 580px auto;
+    background-size: 750px auto;
     background-repeat: no-repeat;
     margin-top: 68px;
 }
 
 .iphoneScreen {
-    width: 444px;
+    width: 576px;
     -webkit-clip-path: url(#screenMask);
     clip-path: url(#screenMask);
-    margin-left: 68px;
-    margin-top: 20px;
+    margin-left: 88px;
+    margin-top: 25px;
 }
 
 .videoContainer {
@@ -417,13 +453,13 @@ nav>ul li a:hover,nav>ul li a:active {
 
 @media only screen and (max-width: 1070px) {
     .iphonePreview {
-        background-size: 540px auto;
+        background-size: 640px auto;
     }
 
     .iphoneScreen {
-        width: 414px;
-        margin-left: 63px;
-        margin-top: 19px;
+        width: 490px;
+        margin-left: 75px;
+        margin-top: 23px;
     }
 
     .videoContainer {
