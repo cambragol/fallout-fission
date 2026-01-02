@@ -37,7 +37,7 @@ h3 {
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #707070;
+    background-color: #ffffff;
 }
 
 a:link,a:hover,a:visited,a:active {color: #fcdc30;text-decoration: none}
@@ -93,7 +93,7 @@ a:link,a:hover,a:visited,a:active {color: #fcdc30;text-decoration: none}
 
 .subPageContainer {
     grid-template-rows: 115px auto auto auto;
-    background-color: #ffffff;
+    background-color: #7f8d9b;
 }
 
 @media only screen and (max-width: 768px) {
@@ -241,15 +241,15 @@ nav>ul li a:hover,nav>ul li a:active {
 }
 
 .subPageHeaderBackground .logo>p {
-    color: #000
+    /* color: #000; */
 }
 
 .subPageHeaderBackground nav>ul li a:link,.subPageHeaderBackground nav>ul li a:visited {
-    color: rgba(0,0,0,0.6)
+    /* color: rgba(0,0,0,0.6); */
 }
 
 .subPageHeaderBackground nav>ul li a:hover,.subPageHeaderBackground nav>ul li a:active {
-    color: #000
+    color:#fcdc30
 }
 
 .appInfo {
@@ -919,7 +919,7 @@ footer {
 }
 
 
-.markdown-body a			{color: #32598c;font-weight: bold;}
+.markdown-body a			{color: #364857;font-weight: bold;}
 .markdown-body a:hover,
 .markdown-body a:focus		{ color: #fcdc30; text-shadow: rgba(0, 0, 0, 0.33) 0 1px 0; }
 .markdown-body a:active	{ color: #005cc5; }
@@ -1166,7 +1166,7 @@ footer {
 }
 
 .markdown-body hr {
-    background-color: #e1e4e8;
+    background-color: #5b6d7f;
     border: 0;
     height: .25em;
     margin: 24px 0;
@@ -1213,16 +1213,18 @@ footer {
 }
 
 .markdown-body h1,.markdown-body h2 {
-    border-bottom: 1px solid #eaecef;
+    border-bottom: 1px solid #5b6d7f;
     padding-bottom: .3em
 }
 
 .markdown-body h2 {
-    font-size: 1.5em
+    font-size: 1.5em;
+	text-transform: uppercase;
 }
 
 .markdown-body h3 {
-    font-size: 1.25em
+    font-size: 1.25em;
+	text-transform: uppercase;
 }
 
 .markdown-body h4 {
@@ -1277,12 +1279,20 @@ footer {
 }
 
 .markdown-body table {
-    display: block;
+    display:block;
     overflow: auto;
-    width: 100%;
-
-
+	width:fit-content;
 	
+	margin: 2px 1px 2px 0;
+	background: #d9dcdf;
+	color: #364857;
+	text-shadow: none;
+	white-space: nowrap;
+	
+	-webkit-box-shadow: rgba(0,0,0,0.5) 0 1px 2px;
+	-moz-box-shadow: rgba(0,0,0,0.5) 0 1px 2px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
 }
 
 .markdown-body table th {
