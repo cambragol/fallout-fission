@@ -453,13 +453,13 @@ nav>ul li a:hover,nav>ul li a:active {
 
 @media only screen and (max-width: 1070px) {
     .iphonePreview {
-        background-size: 540px auto;
+        background-size: 640px auto;
     }
 
     .iphoneScreen {
-        width: 414px;
-        margin-left: 63px;
-        margin-top: 19px;
+        width: 490px;
+        margin-left: 75px;
+        margin-top: 23px;
     }
 
     .videoContainer {
