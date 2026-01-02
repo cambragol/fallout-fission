@@ -9,6 +9,15 @@ body {
     background-color: #fff
 }
 
+@font-face {
+    font-family: 'Gothic821 Cn BT';
+    src: url('Gothic821CondensedBT-Regular.woff2') format('woff2'),
+        url('Gothic821CondensedBT-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 .subPageBody {
     background-color: #fff
 }
@@ -286,11 +295,12 @@ nav>ul li a:hover,nav>ul li a:active {
 
 .appName {
 	margin: 0 0 0.5em;
-	color: #c4cbcd;
-	font-weight: bold;
+	font-size: 4.5rem;
+	color: #fcdc30;
 	text-shadow: rgba(0, 0, 0, 0.33) 0 1px 2px;
 	text-transform: uppercase;
-	letter-spacing: 1px;
+	letter-spacing: 2px;
+	font-family: Gothic821 Cn BT;
 }
 
 .appPrice {
