@@ -2,9 +2,9 @@
 	<div class="logo">
 		<div class="appIconShadow">
 			{% if page.url != '/' %}
-				<a href="../" target="_self"><img class="headerIcon" src="{{ site.app_icon | relative_url }}"></a>
+				<a href="../" target="_self"><img class="headerIcon" src="{{ site.head_icon | relative_url }}"></a>
 			{% else %}
-				<img class="headerIcon" src="{{ site.app_icon | relative_url }}">
+				<img class="headerIcon" src="{{ site.head_icon | relative_url }}">
 			{% endif %}
 			<div class="divider"></div>
 		</div>
