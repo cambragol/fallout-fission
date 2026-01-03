@@ -90,6 +90,7 @@ a:active	{ color: #375e76; }
         "h h h h h h h h h h h h"
         "p p p p i i i i i i i i"
         "c c c c c c c c c c c c"
+		"s s s s s s s s s s s s"
         "f f f f f f f f f f f f";
 }
 
@@ -539,6 +540,39 @@ nav>ul li a:hover,nav>ul li a:active {
     padding-left: 0px
 }
 
+.screenshots {
+    grid-area: s;
+    display: flex;
+    flex: 0 1 auto;
+    align-content: flex-start;
+    justify-content: center;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    margin-top: 93px;
+    flex-direction: row-reverse;
+    align-items: stretch;
+}
+
+.screenshot {
+    display: flex;
+    padding-top: 63px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: calc(100%/4)
+}
+
+.screenshot:nth-child(-n+3) {
+    padding-top: 0px
+}
+
+.screenshot:nth-child(3n) {
+    padding-right: 0px
+}
+
+.screenshot:nth-child(3n+1) {
+    padding-left: 0px
+}
+
 .iconBack {
     color: #e6e6e6
 }
@@ -564,6 +598,20 @@ nav>ul li a:hover,nav>ul li a:active {
 }
 
 .featureText>p {
+    color: #0c0c0c;
+    margin-top: 8px;
+    line-height: 1.5
+}
+
+.screenshotText {
+    margin-left: 18px
+}
+
+.screenshotText>h3 {
+    color: #000
+}
+
+.screenshotText>p {
     color: #0c0c0c;
     margin-top: 8px;
     line-height: 1.5
@@ -600,6 +648,37 @@ nav>ul li a:hover,nav>ul li a:active {
     .feature:nth-child(3n+1) {
         padding-left: 15px
     }
+
+	.screenshots {
+        flex-grow:1;
+        flex-direction: row;
+        flex-wrap: wrap;
+        /* margin-top:11px; */
+    }
+
+    .screenshot {
+        display: flex;
+        padding-top: 41px;
+        padding-left: 15px;
+        padding-right: 15px;
+        width: 100%
+    }
+
+    .screenshot:nth-child(-n+3) {
+        padding-top: 41px
+    }
+
+    .screenshot:nth-child(1) {
+        padding-top: 0px
+    }
+
+    .screenshot:nth-child(3n) {
+        padding-right: 15px
+    }
+
+    .screenshot:nth-child(3n+1) {
+        padding-left: 15px
+    }
 }
 
 @media only screen and (max-width: 375px) {
@@ -631,6 +710,37 @@ nav>ul li a:hover,nav>ul li a:active {
     }
 
     .feature:nth-child(3n+1) {
+        padding-left: 0px
+    }
+
+	.screenshots {
+        flex-grow:1;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-top: 11px
+    }
+
+    .screenshot {
+        display: flex;
+        padding-top: 41px;
+        padding-left: 0px;
+        padding-right: 0px;
+        width: 100%
+    }
+
+    .screenshot:nth-child(-n+3) {
+        padding-top: 41px
+    }
+
+    .screenshot:nth-child(1) {
+        padding-top: 0px
+    }
+
+    .screenshot:nth-child(3n) {
+        padding-right: 0px
+    }
+
+    .screenshot:nth-child(3n+1) {
         padding-left: 0px
     }
 }
