@@ -1,16 +1,16 @@
 <div class="screenshots">
 
-    {% for feature in site.screenshots %}
+    {% for screenshot in site.screenshots %}
 
-    {% if feature.title %}
-    <div class="feature">
+    {% if screenshot.title %}
+    <div class="screenshot">
         <div>
             <span class="fa-stack fa-1x">
                 <i class="iconBack fas fa-circle fa-stack-2x"></i>
-                <i class="iconTop fas fa-{{ feature.fontawesome_icon_name }} fa-stack-1x"></i>
+                <i class="iconTop fas fa-{{ screenshot.fontawesome_icon_name }} fa-stack-1x"></i>
             </span>
         </div>
-        <div class="featureText">
+        <div class="screenshotText">
             <h3>
                 {{ screenshot.title }}
             </h3>
