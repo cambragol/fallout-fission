@@ -79,7 +79,20 @@ features                                  :
     description                           : # New Feature Description
     fontawesome_icon_name                 : # Enter Font Awesome icon name (e.g. star). Find icons on fontawesome.com/icons.
 
+# Screenshot List                            Edit, add or remove screenshots to be presented.
+screenshots                                  :
 
+  - title                                 : GitHub Pages Jekyll Theme
+    description                           : Designed for GitHub Pages. Fork. Edit _config.yml. Upload screenshot/video. Push to gh-pages branch. Voilá!
+    fontawesome_icon_name                 : magic
+    
+  - title                                 : iPhone Device Preview
+    description                           : Preview your app in the context of an iPhone device. Five different device colors included.
+    fontawesome_icon_name                 : mobile
+
+  - title                                 : Video Support
+    description                           : Preview app video on the iPhone device simply by placing your video files in the videos folder.
+    fontawesome_icon_name                 : play-circle
 
 # Theme Settings
 topbar_color                              : "#000000"
