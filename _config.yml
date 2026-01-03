@@ -85,14 +85,17 @@ screenshots                                  :
   - title                                 : GitHub Pages Jekyll Theme
     description                           : Designed for GitHub Pages. Fork. Edit _config.yml. Upload screenshot/video. Push to gh-pages branch. Voilá!
     fontawesome_icon_name                 : magic
+    image                                 : assets/screenshot1.jpg
     
   - title                                 : iPhone Device Preview
     description                           : Preview your app in the context of an iPhone device. Five different device colors included.
     fontawesome_icon_name                 : mobile
+    image                                 : assets/screenshot2.jpg
 
   - title                                 : Video Support
     description                           : Preview app video on the iPhone device simply by placing your video files in the videos folder.
     fontawesome_icon_name                 : play-circle
+    image                                 : assets/screenshot3.jpg
 
 # Theme Settings
 topbar_color                              : "#000000"
