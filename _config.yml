@@ -79,8 +79,8 @@ features                                  :
     description                           : # New Feature Description
     fontawesome_icon_name                 : # Enter Font Awesome icon name (e.g. star). Find icons on fontawesome.com/icons.
 
-# Screenshot List                            Edit, add or remove screenshots to be presented.
-screenshots                                  :
+# Screenshot List                         Edit, add or remove screenshots to be presented.
+screenshots                               :
 
   - title                                 : GitHub Pages Jekyll Theme
     description                           : Designed for GitHub Pages. Fork. Edit _config.yml. Upload screenshot/video. Push to gh-pages branch. Voilá!
@@ -97,7 +97,7 @@ screenshots                                  :
     fontawesome_icon_name                 : play-circle
     image                                 : assets/screenshot3.png
 
-      - title                             : Screenshot 4
+  - title                                 : Screenshot 4
     description                           : Designed for GitHub Pages. Fork. Edit _config.yml. Upload screenshot/video. Push to gh-pages branch. Voilá!
     fontawesome_icon_name                 : magic
     image                                 : assets/screenshot1.png
@@ -112,7 +112,7 @@ screenshots                                  :
     fontawesome_icon_name                 : play-circle
     image                                 : assets/screenshot3.png
 
-      - title                             : Screenshot 7
+  - title                                 : Screenshot 7
     description                           : Designed for GitHub Pages. Fork. Edit _config.yml. Upload screenshot/video. Push to gh-pages branch. Voilá!
     fontawesome_icon_name                 : magic
     image                                 : assets/screenshot1.png
