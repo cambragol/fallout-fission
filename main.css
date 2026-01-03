@@ -90,7 +90,7 @@ a:active	{ color: #375e76; }
         "h h h h h h h h h h h h"
         "p p p p i i i i i i i i"
 		"s s s s s s s s s s s s"
-        "c c c c c c c c c c c c"
+		"c c c c c c c c c c c c"
         "f f f f f f f f f f f f";
 }
 
@@ -1822,3 +1822,36 @@ footer {
 .linked a:focus		{ opacity: 1; background: url("../images/glow_oval_256_clipped.png") 50% -128px no-repeat; }
 .linked a:focus,
 .linked a:active	{ background-color: white; background-color: rgba(255, 255, 255, 0.25); }
+
+
+/* Captioning for linked thumbnails */
+.linked small
+{
+	line-height: 1.5em;
+	visibility: hidden;
+	position: absolute;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	
+	text-align: center;
+	color: white;
+	text-transform: uppercase;
+	text-shadow: rgba(0, 0, 0, 0.5) 0 1px 2px;
+	font-weight: bold;
+}
+
+.linked.caption-on-top
+{
+	padding-top: 2em;
+	padding-bottom: 0;
+}
+
+.linked.caption-on-top small
+{
+	bottom: auto;
+	top: 0;
+}
+
+.linked a:hover small,
+.linked a:focus small	{ visibility: visible; }
