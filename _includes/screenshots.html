@@ -4,12 +4,10 @@
 
     {% if screenshot.title %}
     <div class="screenshot">
-        <div>
-            <span class="fa-stack fa-1x">
-                <i class="iconBack fas fa-circle fa-stack-2x"></i>
-                <i class="iconTop fas fa-{{ screenshot.fontawesome_icon_name }} fa-stack-1x"></i>
-            </span>
-        </div>
+        <a href="{{ screenshot.image }}" title="{{ screenshot.title }}">
+					<img src="{{ screenshot.image }}" width="190" height="125" alt="{{ screenshot.description }}">
+					<small>{{ screenshot.title }}</small>
+		</a>
         <div class="screenshotText">
             <h3>
                 {{ screenshot.title }}
