@@ -37,7 +37,7 @@ h3 {
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #7f8d9b;
+    background-color: #54544c;
 }
 
 a			{color: #364857;font-weight: bold; text-decoration: none;}
@@ -55,7 +55,7 @@ a:active	{ color: #375e76; }
 }
 
 .imageWrapper {
-    height: 714px;
+    height: 745px;
     background: linear-gradient(rgba(54,59,61,0.8), rgba(54,59,61,0.8)),url("assets/headerimage.png");
     background-repeat: no-repeat;
     background-size: cover;
@@ -64,7 +64,7 @@ a:active	{ color: #375e76; }
 
 .headerBackground {
     height: 80px;
-    background-color: rgba(0,0,0,0.1)
+    background-color: rgba(0,0,0,0.1);
 }
 
 @media only screen and (max-width: 768px) {
@@ -79,16 +79,16 @@ a:active	{ color: #375e76; }
 
 .container {
     display: grid;
-    margin: auto;
-    max-width: 1170px;
-    padding-left: 15px;
-    padding-right: 15px;
+    /* margin: auto; */
+    /* max-width: 1170px; */
+    /* padding-left: 15px; */
+    /* padding-right: 15px; */
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: 115px 650px auto auto;
     grid-column-gap: 30px;
     grid-template-areas:
         "h h h h h h h h h h h h"
-        "p p p p i i i i i i i i"
+        "p p p p p i i i i i i i"
         "s s s s s s s s s s s s"
         "c c c c c c c c c c c c"
         "f f f f f f f f f f f f";
@@ -131,7 +131,8 @@ a:active	{ color: #375e76; }
 header {
     grid-area: h;
     display: flex;
-    margin-right: -15px;
+	padding: 0 5%
+    /* margin-right: -15px; */
 }
 
 .logo {
@@ -259,6 +260,7 @@ nav>ul li a:hover,nav>ul li a:active {
     grid-area: p;
     display: flex;
     padding-top: 68px;
+    padding-left: 16%;
     justify-content: center;
     flex-direction: row-reverse;
     flex-wrap: wrap;
@@ -268,7 +270,8 @@ nav>ul li a:hover,nav>ul li a:active {
 @media only screen and (max-width: 992px) {
     .appInfo {
         padding-top:50px;
-        justify-content: center
+		padding-left:0;
+        justify-content: center;
     }
 }
 
@@ -334,7 +337,7 @@ nav>ul li a:hover,nav>ul li a:active {
     font-weight: normal;
     width: 100%;
     align-items: flex-start;
-    margin-top: 25px;
+    /* margin-top: 25px; */
     flex: 0 1 auto;
     line-height: 1.5;
 }
@@ -343,8 +346,8 @@ nav>ul li a:hover,nav>ul li a:active {
 	margin: 0 0 0.5em;
 	color: #c4cbcd;
 	text-shadow: rgba(0, 0, 0, 0.33) 0 1px 2px;
-    text-align: center;
-	height: 100px;
+	text-align: center;
+	/* height: 100px; */
 }
 
 @media only screen and (max-width: 992px) {
@@ -428,7 +431,9 @@ nav>ul li a:hover,nav>ul li a:active {
     background-image: url("assets/black.png");
     background-size: 750px auto;
     background-repeat: no-repeat;
+    /* background-position-x: center; */
     margin-top: 68px;
+    /* padding-right: 8%; */
 }
 
 .iphoneScreen {
@@ -517,7 +522,8 @@ nav>ul li a:hover,nav>ul li a:active {
     justify-content: flex-start;
     flex-grow: 1;
     flex-wrap: wrap;
-    margin-top: 93px;
+    padding: 93px 10%;
+    background-color: #7f8d9b;
 }
 
 .feature {
@@ -548,6 +554,8 @@ nav>ul li a:hover,nav>ul li a:active {
     justify-content: center;
     flex-grow: 1;
     flex-wrap: wrap;
+    background-color: #54544c;
+    padding: 0 10%;
 }
 
 .screenshot {
@@ -699,7 +707,8 @@ footer {
     grid-area: f;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center
+    justify-content: center;
+	background-color:#5b6d7f
 }
 
 .footerText {
@@ -1749,7 +1758,7 @@ footer {
 }
 
 /* Thumbnails */
-.thumbnails		{ margin-bottom: 0; padding: 0; list-style: none; }
+.thumbnails		{margin-bottom: 0;padding-bottom: 30px;list-style: none;}
 .thumbnails li	{ display: inline; }
 .thumbnails img	{vertical-align: middle;}
 
@@ -1769,7 +1778,7 @@ footer {
 
 .linked:hover a		{ opacity: 0.5; }
 .linked a:hover,
-.linked a:focus		{ opacity: 1; background: url("../images/glow_oval_256_clipped.png") 50% -128px no-repeat; }
+.linked a:focus		{ opacity: 1; background-color: white; background-color: rgba(255, 255, 255, 0.25);  }
 .linked a:focus,
 .linked a:active	{ background-color: white; background-color: rgba(255, 255, 255, 0.25); }
 
@@ -1794,7 +1803,6 @@ footer {
 .linked.caption-on-top
 {
 	padding-top: 2em;
-	padding-bottom: 0;
 }
 
 .linked.caption-on-top small
