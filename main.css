@@ -342,7 +342,8 @@ nav>ul li a:hover,nav>ul li a:active {
 	margin: 0 0 0.5em;
 	color: #c4cbcd;
 	text-shadow: rgba(0, 0, 0, 0.33) 0 1px 2px;
-    text-align: right;
+    text-align: center;
+	height: 100px;
 }
 
 @media only screen and (max-width: 992px) {
