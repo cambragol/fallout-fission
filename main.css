@@ -1783,13 +1783,13 @@ code.highlighter-rouge {
 {
 	width: 64px;
 	height: 64px;
-	background-image: url("../images/zoom/spinner.png");
+	background-image: url("/fallout-fission/assets/spinner.png");
 	-webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 2px 8px;
 	-moz-box-shadow: rgba(0, 0, 0, 0.5) 0 2px 8px;
 }
 #zoom-close
 {
-	background: url("../images/zoom/closebox.png");
+	background: url("/fallout-fission/assets/closebox.png");
 	position: absolute;
 	width: 30px;
 	height: 30px;
