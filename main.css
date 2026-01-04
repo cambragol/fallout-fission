@@ -105,7 +105,7 @@ a:active	{ color: #375e76; }
     }
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 1150px) {
     .container {
         grid-column-gap:0px;
         grid-template-columns: 1;
@@ -267,7 +267,7 @@ nav>ul li a:hover,nav>ul li a:active {
     align-content: flex-start;
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 1150px) {
     .appInfo {
         padding-top:50px;
 		padding-left:0;
@@ -350,7 +350,7 @@ nav>ul li a:hover,nav>ul li a:active {
 	/* height: 100px; */
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 1150px) {
     .appDescription {
         text-align:center
     }
@@ -396,7 +396,7 @@ nav>ul li a:hover,nav>ul li a:active {
 .package-version .beta  { text-transform: none; font-weight: normal; letter-spacing: 0; }
 .package-architectures  { display: block; margin-top: 0.5em; color: #b1babc; font-size: 95%; }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 1150px) {
     .downloadButtonsContainer {
         text-align:center;
 		width: 40%;
@@ -408,7 +408,7 @@ nav>ul li a:hover,nav>ul li a:active {
     margin-right: 24px
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 1150px) {
     .playStore {
         margin-right:24px;
         margin-bottom: 0px
@@ -458,7 +458,7 @@ nav>ul li a:hover,nav>ul li a:active {
     height: 755px
 }
 
-@media only screen and (max-width: 1070px) {
+@media only screen and (max-width: 1325px) {
     .iphonePreview {
         background-size: 640px auto;
     }
@@ -482,10 +482,10 @@ nav>ul li a:hover,nav>ul li a:active {
     }
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 1150px) {
     .iphonePreview {
         display:flex;
-        background-size: 460px auto;
+        background-size: 560px auto;
         background-position: center 0;
         margin-top: 47px;
         justify-content: center;
@@ -493,12 +493,44 @@ nav>ul li a:hover,nav>ul li a:active {
     }
 
     .iphoneScreen {
-        width: 352px;
+        width: 430px;
         /* height:488px; */
         -webkit-clip-path: url(#screenMask);
         clip-path: url(#screenMask);
         margin: 0px;
         margin-top: 16px;
+    }
+
+    .videoContainer {
+        width: 226px;
+        height: 488px;
+        margin-left: 0px;
+        margin-top: 17px
+    }
+
+    .videoContainer>video {
+        width: 226px;
+        height: 488px
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .iphonePreview {
+        display:flex;
+        background-size: 360px auto;
+        background-position: center 0;
+        margin-top: 47px;
+        justify-content: center;
+        padding-bottom: 75px
+    }
+
+    .iphoneScreen {
+        width: 280px;
+        /* height:488px; */
+        -webkit-clip-path: url(#screenMask);
+        clip-path: url(#screenMask);
+        margin: 0px;
+        margin-top: 8px;
     }
 
     .videoContainer {
@@ -611,7 +643,7 @@ nav>ul li a:hover,nav>ul li a:active {
     line-height: 1.5
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 1150px) {
     .features {
         flex-grow:1;
         flex-direction: row;
@@ -760,7 +792,7 @@ footer {
     }
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 1150px) {
     .footerText {
         display: block;
         line-height: 1.5;
