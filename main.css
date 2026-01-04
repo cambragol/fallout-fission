@@ -11,8 +11,8 @@ body {
 
 @font-face {
     font-family: 'Gothic821 Cn BT';
-    src: url('/assets/Gothic821CondensedBT-Regular.woff2') format('woff2'),
-        url('/assets/Gothic821CondensedBT-Regular.woff') format('woff');
+    src: url('/fallout-fission/assets/Gothic821CondensedBT-Regular.woff2') format('woff2'),
+        url('/fallout-fission/assets/Gothic821CondensedBT-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
