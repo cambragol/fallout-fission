@@ -103,32 +103,32 @@ screenshots                               :
   - title                                 : Screenshot 4
     description                           : Designed for GitHub Pages. Fork. Edit _config.yml. Upload screenshot/video. Push to gh-pages branch. Voilá!
     fontawesome_icon_name                 : magic
-    image                                 : assets/screenshot1.png
-    thumb                                 : assets/screenshot1_thumb.png
+    image                                 : assets/screenshot4.png
+    thumb                                 : assets/screenshot4_thumb.png
     
   - title                                 : Screenshot 5
     description                           : Preview your app in the context of an iPhone device. Five different device colors included.
     fontawesome_icon_name                 : mobile
-    image                                 : assets/screenshot2.png
-    thumb                                 : assets/screenshot2_thumb.png
+    image                                 : assets/screenshot5.png
+    thumb                                 : assets/screenshot5_thumb.png
 
   - title                                 : Screenshot 6
     description                           : Preview app video on the iPhone device simply by placing your video files in the videos folder.
     fontawesome_icon_name                 : play-circle
-    image                                 : assets/screenshot3.png
-    thumb                                 : assets/screenshot3_thumb.png
+    image                                 : assets/screenshot6.png
+    thumb                                 : assets/screenshot6_thumb.png
 
   - title                                 : Screenshot 7
     description                           : Designed for GitHub Pages. Fork. Edit _config.yml. Upload screenshot/video. Push to gh-pages branch. Voilá!
     fontawesome_icon_name                 : magic
-    image                                 : assets/screenshot1.png
-    thumb                                 : assets/screenshot1_thumb.png
+    image                                 : assets/screenshot7.png
+    thumb                                 : assets/screenshot7_thumb.png
     
   - title                                 : Screenshot 8
     description                           : Preview your app in the context of an iPhone device. Five different device colors included.
     fontawesome_icon_name                 : mobile
-    image                                 : assets/screenshot2.png
-    thumb                                 : assets/screenshot2_thumb.png
+    image                                 : assets/screenshot8.png
+    thumb                                 : assets/screenshot8_thumb.png
 
 # Theme Settings
 topbar_color                              : "#000000"
