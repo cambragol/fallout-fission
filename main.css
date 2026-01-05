@@ -1330,7 +1330,11 @@ code.highlighter-rouge {
     border: 0;
     height: .25em;
     margin: 24px 0;
-    padding: 0
+    padding: 0;
+	-webkit-border-radius: 1em;
+	-moz-border-radius: 1em;
+	-webkit-box-shadow: rgba(255, 255, 255, 0.15) 0 1px 0;
+	-moz-box-shadow: rgba(255, 255, 255, 0.1) 0 0.5px 0;
 }
 
 .markdown-body blockquote {
@@ -1383,7 +1387,9 @@ code.highlighter-rouge {
 
 .markdown-body h1,.markdown-body h2 {
     border-bottom: 1px solid #5b6d7f;
-    padding-bottom: .3em
+    padding-bottom: .3em;
+    /*-webkit-box-shadow: rgba(255, 255, 255, 0.15) 0 1px 0;
+    -moz-box-shadow: rgba(255, 255, 255, 0.1) 0 0.5px 0;*/
 }
 
 .markdown-body h2 {
