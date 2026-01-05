@@ -1,8 +1,8 @@
 ---
 layout: page
-title: Modding System
-include_in_header: true
-include_in_footer: true
+title: Modding System OFF
+include_in_header: false
+include_in_footer: false
 ---
 
 Fallout FISSION Modding System: Complete Implementation Guide
