@@ -6,7 +6,7 @@ include_in_footer: true
 ---
 
 <p align="center">
-  <img src="/fallout-fission/assets/fallout-fission-logo.jpg" alt="Fallout: F.I.S.S.I.O.N. Logo">
+  <img src="/fallout-fission/assets/fallout-fission-logo.jpg" alt="Fallout: F.I.S.S.I.O.N. Logo" width="512px">
 </p>
 
 # Fallout: F.I.S.S.I.O.N.
