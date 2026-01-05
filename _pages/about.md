@@ -124,17 +124,17 @@ After installation, your Fallout 2 folder should contain:
 
 ```
 Fallout 2/
-├── fallout-fission.exe     # F.I.S.S.I.O.N. executable (Windows)
-├── fallout-fission.app     # F.I.S.S.I.O.N. application (macOS)
-├── fission.dat            # Engine data file
-├── master.dat            # Original game data
-├── critter.dat           # Original game data
-├── patch000.dat          # Patch data (if present)
-├── data/                 # Game data folder
-│   ├── proto/           # Proto files (vanilla + mods)
-│   ├── text/            # Text files (vanilla + mods)
-│   └── maps/            # Map files
-└── data/lists/          # Auto-generated mod reports (created on first run)
+├── fallout-fission.exe       # F.I.S.S.I.O.N. executable (Windows)
+├── fallout-fission.app       # F.I.S.S.I.O.N. application (macOS)
+├── fission.dat               # Engine data file
+├── master.dat                # Original game data
+├── critter.dat               # Original game data
+├── patch000.dat              # Patch data (if present)
+├── data/                     # Game data folder
+│   ├── proto/                # Proto files (vanilla + mods)
+│   ├── text/                 # Text files (vanilla + mods)
+│   ├── maps/                 # Map files
+│   └── data/lists/           # Auto-generated mod reports (created on first run)
 ```
 
 ### Important Notes
@@ -142,8 +142,6 @@ Fallout 2/
 -   F.I.S.S.I.O.N. does NOT include game data - you must own Fallout 2
 
 -   Your existing saves will work - F.I.S.S.I.O.N. maintains full compatibility
-
--   Mods stay where they are - F.I.S.S.I.O.N. reads from existing `data/` structure
 
 -   No configuration needed for basic use - just replace the executable
 
