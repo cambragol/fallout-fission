@@ -1,5 +1,12 @@
+---
+layout: page
+title: About FISSION
+include_in_header: true
+include_in_footer: true
+---
+
 <p align="center">
-  <img src="files/fallout-fission-logo.jpg" alt="Fallout: F.I.S.S.I.O.N. Logo" width="1024">
+  <img src="fallout-fission/assets/fallout-fission-logo.jpg" alt="Fallout: F.I.S.S.I.O.N. Logo" width="1024">
 </p>
 
 # Fallout: F.I.S.S.I.O.N.
