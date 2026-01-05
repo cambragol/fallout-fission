@@ -5,9 +5,9 @@ include_in_header: true
 include_in_footer: true
 ---
 
-<p align="center">
+<!--<p align="center">
   <img src="/fallout-fission/assets/fallout-fission-logo.jpg" alt="Fallout: F.I.S.S.I.O.N. Logo" width="512px">
-</p>
+</p>-->
 
 # Fallout: F.I.S.S.I.O.N.
 *Flexible Isometric Simulation System for Interactive Open‑world Nuclear‑roleplaying*
