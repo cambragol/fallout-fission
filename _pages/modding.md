@@ -5,7 +5,6 @@ include_in_header: true
 include_in_footer: true
 ---
 
-
 Fallout FISSION Modding System: Complete Implementation Guide
 =============================================================
 
@@ -48,14 +47,17 @@ Fallout FISSION Modding System: Complete Implementation Guide
    - [5.4 Common Mistakes to Avoid](#54-common-mistakes-to-avoid)
    - [5.5 Validation Tips](#55-validation-tips)
 
-6. [Stable ID Generation](#6-stable-id-generation)
-   - [6.1 Unified Hash Function](#61-unified-hash-function)
-   - [6.2 Mod Message ID Generator](#62-mod-message-id-generator)
-   - [6.3 Quest-Specific ID Generation](#63-quest-specific-id-generation)
-   - [6.4 Holodisk ID Generation](#64-holodisk-id-generation)
-   - [6.5 Area Slot Allocation](#65-area-slot-allocation)
-   - [6.6 Map Slot Allocation](#66-map-slot-allocation)
-   - [6.7 Quest Slot Allocation](#67-quest-slot-allocation)
+6. [Asset System: Scripts, Art, and Protos](#6-asset-system-scripts-art-and-protos)
+   - [6.1 Overview](#61-overview)
+   - [6.2 The .lst File Patterns](#62-the-lst-file-patterns)
+   - [6.3 Special Art Features](#63-special-art-features)
+   - [6.4 Asset Index Ranges and Layout](#64-asset-index-ranges-and-layout)
+   - [6.5 Stable Index Generation Functions](#65-stable-index-generation-functions)
+   - [6.6 Loading Process](#66-loading-process)
+   - [6.7 Critical Rules for Modders](#67-critical-rules-for-modders)
+   - [6.8 Generated Reports](#68-generated-reports)
+   - [6.9 Common Scenarios and Examples](#69-common-scenarios-and-examples)
+   - [6.10 Integration Example](#610-integration-example)
 
 7. [Implementation Details](#7-implementation-details)
    - [7.1 Area Loading (`worldmap.cc`)](#71-area-loading-worldmapcc)
@@ -163,6 +165,8 @@ Fallout FISSION Modding System: Complete Implementation Guide
     - [16.2 Installation and Testing](#172-installation-and-testing)
     - [16.3 Notes for Modders](#173-notes-for-modders)
     - [16.4 Generated IDs Reference](#174-generated-ids-reference)
+    - [16.5 Example Script Usage](#175-example-script-usage)
+
 
 * * * * *
 
@@ -173,35 +177,35 @@ Fallout FISSION Modding System: Complete Implementation Guide
 
 The Fallout 2 FISSION modding system provides a framework for adding new content without modifying base game files:
 
--   Stable, hash-based indexing ensures consistent IDs across installations
+-   Stable, hash-based indexing ensures consistent IDs across installations
 
--   Modular file organization keeps mods self-contained
+-   Modular file organization keeps mods self-contained
 
--   Automatic report generation helps modders reference generated IDs
+-   Automatic report generation helps modders reference generated IDs
 
--   Backward compatibility with vanilla saves and content
+-   Backward compatibility with vanilla saves and content
 
--   Localization support with English fallback
+-   Localization support with English fallback
 
--   Vanilla format conversion - mod content converted to vanilla format at load time
+-   Vanilla format conversion - mod content converted to vanilla format at load time
 
 ### 1.2 Supported Content Types
 
-1.  Maps - Game locations with multiple elevations
+1.  Maps - Game locations with multiple elevations
 
-2.  Areas - World map regions containing multiple maps
+2.  Areas - World map regions containing multiple maps
 
-3.  Messages - Text for area names, map names, entrance labels, quest descriptions, and holodisk text
+3.  Messages - Text for area names, map names, entrance labels, quest descriptions, and holodisk text
 
-4.  Quests - Quest definitions with automatically linked descriptions
+4.  Quests - Quest definitions with automatically linked descriptions
 
-5.  Holodisks - Holodisk definitions with multi-page text content
+5.  Holodisks - Holodisk definitions with multi-page text content
 
-6.  Scripts - Already has stable ID generation (separate system)
+6.  Scripts - Already has stable ID generation (separate system)
 
-7.  Art - Already has stable ID generation (separate system)
+7.  Art - Already has stable ID generation (separate system)
 
-8.  Protos - Items, critters, scenery, walls, tiles, and misc objects
+8.  Protos - Items, critters, scenery, walls, tiles, and misc objects
 
 * * * * *
 
@@ -221,17 +225,21 @@ The Fallout 2 FISSION modding system provides a framework for adding new content
 
 ### 2.2 Key Principles
 
-1.  Deterministic hashing - Same inputs always produce same outputs
+1.  **Deterministic hashing** - Same inputs always produce same outputs
 
-2.  Case-insensitive - System normalizes to lowercase via `tolower()`
+2.  **Case-insensitive** - System normalizes to lowercase via `tolower()`
 
-3.  Fail on collision - Prevents silent overwrites (popup warnings)
+3.  **Fail on collision** - Prevents silent overwrites (popup warnings)
 
-4.  Separate concerns - Config, art, scripts, messages in different files
+4.  **Separate concerns** - Config, art, scripts, messages in different files
 
-5.  Automatic linking - Quests auto-generate linked message IDs
+5.  **Automatic linking** - Quests auto-generate linked message IDs
 
-6.  Vanilla conversion - Mod content converted to vanilla format at load time
+6.  **Vanilla conversion** - Mod content converted to vanilla format at load time
+
+7.  **Stable script indexing** - Script IDs generated from filename hashes, consistent across installations
+
+8.  **Protected vanilla ranges** - Vanilla content remains in original slots, mods use hash-based upper ranges
 
 * * * * *
 
@@ -266,27 +274,27 @@ Fallout 2 Game Directory/
 
 ### 3.2 Required FISSION Files
 
-For the FISSION modding system specifically, place these in the `data/` directory:
+For the FISSION modding system specifically, place these in the `data/` directory:
 
-1.  `city_{modname}.txt` - Area definitions
+1.  `city_{modname}.txt` - Area definitions
 
-2.  `maps_{modname}.txt` - Map definitions
+2.  `maps_{modname}.txt` - Map definitions
 
-3.  `quests_{modname}.txt` - Quest definitions
+3.  `quests_{modname}.txt` - Quest definitions
 
-4.  `holodisk_{modname}.txt` - Holodisk definitions
+4.  `holodisk_{modname}.txt` - Holodisk definitions
 
-5.  `messages_{modname}.txt` - Message/text content (in `data/text/english/game/`)
+5.  `messages_{modname}.txt` - Message/text content (in `data/text/english/game/`)
 
 ### 3.3 File Naming Rules
 
--   All lowercase recommended (system is case-insensitive but consistent)
+-   All lowercase recommended (system is case-insensitive but consistent)
 
--   No spaces or special characters except underscore
+-   No spaces or special characters except underscore
 
--   Mod name must be consistent across all files
+-   Mod name must be consistent across all files
 
-Example: For a mod named "wasteland":
+Example: For a mod named "wasteland":
 
 -   `data/city_wasteland.txt`
 
@@ -300,17 +308,19 @@ Example: For a mod named "wasteland":
 
 ### 3.4 Important Notes
 
-1.  Scripts and Art use their own stable ID generation systems (separate from FISSION)
+1.  Scripts and Art use their own stable ID generation systems (separate from FISSION)
 
-2.  Message files must be in language-specific subdirectories:
+2.  Message files must be in language-specific subdirectories:
 
-    -   English: `data/text/english/game/messages_{modname}.txt`
+    -   English: `data/text/english/game/messages_{modname}.txt`
 
-    -   German: `data/text/german/game/messages_{modname}.txt`
+    -   German: `data/text/german/game/messages_{modname}.txt`
 
     -   etc.
 
-3.  Vanilla files remain unchanged - mod files are added alongside them
+3.  Vanilla files remain unchanged - mod files are added alongside them
+
+4.  Scripts use hash-based indexing from filenames, with mod scripts placed in upper ranges (vanilla count to 4095)
 
 * * * * *
 
@@ -340,7 +350,7 @@ entrance_1 = On,235,250,SCRAPTOWN2,-1,-1,0
 
 #### 4.1.2 Rules
 
--   `area_name` must be unique across all mods
+-   `area_name` must be unique across all mods
 
 -   Use uppercase for consistency
 
@@ -372,15 +382,15 @@ random_start_point_0 = elev:0,tile_num:12345:elev:0,tile_num:23456
 
 #### 4.2.2 Critical Rules
 
-1.  `map_name` ≤ 8 characters - DOS 8.3 limitation for save games
+1.  `map_name` ≤ 8 characters - DOS 8.3 limitation for save games
 
-2.  `city_name` must match an `area_name` in the corresponding city file
+2.  `city_name` must match an `area_name` in the corresponding city file
 
-3.  `lookup_name` must be unique across all mods
+3.  `lookup_name` must be unique across all mods
 
 ### 4.3 Quest Configuration (`quests_{modname}.txt`)
 
-Defines quests using the vanilla `quests.txt` format with enhanced mod support.
+Defines quests using the vanilla `quests.txt` format with enhanced mod support.
 
 #### 4.3.1 Format
 
@@ -395,7 +405,7 @@ Defines quests using the vanilla `quests.txt` format with enhanced mod support.
 
 1.  One quest per line in CSV format
 
-2.  Comments start with `#` and are ignored
+2.  Comments start with `#` and are ignored
 
 3.  Location - Area index (must be valid area, vanilla or mod)
 
@@ -420,7 +430,7 @@ Defines holodisks by their GVAR (global variable) numbers.
 
 -   One GVAR per line
 
--   Comments start with `#`
+-   Comments start with `#`
 
 -   GVARs should be unique (900+ recommended for mods)
 
@@ -457,25 +467,25 @@ holodisk:0:line:2 = **END-DISK**  # Required
 
 #### 5.1.2 Critical Format Rules
 
-1.  Section headers must match exactly: `[map]`, `[worldmap]`, `[quests]`, `[PIPBOY]`
+1.  Section headers must match exactly: `[map]`, `[worldmap]`, `[quests]`, `[PIPBOY]`
 
 2.  Case-sensitive keys: Use exact formats shown (lowercase for area_name/lookup_name/entrance_X/holodisk)
 
-3.  No trailing spaces in section headers or keys
+3.  No trailing spaces in section headers or keys
 
 ### 5.2 Key Formats Explained
 
 These formats match the vanilla message file structure for consistency:
 
--   Vanilla uses `area_name:` for area names
+-   Vanilla uses `area_name:` for area names
 
--   Vanilla uses `lookup_name:` for map names
+-   Vanilla uses `lookup_name:` for map names
 
--   Vanilla uses `entrance_X:` for town map labels
+-   Vanilla uses `entrance_X:` for town map labels
 
--   Extended with `[quests]` section for mod quests
+-   Extended with `[quests]` section for mod quests
 
--   Extended with `[PIPBOY]` section for mod holodisks
+-   Extended with `[PIPBOY]` section for mod holodisks
 
 ### 5.3 ID Generation Examples
 
@@ -491,17 +501,17 @@ generate_mod_message_id("myquest", "lookup_name:Scraptown1:0")
 
 ### 5.4 Common Mistakes to Avoid
 
--   WRONG: `AREA:SCRAPTOWN` (uppercase, wrong prefix)
+-   WRONG: `AREA:SCRAPTOWN` (uppercase, wrong prefix)
 
--   WRONG: `MAP:SCRAPTOWN1:0` (wrong prefix)
+-   WRONG: `MAP:SCRAPTOWN1:0` (wrong prefix)
 
--   CORRECT: `area_name:SCRAPTOWN`
+-   CORRECT: `area_name:SCRAPTOWN`
 
--   CORRECT: `lookup_name:SCRAPTOWN1:0`
+-   CORRECT: `lookup_name:SCRAPTOWN1:0`
 
 ### 5.5 Validation Tips
 
-1.  Check vanilla `messages.txt` for reference formats
+1.  Check vanilla `messages.txt` for reference formats
 
 2.  Use exact lowercase prefixes shown above
 
@@ -513,89 +523,446 @@ Important: The system looks for exact key formats. If your keys don't match, mes
 
 * * * * *
 
-6\. Stable ID Generation
-------------------------
+6\. Asset System: Scripts, Art, and Protos
+-----------------------------------------
 
-### 6.1 Unified Hash Function (DJB2, Case-Insensitive)
+### 6.1 Overview
+
+FISSION extends Fallout 2's asset loading with a unified system that supports:
+- **Supplementary `.lst` files** load alongside vanilla lists
+- **Stable, hash-based indexing** ensures consistent IDs across installations
+- **Vanilla protection** - original assets remain untouched
+- **Automatic variant detection** for widescreen/HD assets
+- **Special remapping feature** for art assets
+- **Automatic collision detection** with popup warnings
+
+**Key Concept**: The system maintains three types of art assets:
+1. **Vanilla assets** (0-4095) - Original game assets, protected
+2. **Variant assets** (automatic) - HD/widescreen versions, auto-loaded when detected
+3. **Mod assets** (4096-8191) - Your custom content via `.lst` files
+
+### 6.2 The .lst File Patterns
+
+Each asset type has specific directory and naming conventions:
+
+#### 6.2.1 Scripts
 
 ```
-uint32_t stable_hash(const char* str) {
-    uint32_t hash = 5381;
-    int c;
-    while ((c = *str++)) {
-        c = tolower(c);  // Critical: Case normalization
-        hash = ((hash << 5) + hash) + c;  // hash * 33 + c
+scripts/scripts_{modname}.lst # Mod script list
+scripts/{scriptname}.int # Compiled script
+scripts/{language}/{scriptname}.int # Optional localized version
+```
+
+#### 6.2.2 Art Assets (Multiple Types)
+
+```
+art/{type}/{type}_{modname}.lst # Mod art list (type = intrface, items, critters, etc.)
+art/{type}/{artname}.frm # Art file
+```
+
+#### 6.2.3 Protos (Multiple Types)
+
+```
+proto/{type}/{type}_{modname}.lst # Mod proto list (type = items, critters, scenery, etc.)
+proto/{type}/{protoname}.pro # Proto file
+```
+
+#### 6.2.4 Variant Art (Automatic)
+
+```
+art/{type}/{basename}{suffix}.frm # Auto-detected when suffix matches config
+```
+
+```
+Example: `art/intrface/button_ok_800.frm` (suffix `_800` for 800x600 widescreen)
+```
+
+### 6.3 Special Art Features
+
+#### 6.3.1 Variant System (Automatic HD/Widescreen)
+The system automatically detects and loads variant art for widescreen/HD support:
+
+**How Variants Work:**
+1. **Automatic detection**: System scans `art/{type}/` for files matching pattern `*{suffix}.frm`
+2. **Suffix configuration**: Set in `fallout2.cfg` (default: `_800` for 800x600)
+3. **Matching logic**: Variant must match a base vanilla asset name
+   - Base: `button_ok.frm`
+   - Variant: `button_ok_800.frm` (suffix `_800`)
+4. **Automatic assignment**: Variants get special slots after vanilla assets
+
+**Example Configuration (`fallout2.cfg`):**
+
+```
+[graphics]
+widescreen_variant_suffix=_800
+```
+
+**Variant File Structure:**
+
+```
+art/intrface/
+├── button_ok.frm # Vanilla asset (standard resolution)
+├── button_ok_800.frm # Variant asset (widescreen, auto-detected)
+├── intrface_myquest.lst # Your mod assets
+└── mybutton.frm # Your mod art
+```
+
+#### 6.3.2 Art Remapping
+Art supports a special remapping syntax to redirect vanilla assets:
+
+```
+@original_name=new_path/filename.frm
+```
+
+Example in `intrface_myquest.lst`:
+
+```
+@dial.frm=items/hd/dial_hd.frm # Redirects vanilla dial.frm to HD version
+mybutton.frm # Adds new art
+```
+
+**Remapping Rules:**
+- Only works for vanilla assets (indices 0-4095)
+- Does NOT create new slots
+- Updates path reference only
+- Shows as `»` in `art_list.txt` report
+
+#### 6.3.3 Art Loading Priority
+1. **`fission.lst`** - Always loads first (if present)
+2. **Vanilla assets** - Loaded from base lists
+3. **Variant assets** - Auto-detected and loaded
+4. **`{type}_*.lst` files** - Loaded alphabetically
+
+### 6.4 Asset Index Ranges and Layout
+
+#### 6.4.1 Complete Art Index Layout
+
+0 - (vanillaCount-1): Vanilla assets (protected, original game)
+vanillaCount - (vanillaCount+variantCount-1): Variant assets (auto-detected HD/widescreen)
+4096 - 8191: Mod assets (your custom content via .lst files)
+
+**Example from `art_list.txt` report:**
+
+```
+[INTRFACE] (850 assets)
+Vanilla: 600 assets | Variants: 50 assets | Mods: 200 assets
+
+Slot Ranges:
+Vanilla: 0-599
+Variants: 600-649
+Mods: 4096-8191
+```
+
+#### 6.4.2 Variant Slot Assignment
+Variant slots are assigned **dynamically** based on detection:
+1. System scans `art/{type}/` directory for `*{suffix}.frm` files
+2. For each matching variant file:
+   - Extracts base name (removes suffix)
+   - Finds matching vanilla asset index
+   - Allocates next available variant slot
+   - Links variant to vanilla index internally
+
+**Important**: Variant indices are **not stable** - they depend on detection order and file system.
+
+#### 6.4.3 Script Index Range
+
+0 - (vanillaCount-1): Vanilla scripts (protected)
+vanillaCount - 4095: Mod scripts (hash-based from filename)
+
+**Total**: 4096 script slots maximum (0-4095)
+
+#### 6.4.4 Art Mod Index Range (Different from Scripts!)
+
+4096 - 8191: Mod art assets (hash-based from filename)
+
+**Total**: 8192 art slots maximum (0-8191), with mods in **extended range 4096-8191**
+
+#### 6.4.5 Key Differences Between Systems
+| System | Total Slots | Vanilla Range | Variant Range | Mod Range | Notes |
+|--------|------------|---------------|---------------|-----------|-------|
+| Scripts | 4096 | 0-vanillaCount | (none) | vanillaCount-4095 | Shared array |
+| Art | 8192 | 0-4095 | vanillaCount-(vanillaCount+variantCount-1) | 4096-8191 | Extended array |
+| Protos | 0xFFFFFF | Type-dependent | (none) | Hash-based | Full PID system |
+
+**Critical Distinction**: Art mods use **4096-8191** range, NOT the same 0-4095 range as scripts!
+
+### 6.5 Stable Index Generation Functions
+
+#### 6.5.1 Script Hashing (from `script.cc`)
+
+```
+// Range: vanillaCount to 4095 (within 0-4095 total)
+static int scriptsGetStableIndex(const char* scriptName, int vanillaCount) {
+    char normalized[14];
+    strncpy(normalized, scriptName, 13);
+    normalized[13] = '\0';
+    
+    // Normalize to lowercase only
+    for (char* p = normalized; *p; p++) {
+        *p = tolower(*p);
     }
-    return hash;
+    
+    // Base-36 hash (digits 0-9 + letters a-z)
+    uint64_t hashValue = 0;
+    for (char* ptr = normalized; *ptr; ptr++) {
+        int digitValue;
+        if (*ptr >= '0' && *ptr <= '9') {
+            digitValue = *ptr - '0';
+        } else if (*ptr >= 'a' && *ptr <= 'z') {
+            digitValue = *ptr - 'a' + 10;
+        } else {
+            continue;  // Skip non-alphanumeric
+        }
+        hashValue = hashValue * 36 + digitValue;
+    }
+    
+    // Mod range: vanillaCount to 4095
+    return vanillaCount + (hashValue % (4096 - vanillaCount));
 }
 ```
 
-### 6.2 Mod Message ID Generator
+#### 6.5.2 Art Hashing (from art.cc)
 
 ```
-uint32_t generate_mod_message_id(const char* mod_name, const char* key) {
-    char composite_key[256];
-    snprintf(composite_key, sizeof(composite_key), "%s:%s", mod_name, key);
-    uint32_t hash = stable_hash(composite_key);
-    return 0x8000 + (hash % 0x7FFF);  // 32768-65535 range
+// Range: 4096-8191 (EXTENDED range for mods only)
+static int artGetStableIndex(const char* filename, int vanillaCount, int variantCount) {
+    char normalized[64] = {0};
+    char* dest = normalized;
+    
+    // Different normalization: keeps underscores, removes paths/extensions
+    for (const char* src = filename; *src && dest < normalized + sizeof(normalized) - 1; src++) {
+        char c = *src;
+        if (c >= '0' && c <= '9') *dest++ = c;
+        else if (c >= 'a' && c <= 'z') *dest++ = c;
+        else if (c >= 'A' && c <= 'Z') *dest++ = tolower(c);
+        else if (c == '_') *dest++ = c;  // ART KEEPS UNDERSCORES
+        // Skip all other characters (paths, extensions, etc.)
+    }
+    *dest = '\0';
+    
+    // Base-36 hash (same algorithm, different input)
+    uint64_t hashValue = 0;
+    for (char* ptr = normalized; *ptr; ptr++) {
+        int digitValue = (*ptr >= '0' && *ptr <= '9') ? *ptr - '0' : *ptr - 'a' + 10;
+        hashValue = hashValue * 36 + digitValue;
+    }
+    
+    // MOD RANGE: 4096-8191 (ALWAYS extended range)
+    return 4096 + (hashValue % 4096);
 }
 ```
 
-### 6.3 Quest-Specific ID Generation
+#### 6.5.3 Normalization Differences
+
+| System | Keeps | Removes | Example |
+| --- | --- | --- | --- |
+| Scripts | a-z, 0-9 | underscores, paths, extensions | `MyScript.int` → `myscript` |
+| Art | a-z, 0-9, underscores | paths, extensions | `my_gun.frm` → `my_gun` |
+
+Note: Underscore handling difference is critical for avoiding hash collisions!
+
+### 6.6 Loading Process
+
+#### 6.6.1 General Loading Flow
+1. **Vanilla assets** load from base lists (`scripts.lst`, `art/*.lst`, etc.)
+2. **Variant detection** (art only) - scans directories for `*{suffix}.frm` files
+3. **Mod discovery** finds `*_{modname}.lst` files
+4. **Alphabetical processing** for consistent loading order
+5. **For each mod asset**:
+   - Calculate stable index via hash
+   - Check for collisions (index already occupied)
+   - **If collision**: Show popup warning, skip asset
+   - **If free**: Assign to calculated slot
+
+#### 6.6.2 Art-Specific Loading Order
+1. **`fission.lst`** - Always loads first (if present)
+2. **Base lists** - Load vanilla assets
+3. **Variant scan** - Auto-detect HD/widescreen variants
+4. **`{type}_*.lst` files** - Sorted alphabetically, processed in order
+5. **Remapping** - Process `@original=new_path` directives
+
+#### 6.6.3 Collision Handling
 
 ```
-// In questLoadModFile():
-char descKey[256];
-snprintf(descKey, sizeof(descKey), "quest:%d", questIndexInThisMod);
-int descMessageId = generate_mod_message_id(mod_name, descKey);
-quest->description = descMessageId;  // Override file description
+Hash Collision Popup Example:\
+┌─────────────────────────────────────┐\
+│ ART SLOT COLLISION DETECTED! │\
+│ │\
+│ New asset: mygun.frm │\
+│ Target slot: 4120 │\
+│ Existing asset: othermod_gun.frm │\
+│ │\
+│ To resolve: Rename your art file to │\
+│ change its namespace. │\
+│ │\
+│ The asset 'mygun.frm' will NOT be │\
+│ loaded. │\
+└─────────────────────────────────────┘
 ```
 
-### 6.4 Holodisk ID Generation
+**Important**: Unlike quests/maps, asset collisions cause the asset to be **skipped entirely**, not overwritten.
+
+### 6.7 Critical Rules for Modders
+
+#### 6.7.1 File Naming and Placement
+1. **Art uses `{type}_*.lst`** in respective `art/{type}/` directories
+2. **Scripts use `scripts_*.lst`** in `scripts/` directory
+3. **Protos use `{type}_*.lst`** in respective `proto/{type}/` directories
+4. **Case normalization**: All names converted to lowercase for hashing
+5. **File placement**: Assets must be in correct directories (`.frm` in `art/`, `.pro` in `proto/`, etc.)
+
+#### 6.7.2 Index Range Awareness
+6. **Script range**: 0-4095 total, mods in upper portion (`vanillaCount-4095`)
+7. **Art range**: 0-8191 total, mods in **4096-8191** (extended range)
+8. **Art variants**: Auto-detected, placed after vanilla assets
+9. **Proto PIDs**: Full 24-bit range, type-dependent
+
+#### 6.7.3 Collision and Compatibility
+10. **Collision resolution**: Rename asset file to change its hash
+11. **Art remapping**: Use `@original=new_path` syntax only for vanilla redirects
+12. **Variant creation**: Name files as `{basename}{suffix}.frm` (e.g., `button_800.frm`)
+13. **Localization**: Optional language subdirectories
+14. **Check reports**: Always verify IDs in generated reports before using them
+
+### 6.8 Generated Reports
+
+#### 6.8.1 Essential Reports in `data/lists/`
+| Report | Contents | Key Information | |--------|----------|-----------------| | `scripts_list.txt` | All scripts | Indices (0-4095), mod assignments, local vars |
+| `art_list.txt` | All art assets | Indices (0-8191), variants, remaps (`»`), collisions (`#`) |
+| `proto_list.txt` | All protos | PIDs, types, names, descriptions, mod assignments |
+
+#### 6.8.2 Reading Art List Reports
 
 ```
-// In convertAndLoadModHolodisk():
-char nameKey[128];
-snprintf(nameKey, sizeof(nameKey), "holodisk:%d:name", holodiskIndex);
-int nameHashId = generate_mod_message_id(modName, nameKey);
+[INTRFACE] (850 assets)\
+Vanilla: 600 assets | Variants: 50 assets | Mods: 200 assets
 
-char lineKey[128];
-snprintf(lineKey, sizeof(lineKey), "holodisk:%d:line:%d", holodiskIndex, lineNum);
-int lineHashId = generate_mod_message_id(modName, lineKey);
+* * * * *
+
+Slot Ranges:\
+Vanilla: 0-599\
+Variants: 600-649\
+Mods: 4096-8191
+
+* * * * *
+
+VANILLA ASSETS:\
+0: button_ok.frm\
+1: button_cancel.frm\
+...
+
+VARIANT ASSETS:\
+600: button_ok_800.frm # Auto-detected widescreen variant\
+601: button_cancel_800.frm
+
+MOD ASSETS:\
+4096: mybutton.frm\
+4097: otherbutton.frm
+
+--- CONFLICT DETAILS ---
+
+4120: COLLISION: existing_gun.frm vs mygun.frm - SKIPPED
+========================================================
+
+» 150: REMAP: plasma.frm -> items/hd/plasma_hd.frm
 ```
 
-### 6.5 Area Slot Allocation
+#### 6.8.3 Report Legend
+- **No prefix**: Normal loaded asset
+- **`#`**: Hash collision (needs fixing)
+- **`»`**: Vanilla asset remapped to new path
+- **`!`**: Other conflict/issue
+
+### 6.9 Common Scenarios and Examples
+
+#### 6.9.1 Adding New Weapon with All Assets
+1. **Create art**: `art/items/items_myquest.lst` + `mygun.frm`
+2. **Create proto**: `proto/items/items_myquest.lst` + `mygun.pro` (references art index)
+3. **Create script**: `scripts/scripts_myquest.lst` + `mygun.int`
+4. **Add proto messages** to `messages_myquest.txt`:
 
 ```
-static uint16_t wmAreaCalculateModSlot(const char* areaName, uint32_t modNamespace) {
-    char combinedKey[256];
-    snprintf(combinedKey, sizeof(combinedKey), "%s|%u", areaName, modNamespace);
-    uint32_t hash = stable_hash(combinedKey);
-    return MOD_AREA_START + (hash % (MOD_AREA_MAX - MOD_AREA_START));
-}
+[proto_myquest]\
+myquest:mygun:name = Custom Plasma Rifle\
+myquest:mygun:desc = A modified plasma rifle.
 ```
 
-### 6.6 Map Slot Allocation
+5. **Run game**, check reports:
+- `art_list.txt`: Find art index (e.g., 4120)
+- `proto_list.txt`: Find PID (e.g., 0x00DB240E)
+- `scripts_list.txt`: Find script index (e.g., 450)
+
+#### 6.9.2 Creating HD Variants for Vanilla Assets
+
+1. **Create variant files** with suffix (e.g., `_800`):
 
 ```
-static uint16_t wmCalculateModMapSlot(const char* lookupName, uint32_t modNamespace) {
-    char combinedKey[256];
-    snprintf(combinedKey, sizeof(combinedKey), "%s|%u", lookupName, modNamespace);
-    uint32_t hash = stable_hash(combinedKey);
-    return MOD_MAP_START + (hash % (MOD_MAP_MAX - MOD_MAP_START));
-}
+art/items/plasma_800.frm\
+art/items/laser_800.frm
 ```
 
-### 6.7 Quest Slot Allocation
+2. **Configure suffix** in `fallout2.cfg`:
 
 ```
-static uint16_t questCalculateModSlot(const char* questKey, uint32_t modNamespace, int questIndexInMod) {
-    char combinedKey[256];
-    snprintf(combinedKey, sizeof(combinedKey), "%s|%u|%d", questKey, modNamespace, questIndexInMod);
-    uint32_t hash = stable_hash(combinedKey);  // Uses same unified hash
-    return MOD_QUEST_START + (hash % (MOD_QUEST_MAX - MOD_QUEST_START));
-}
+[graphics]\
+widescreen_variant_suffix=_800
 ```
+
+3. **System auto-detects** and loads variants
+4. **Check `art_list.txt`**: Variants appear in variant range (600-649 in example)
+
+#### 6.9.3 Redirecting Vanilla Art (HD Upgrade)
+
+In art/items/items_myquest.lst
+============================
+
+```
+@plasma.frm=items/hd/plasma_hd.frm\
+@laser.frm=items/hd/laser_hd.frm
+```
+
+Adds new assets
+===============
+
+```
+mycustomgun.frm
+```
+
+#### 6.9.4 Handling Hash Collisions
+If collision occurs:
+1. **Note conflicting names** from popup
+2. **Rename your file**: `mygun.frm` → `mymod_gun.frm`
+3. **Update `.lst` file** with new name
+4. **New hash** will (likely) go to different free slot
+
+### 6.10 Integration Example
+
+```
+// After checking reports:
+// art_list.txt shows: 4120: mygun.frm
+// proto_list.txt shows: 0x00DB240E: mygun
+// scripts_list.txt shows: 450: mygun
+
+// Create the weapon in script
+int gun_pid = 0x00DB240E;  // From proto_list.txt
+obj = create_object(gun_pid, tile, elevation);
+
+// The weapon will:
+// - Use art index 4120 for display
+// - Execute script 450 for behavior
+// - Show name/desc from message file
+
+// In critter proto (.pro file):
+// Script Index field: 450 (from scripts_list.txt)
+// Art FID: Would reference art index 4120
+
+// In mapper or .map file:
+// Object PID: 0x00DB240E
+// Script: 450
+```
+
+Remember: Always check generated reports for actual IDs before using them. The system ensures same filenames = same IDs every time, but you must verify the exact numbers.
+
 
 * * * * *
 
@@ -604,11 +971,11 @@ static uint16_t questCalculateModSlot(const char* questKey, uint32_t modNamespac
 
 ### 7.1 Area Loading (`worldmap.cc`)
 
-File: `wmAreaLoadModFile()`
+File: `wmAreaLoadModFile()`
 
 Process:
 
-1.  Extract mod name from filename (`city_myquest.txt` → `"myquest"`)
+1.  Extract mod name from filename (`city_myquest.txt` → `"myquest"`)
 
 2.  Calculate mod namespace hash
 
@@ -618,13 +985,13 @@ Process:
 
     -   Store mod name in parallel array (not in CityInfo struct)
 
-    -   Generate area message ID: `generate_mod_message_id("myquest", "area_name:AREA_NAME")`
+    -   Generate area message ID: `generate_mod_message_id("myquest", "area_name:AREA_NAME")`
 
-    -   Set `city->areaId` to generated message ID
+    -   Set `city->areaId` to generated message ID
 
 ### 7.2 Map Loading (`worldmap.cc`)
 
-File: `wmMapLoadModFile()`
+File: `wmMapLoadModFile()`
 
 Process:
 
@@ -634,37 +1001,37 @@ Process:
 
     -   Calculate stable slot based on lookup name + mod namespace
 
-    -   Use `city_name` field to link to area (not integer `city` field)
+    -   Use `city_name` field to link to area (not integer `city` field)
 
     -   Look up area by name and assign map to correct area index
 
 ### 7.3 Quest Loading (`pipboy.cc`)
 
-File: `questLoadModFile()`
+File: `questLoadModFile()`
 
 Process:
 
-1.  Extract mod name from filename (`quests_myquest.txt` → `"myquest"`)
+1.  Extract mod name from filename (`quests_myquest.txt` → `"myquest"`)
 
 2.  For each quest line (indexed from 0 in mod file):
 
-    -   Generate quest key: `"{modname}:{index}"`
+    -   Generate quest key: `"{modname}:{index}"`
 
-    -   Calculate stable quest slot using `questCalculateModSlot()`
+    -   Calculate stable quest slot using `questCalculateModSlot()`
 
-    -   Generate description message ID: `generate_mod_message_id("myquest", "quest:{index}")`
+    -   Generate description message ID: `generate_mod_message_id("myquest", "quest:{index}")`
 
     -   Override description field with generated message ID
 
-    -   Store mod name in `gQuestModNames[]` for tracking
+    -   Store mod name in `gQuestModNames[]` for tracking
 
 ### 7.4 Holodisk Loading (`pipboy.cc`)
 
 #### 7.4.1 Process Overview
 
-1.  Vanilla holodisks load from `data/holodisk.txt` (GVAR, name ID, description ID)
+1.  Vanilla holodisks load from `data/holodisk.txt` (GVAR, name ID, description ID)
 
-2.  Mod holodisks load from `data/holodisk_*.txt` files
+2.  Mod holodisks load from `data/holodisk_*.txt` files
 
 3.  For each mod holodisk:
 
@@ -672,7 +1039,7 @@ Process:
 
     -   Generate a block of 500 consecutive IDs starting at 50000
 
-    -   Look up name and lines from message file (in `[PIPBOY]` section)
+    -   Look up name and lines from message file (in `[PIPBOY]` section)
 
     -   Add to message list with consecutive numeric IDs
 
@@ -701,17 +1068,17 @@ Converted to vanilla format:
 
 ### 7.5 Message Loading (`message.cc`)
 
-File: `loadModFileWithSections()`
+File: `loadModFileWithSections()`
 
 Process for quests:
 
 1.  Extract mod name from filename
 
-2.  Read `[quests]` section
+2.  Read `[quests]` section
 
-3.  For each `quest:{index} = text` pair:
+3.  For each `quest:{index} = text` pair:
 
-    -   Generate same message ID using `generate_mod_message_id()`
+    -   Generate same message ID using `generate_mod_message_id()`
 
     -   Add to quest message list (`gQuestsMessageList`)
 
@@ -719,11 +1086,11 @@ Process for holodisks:
 
 1.  Extract mod name from filename
 
-2.  Read `[PIPBOY]` section (or `[HOLODISKS]` for backward compatibility)
+2.  Read `[PIPBOY]` section (or `[HOLODISKS]` for backward compatibility)
 
-3.  For each `holodisk:{index}:name = text` and `holodisk:{index}:line:{num} = text` pair:
+3.  For each `holodisk:{index}:name = text` and `holodisk:{index}:line:{num} = text` pair:
 
-    -   Generate message ID using `generate_mod_message_id()`
+    -   Generate message ID using `generate_mod_message_id()`
 
     -   Add to pipboy message list (`gPipboyMessageList`)
 
@@ -793,21 +1160,32 @@ static void pipboyRenderHolodiskText() {
 
 The system automatically creates these files in `data/lists/`:
 
-1.  `quests_list.txt` - All quests with slots, mod assignments, and generated message IDs
+#### Core Configuration Reports (Essential for all mods)
+1.  `area_list.txt` - All areas with slots and mod assignments
+2.  `maps_list.txt` - All maps with slots, types, and override info
+3.  `quests_list.txt` - All quests with slots, mod assignments, and generated message IDs
 
-2.  `messages_quests_list.txt` - All mod quest descriptions with IDs
+#### Asset Reports (For scripts, art, protos)
+4.  `scripts_list.txt` - All scripts with indices, mod assignments, and local variable counts
+5.  `art_list.txt` - All art assets with indices, types, and file references
+6.  `proto_list.txt` - All protos with PIDs, types, names, and mod assignments
 
-3.  `messages_pipboy_list.txt` - All mod messages in pipboy.msg with IDs (including holodisk messages)
+#### Message System Reports (Text content)
+7.  `messages_MAP_list.txt` - All mod messages in map.msg with IDs (area/map names)
+8.  `messages_WORLDMAP_list.txt` - All mod messages in worldmap.msg with IDs (entrance labels)
+9.  `messages_QUESTS_list.txt` - All mod quest descriptions with IDs
+10. `messages_PIPBOY_list.txt` - All mod messages in pipboy.msg with IDs (including holodisk messages)
 
-4.  `holodisks_list.txt` - All holodisks with GVARs, name IDs, and mod assignments
+#### Specialized Reports
+11. `holodisks_list.txt` - All holodisks with GVARs, name IDs, and mod assignments
 
-5.  `maps_list.txt` - All maps with slots, types, and override info
+**Usage notes - recommended checking order:**
+1. **First build**: Check `area_list.txt`, `maps_list.txt` to verify your areas/maps loaded
+2. **Add assets**: Check `scripts_list.txt`, `art_list.txt`, `proto_list.txt` for IDs to use in other files
+3. **Add text**: Check message reports to verify your text appears correctly
+4. **Final check**: Verify `quests_list.txt` and `holodisks_list.txt` for integrated content
 
-6.  `area_list.txt` - All areas with slots and mod assignments
-
-7.  `messages_map_list.txt` - All mod messages in map.msg with IDs
-
-8.  `messages_worldmap_list.txt` - All mod messages in worldmap.msg with IDs
+Reports are generated every time the game loads with mods present.
 
 ### 8.2 Report Formats
 
@@ -914,19 +1292,15 @@ Base Messages: 626
 
 -   DOS 8.3 violations: Warning popup for map names >8 characters
 
--   Missing area references: Warns when `city_name` doesn't match any area
+-   Missing area references: Warns when `city_name` doesn't match any area
 
 * * * * *
 
-9\. Modder Guidelines
----------------------
-
 ### 9.1 Step-by-Step Mod Creation
 
-1.  Choose a mod name (e.g., `myquest`)
+1.  **Choose a mod name** (e.g., `myquest`)
 
-2.  Create area file (`city_myquest.txt`):
-
+2.  **Create area file** (`city_myquest.txt`):
     ```
     [Area 0]
     area_name = MYTOWN
@@ -936,8 +1310,7 @@ Base Messages: 626
     entrance_0 = On,100,200,MYTOWN1,-1,-1,0
     ```
 
-3.  Create map file (`maps_myquest.txt`):
-
+3.  **Create map file** (`maps_myquest.txt`):
     ```
     [Map 0]
     lookup_name = MYTOWN1
@@ -947,23 +1320,20 @@ Base Messages: 626
     automap = yes
     ```
 
-4.  Create quest file (`quests_myquest.txt`):
-
+4.  **Create quest file** (`quests_myquest.txt`):
     ```
     # location, description, gvar, displayThreshold, completedThreshold
     1500, 0, 79, 1, 2
     1500, 0, 80, 1, 3
     ```
 
-5.  Create holodisk file (`holodisk_myquest.txt`):
-
+5.  **Create holodisk file** (`holodisk_myquest.txt`):
     ```
     900
     901
     ```
 
-6.  Create message file (`messages_myquest.txt`):
-
+6.  **Create message file** (`messages_myquest.txt`):
     ```
     [map]
     area_name:MYTOWN = My New Town
@@ -991,12 +1361,68 @@ Base Messages: 626
     holodisk:1:line:2 = **END-DISK**
     ```
 
-7.  Place all files in correct directories
+7.  **Create art list files** (one per art type):
+    - Interface art: `art/intrface/intrface_myquest.lst`
+      ```
+      mybutton.frm
+      myicon.frm
+      ```
+    - Item art: `art/items/items_myquest.lst`
+      ```
+      mygun.frm
+      myarmor.frm
+      ```
+    - Critter art: `art/critters/critters_myquest.lst`
+      ```
+      newmutant.frm
+      ```
+    - Place corresponding `.frm` files in same directories
 
-8.  Run the game - check generated reports for IDs
+8.  **Create script list file** (`scripts/scripts_myquest.lst`):
+    ```
+    # List of script files (.int extension optional)
+    mytown_guard.int
+    mytown_door #local_vars=3
+    special_gun
+    ```
+    - Compile `.ssl` source files to `.int` format
+    - Place `.int` files in `scripts/` directory
+    - Optional localization: `scripts/english/` for English-specific versions
 
-9.  Use IDs in scripts:
+9.  **Create proto list files** (one per proto type):
+    - Items: `proto/items/items_myquest.lst`
+      ```
+      mygun
+      specialarmor
+      ```
+    - Critters: `proto/critters/critters_myquest.lst`
+      ```
+      newcritter
+      ```
+    - Scenery: `proto/scenery/scenery_myquest.lst`
+      ```
+      mydoor
+      ```
+    - Create corresponding `.pro` files using mapper.exe or as templates
 
+10. **Add proto messages** to your message file:
+    ```
+    [proto_myquest]
+    myquest:mygun:name = Custom Plasma Rifle
+    myquest:mygun:desc = A modified plasma rifle.
+    myquest:newcritter:name = Mutant Guardian
+    myquest:newcritter:desc = A heavily armed mutant.
+    ```
+
+11. **Place all files** in correct directories
+
+12. **Run the game** - check generated reports for IDs:
+    - `data/lists/art_list.txt` - Art indices
+    - `data/lists/scripts_list.txt` - Script indices  
+    - `data/lists/proto_list.txt` - Proto PIDs
+    - Other reports for quest, map, area IDs
+
+13. **Use IDs in your mod**:
     ```
     // Display area name
     display_msg(34120);
@@ -1004,8 +1430,14 @@ Base Messages: 626
     // Set quest state
     op_set_quest(200, 1);
 
-    // Display quest description
-    display_msg(34125);
+    // Create critter with mod PID and script
+    critter = create_object_sid(0x01A1B2C3, 12345, 0, 450);
+
+    // Create item with mod art and proto
+    gun = create_object(0x00DB240E, dude_tile, dude_elevation);
+
+    // Use art index for display
+    display_msg(art_get_name(1560));
 
     // Give holodisk to player
     set_global_var(900, 1);
@@ -1071,7 +1503,7 @@ Base Messages: 626
 
     -   Solution: Mod quests override with generated message IDs
 
-    -   Workaround: Always use `[quests]` section in message files
+    -   Workaround: Always use `[quests]` section in message files
 
 2.  Quest Location Validation:
 
@@ -1079,7 +1511,7 @@ Base Messages: 626
 
     -   Solution: System doesn't validate location references
 
-    -   Workaround: Test thoroughly, check `area_list.txt` for valid indices
+    -   Workaround: Test thoroughly, check `area_list.txt` for valid indices
 
 3.  GVAR Conflicts:
 
@@ -1095,7 +1527,7 @@ Base Messages: 626
 
     -   Problem: Message system skips empty values
 
-    -   Solution: Use `**END-PAR**` for paragraph breaks
+    -   Solution: Use `**END-PAR**` for paragraph breaks
 
     -   Workaround: Add single space for truly blank lines (not recommended)
 
@@ -1119,7 +1551,7 @@ Base Messages: 626
 
 1.  DOS 8.3 Filename Limitation:
 
-    -   Problem: `map_name` >8 characters breaks save games
+    -   Problem: `map_name` >8 characters breaks save games
 
     -   Workaround: Always use ≤8 character map names
 
@@ -1131,7 +1563,7 @@ Base Messages: 626
 
     -   Solution: Use parallel arrays instead of modifying structs
 
-    -   Implementation: `gAreaModNames` array separate from `CityInfo`
+    -   Implementation: `gAreaModNames` array separate from `CityInfo`
 
 3.  Case Sensitivity:
 
@@ -1153,7 +1585,7 @@ Base Messages: 626
 
     -   Issue: Areas must load before maps that reference them
 
-    -   Solution: Fixed loading order in `wmConfigInit()`
+    -   Solution: Fixed loading order in `wmConfigInit()`
 
     -   Implementation: Areas load, then maps, then validate links
 
@@ -1163,7 +1595,7 @@ Base Messages: 626
 
     -   Handling: Quest shows "Error" if message missing
 
-    -   Resolution: Ensure `[quests]` section exists with correct keys
+    -   Resolution: Ensure `[quests]` section exists with correct keys
 
 * * * * *
 
@@ -1174,9 +1606,9 @@ Base Messages: 626
 
 1.  Dual ID System:
 
-    -   Quest ID (200-999): For `op_set_quest/op_get_quest` operations
+    -   Quest ID (200-999): For `op_set_quest/op_get_quest` operations
 
-    -   Message ID (32768-65535): For quest descriptions via `display_msg()`
+    -   Message ID (32768-65535): For quest descriptions via `display_msg()`
 
 2.  Automatic Linking:
 
@@ -1211,9 +1643,9 @@ messages_MyMod.txt --same-hash->    Message ID: 34120
 
 ### 11.3 Critical Notes for Modders
 
-1.  Key format is critical: `quest:0` not `QUEST:0` (lowercase!)
+1.  Key format is critical: `quest:0` not `QUEST:0` (lowercase!)
 
-2.  Index is per-mod: First quest in file = `quest:0`, second = `quest:1`, etc.
+2.  Index is per-mod: First quest in file = `quest:0`, second = `quest:1`, etc.
 
 3.  Message IDs are stable: Same mod+key = same ID every time
 
@@ -1255,7 +1687,7 @@ Rules:
 
 -   One GVAR per line
 
--   Comments start with `#`
+-   Comments start with `#`
 
 -   GVARs should be unique (900+ recommended for mods)
 
@@ -1263,7 +1695,7 @@ Rules:
 
 #### 12.2.2 Message File Format
 
-Contains the holodisk text in the `[PIPBOY]` section. The `[HOLODISKS]` section is also supported for backward compatibility.
+Contains the holodisk text in the `[PIPBOY]` section. The `[HOLODISKS]` section is also supported for backward compatibility.
 
 Format:
 
@@ -1280,9 +1712,9 @@ holodisk:0:line:5 = **END-DISK**  # Required (auto-added if missing)
 
 Key Formats:
 
--   Name: `holodisk:{index}:name`
+-   Name: `holodisk:{index}:name`
 
--   Text lines: `holodisk:{index}:line:{line_number}`
+-   Text lines: `holodisk:{index}:line:{line_number}`
 
 -   END-DISK: Marks end of holodisk (required, auto-added if missing)
 
@@ -1290,15 +1722,15 @@ Key Formats:
 
 -   Index starts at 0 for first holodisk in file
 
-Important: Empty values are skipped. Use `**END-PAR**` for blank lines instead of empty strings.
+Important: Empty values are skipped. Use `**END-PAR**` for blank lines instead of empty strings.
 
 ### 12.3 How It Works
 
 #### 12.3.1 Loading Process
 
-1.  Vanilla holodisks load from `data/holodisk.txt` (GVAR, name ID, description ID)
+1.  Vanilla holodisks load from `data/holodisk.txt` (GVAR, name ID, description ID)
 
-2.  Mod holodisks load from `data/holodisk_*.txt` files
+2.  Mod holodisks load from `data/holodisk_*.txt` files
 
 3.  For each mod holodisk:
 
@@ -1343,9 +1775,9 @@ if global_var(900):
 
 The message loading system skips empty values. To create blank lines:
 
--   Use `**END-PAR**` for paragraph breaks
+-   Use `**END-PAR**` for paragraph breaks
 
--   Or use a single space: `holodisk:0:line:2 =` (not recommended)
+-   Or use a single space: `holodisk:0:line:2 =` (not recommended)
 
 #### 12.5.2 Pagination
 
@@ -1361,9 +1793,9 @@ Holodisks use vanilla pagination (35 lines per page). The system automatically:
 
 Create message files in language folders:
 
--   English: `data/text/english/game/messages_{modname}.txt`
+-   English: `data/text/english/game/messages_{modname}.txt`
 
--   German: `data/text/german/game/messages_{modname}.txt`
+-   German: `data/text/german/game/messages_{modname}.txt`
 
 -   etc.
 
@@ -1377,14 +1809,14 @@ Create message files in language folders:
 
 ### 12.6 Complete Example Mod
 
-File: `data/holodisk_myquest.txt`
+File: `data/holodisk_myquest.txt`
 
 ```
 900
 901
 ```
 
-File: `data/text/english/game/messages_myquest.txt`
+File: `data/text/english/game/messages_myquest.txt`
 
 ```
 [pipboy]
@@ -1419,8 +1851,8 @@ end
 | Problem | Solution |
 | --- | --- |
 | Holodisk not appearing | Check GVAR is set to 1 before opening Pip-Boy |
-| "Error" text when clicked | Verify message file has correct `[PIPBOY]` section |
-| Missing lines | Ensure no empty values; use `**END-PAR**` for blanks |
+| "Error" text when clicked | Verify message file has correct `[PIPBOY]` section |
+| Missing lines | Ensure no empty values; use `**END-PAR**` for blanks |
 | Wrong mod name | All files must share same mod name prefix |
 | No END-DISK marker | System adds automatically, but include for clarity |
 | GVAR conflict | Use unique GVARs (check vanilla GVAR list) |
@@ -1494,7 +1926,7 @@ deathclaw_alpha
 
 #### 13.2.3 Message File Format for Protos
 
-Add proto messages to your existing `messages_{modname}.txt` file in a section containing "proto" or "pro_":
+Add proto messages to your existing `messages_{modname}.txt` file in a section containing "proto" or "pro_":
 
 ```
 # In messages_testmod.txt
@@ -1511,9 +1943,9 @@ testitem:desc = A test item created by the mod system.
 
 Message Key Formats:
 
--   Full format: `{modname}:{protoname}:name` and `{modname}:{protoname}:desc`
+-   Full format: `{modname}:{protoname}:name` and `{modname}:{protoname}:desc`
 
--   Short format: `{protoname}:name` and `{protoname}:desc` (uses filename for mod name)
+-   Short format: `{protoname}:name` and `{protoname}:desc` (uses filename for mod name)
 
 ### 13.3 PID Generation
 
@@ -1523,7 +1955,7 @@ Message Key Formats:
 
 -   Mod protos: Use indices 200-16777215 (`0x0000C8-0xFFFFFF`) via deterministic hashing
 
--   Full PID: `(type << 24) | index`
+-   Full PID: `(type << 24) | index`
 
 Example PID Calculation:
 
@@ -1536,33 +1968,33 @@ Final PID: (ITEM_TYPE << 24) | 0xDB240E = 0x00DB240E
 
 #### 13.3.2 PID Ranges by Type
 
--   Items: `0x00XXXXXX` (type 0)
+-   Items: `0x00XXXXXX` (type 0)
 
--   Critters: `0x01XXXXXX` (type 1)
+-   Critters: `0x01XXXXXX` (type 1)
 
--   Scenery: `0x02XXXXXX` (type 2)
+-   Scenery: `0x02XXXXXX` (type 2)
 
--   Walls: `0x03XXXXXX` (type 3)
+-   Walls: `0x03XXXXXX` (type 3)
 
--   Tiles: `0x04XXXXXX` (type 4)
+-   Tiles: `0x04XXXXXX` (type 4)
 
--   Misc: `0x05XXXXXX` (type 5)
+-   Misc: `0x05XXXXXX` (type 5)
 
 ### 13.4 PID Generation vs. .pro File Contents
 
 #### 13.4.1 How It Works
 
-Important: The PID stored in a `.pro` file's first 4 bytes is ignored for mod protos. Our system generates stable PIDs based on mod and proto names.
+Important: The PID stored in a `.pro` file's first 4 bytes is ignored for mod protos. Our system generates stable PIDs based on mod and proto names.
 
-1.  File Creation: When you create `testitem.pro` with mapper.exe, it might save with PID `0x00000001`
+1.  File Creation: When you create `testitem.pro` with mapper.exe, it might save with PID `0x00000001`
 
 2.  Loading: Our system reads this file, but then:
 
-    -   Generates a new PID: `0x00DB240E` (hash of `"testmod:testitem"`)
+    -   Generates a new PID: `0x00DB240E` (hash of `"testmod:testitem"`)
 
-    -   Ignores the `0x00000001` from the file
+    -   Ignores the `0x00000001` from the file
 
-    -   Uses `0x00DB240E` for all game operations
+    -   Uses `0x00DB240E` for all game operations
 
 #### 13.4.2 Why This Design
 
@@ -1574,13 +2006,13 @@ Important: The PID stored in a `.pro` file's first 4 bytes is ignored for mod pr
 
 #### 13.4.3 What This Means for Modders
 
--   Don't worry about the PID in the .pro file
+-   Don't worry about the PID in the .pro file
 
--   Do use the PIDs from `proto_list.txt`
+-   Do use the PIDs from `proto_list.txt`
 
--   Don't try to edit .pro file PIDs manually
+-   Don't try to edit .pro file PIDs manually
 
--   Do use consistent mod/proto names
+-   Do use consistent mod/proto names
 
 #### 13.4.4 Example Workflow
 
@@ -1608,7 +2040,7 @@ obj = create_object(correct_pid, ...);  // Works perfectly
 
 Step-by-Step Guide:
 
-1.  Create .lst file for your proto type:
+1.  Create .lst file for your proto type:
 
     ```
     # proto/items/items_mymod.lst
@@ -1617,7 +2049,7 @@ Step-by-Step Guide:
     uniquearmor
     ```
 
-2.  Create .pro files for each proto (use mapper.exe or existing .pro files as templates):
+2.  Create .pro files for each proto (use mapper.exe or existing .pro files as templates):
 
     ```
     proto/items/mycustomgun.pro
@@ -1625,7 +2057,7 @@ Step-by-Step Guide:
     proto/items/uniquearmor.pro
     ```
 
-3.  Add messages in your message file:
+3.  Add messages in your message file:
 
     ```
     [proto_mymod]
@@ -1635,9 +2067,9 @@ Step-by-Step Guide:
     mymod:specialammo:desc = High-capacity microfusion cells.
     ```
 
-4.  Place files in correct directories
+4.  Place files in correct directories
 
-5.  Run game and check `data/lists/proto_list.txt` for generated PIDs
+5.  Run game and check `data/lists/proto_list.txt` for generated PIDs
 
 ### 13.6 Using Mod Protos in Scripts
 
@@ -1680,7 +2112,7 @@ if (_proto_action_can_use(0x00DB240E)) {
 
 ### 13.7 Generated Reports
 
-The system generates `data/lists/proto_list.txt` with complete information:
+The system generates `data/lists/proto_list.txt` with complete information:
 
 ```
 ==============================================================================
@@ -1752,13 +2184,13 @@ Rename your mod or proto to fix.
 
 -   Art uses its own stable ID system (separate from proto system)
 
--   Ensure `art/` directory has corresponding .FRM files
+-   Ensure `art/` directory has corresponding .FRM files
 
 #### 13.9.3 Message Loading
 
 -   Proto messages load from the same message files as other content
 
--   Sections can be named `[proto_{modname}]`, `[pro_items]`, or any containing "proto" or "pro_"
+-   Sections can be named `[proto_{modname}]`, `[pro_items]`, or any containing "proto" or "pro_"
 
 -   Messages are linked automatically via the name-to-PID registry
 
@@ -1772,7 +2204,7 @@ Rename your mod or proto to fix.
 
 ### 13.10 Complete Example
 
-File: `proto/items/items_wasteland.lst`
+File: `proto/items/items_wasteland.lst`
 
 ```
 plasmacaster
@@ -1780,9 +2212,9 @@ ripper2
 stimpak_advanced
 ```
 
-File: `proto/items/plasmacaster.pro` (created with mapper.exe)
+File: `proto/items/plasmacaster.pro` (created with mapper.exe)
 
-File: `text/english/game/messages_wasteland.txt`
+File: `text/english/game/messages_wasteland.txt`
 
 ```
 [proto_wasteland]
@@ -1855,30 +2287,41 @@ display_msg(protoGetName(plasmacaster_pid));
 
 ### 14.1 Common Issues
 
+#### Core System Issues
 | Problem | Likely Cause | Solution |
-| --- | --- | --- |
+|---------|-------------|----------|
 | Quest shows "Error" | Missing `[quests]` section or wrong key | Ensure `messages_*.txt` has `[quests]` section with `quest:0` (lowercase) |
 | Holodisk not in Pip-Boy | GVAR not set to 1 | Ensure `set_global_var(GVAR, 1)` is called before opening Pip-Boy |
 | Holodisk shows "Error" when clicked | Missing `[PIPBOY]` section or wrong key | Check message file has `[PIPBOY]` section with correct keys |
-| Quest not in PipBoy | Invalid location or thresholds | Check location is valid area, thresholds are correct |
-| Wrong description | Key mismatch (case or index) | Use exact format: lowercase `quest:{index}` or `holodisk:{index}:name` |
-| Quest ID collisions | Hash collision with another mod | Rename mod file to change namespace |
 | Area not on world map | `area_name` doesn't match `city_name` | Ensure exact match (case-insensitive but be consistent) |
 | Map name shows "Error" | Message key doesn't match generated ID | Check `messages_*.txt` format matches key generation |
 | Save games fail | `map_name` >8 characters | Shorten map_name to ≤8 chars |
 | Town map labels missing | Wrong section or key format | Use `[worldmap]` section with `entrance_X:{AREA_NAME}` |
+
+#### Script, Art, and Proto Issues (NEW)
+| Problem | Likely Cause | Solution |
+|---------|-------------|----------|
+| Script not in `scripts_list.txt` | Hash collision or index >4095 | Rename script file to change hash; check for popup warnings |
+| Script loads but doesn't execute | Missing `.int` file or wrong filename | Ensure `.int` file exists and name matches entry in `.lst` file |
+| Art shows as black/transparent | Missing `.frm` file or wrong FID | Verify `.frm` file exists and FID in `.pro` matches `art_list.txt` |
+| Proto shows "Error" name/desc | Missing proto section in messages | Ensure message file has `[proto_{modname}]` section with correct keys |
+| Proto not in `proto_list.txt` | Hash collision or missing `.pro` file | Rename proto or ensure `.pro` file exists and is in correct directory |
+| PID collision warning popup | Hash conflict with another mod | Rename mod or proto to change hash namespace |
+| Script references wrong art | Using wrong index from `art_list.txt` | Double-check art index in `art_list.txt` before using in scripts |
+| Localized scripts not loading | Missing `scripts/{language}/` directory | Create language directory with all required files or remove for fallback |
+| `.lst` file ignored | Wrong naming convention | Use correct pattern: `scripts_{modname}.lst`, `items_{modname}.lst`, etc. |
+
+#### General Issues
+| Problem | Likely Cause | Solution |
+|---------|-------------|----------|
 | Mod not loading | File naming mismatch | All files must share same mod name prefix |
 | Missing lines in holodisk | Empty values skipped | Use `**END-PAR**` for blank lines |
-| Proto shows "Error" text | Missing message file or wrong key | Ensure message file has proto section with correct keys |
-| Proto not loading | .lst or .pro file missing | Check files exist in correct proto subdirectory |
-| PID collision warning | Hash conflict with another mod | Rename mod or proto to change hash |
-| Wrong item stats | Incorrect .pro file data | Verify .pro file created/edited with mapper.exe |
-| Art not displaying | Invalid FID in .pro file | Ensure art exists and FID points to correct file |
-| Save game missing proto | Mod not installed when loading save | Always install mod before loading saves with mod content |
+| Wrong description | Key mismatch (case or index) | Use exact format: lowercase `quest:{index}` or `holodisk:{index}:name` |
+| Quest ID collisions | Hash collision with another mod | Rename mod file to change namespace |
 
 ### 14.2 Debug Commands
 
-Add these to `config.ini` under `[debug]`:
+Add these to `config.ini` under `[debug]`:
 
 ```
 [debug]
@@ -1891,19 +2334,19 @@ holodisk_debug=1         # Log holodisk loading details
 
 ### 14.3 Debugging Steps
 
-1.  Check generated reports in `data/lists/`
+1.  Check generated reports in `data/lists/`
 
-2.  Verify hash consistency - same input should produce same output
+2.  Verify hash consistency - same input should produce same output
 
-3.  Test minimal mod - create simplest possible mod to isolate issues
+3.  Test minimal mod - create simplest possible mod to isolate issues
 
-4.  Check file permissions - ensure game can write to `data/lists/`
+4.  Check file permissions - ensure game can write to `data/lists/`
 
-5.  Validate file formats - use text editor with visible whitespace
+5.  Validate file formats - use text editor with visible whitespace
 
-6.  Verify GVAR values - ensure GVARs are set to 1 before opening Pip-Boy
+6.  Verify GVAR values - ensure GVARs are set to 1 before opening Pip-Boy
 
-7.  Check loading order - messages must load before holodisks
+7.  Check loading order - messages must load before holodisks
 
 
 * * * * *
@@ -1913,73 +2356,90 @@ holodisk_debug=1         # Log holodisk loading details
 
 ### 15.1 File Naming
 
--   Areas: `city_{modname}.txt`
+#### Core Files:
+- Areas: `city_{modname}.txt`
+- Maps: `maps_{modname}.txt`
+- Quests: `quests_{modname}.txt`
+- Holodisks: `holodisk_{modname}.txt`
+- Messages: `messages_{modname}.txt`
 
--   Maps: `maps_{modname}.txt`
+#### Asset List Files:
+- Scripts: `scripts/scripts_{modname}.lst`
+- Interface Art: `art/intrface/intrface_{modname}.lst`
+- Item Art: `art/items/items_{modname}.lst`
+- Critter Art: `art/critters/critters_{modname}.lst`
+- Items Protos: `proto/items/items_{modname}.lst`
+- Critters Protos: `proto/critters/critters_{modname}.lst`
+- Scenery Protos: `proto/scenery/scenery_{modname}.lst`
+- Walls Protos: `proto/walls/walls_{modname}.lst`
+- Tiles Protos: `proto/tiles/tiles_{modname}.lst`
+- Misc Protos: `proto/misc/misc_{modname}.lst`
 
--   Quests: `quests_{modname}.txt`
-
--   Holodisks: `holodisk_{modname}.txt`
-
--   Messages: `messages_{modname}.txt`
-
--   Proto lists: `proto/{type}_{modname}.lst`
-
--   Proto files: `proto/{type}/{protoname}.pro`
+#### Asset Files:
+- Compiled Scripts: `{scriptname}.int`
+- Art Files: `{artname}.frm`
+- Proto Files: `{protoname}.pro`
+- Dialog Messages: `dialog/{scriptname}.msg`
 
 ### 15.2 Key Formats
 
--   Area names: `area_name:{AREA_NAME}`
+#### Message Keys:
+- Area names: `area_name:{AREA_NAME}`
+- Map names: `lookup_name:{LOOKUP_NAME}:{ELEVATION}`
+- Entrance labels: `entrance_{INDEX}:{AREA_NAME}`
+- Quest descriptions: `quest:{INDEX}`
+- Holodisk names: `holodisk:{INDEX}:name`
+- Holodisk lines: `holodisk:{INDEX}:line:{LINE_NUMBER}`
 
--   Map names: `lookup_name:{LOOKUP_NAME}:{ELEVATION}`
-
--   Entrance labels: `entrance_{INDEX}:{AREA_NAME}`
-
--   Quest descriptions: `quest:{INDEX}`
-
--   Holodisk names: `holodisk:{INDEX}:name`
-
--   Holodisk lines: `holodisk:{INDEX}:line:{LINE_NUMBER}`
-
--   Proto names: `{modname}:{protoname}:name` or `{protoname}:name`
-
--   Proto descriptions: `{modname}:{protoname}:desc` or `{protoname}:desc`
+#### Proto Message Keys (NEW):
+- Full format: `{modname}:{protoname}:name` and `{modname}:{protoname}:desc`
+- Short format: `{protoname}:name` and `{protoname}:desc` (uses filename for mod name)
 
 ### 15.3 ID Ranges
 
--   Quests: 200-999
-
--   Maps: 200-1999
-
--   Areas: 200-999
-
--   Holodisks: 50000+ (message IDs, blocks of 500)
-
--   Messages: 32768-65535
-
--   Protos: Vanilla indices 0-199, Mod indices 200-16777215
-
--   Proto types: Items=0x00, Critters=0x01, Scenery=0x02, Walls=0x03, Tiles=0x04, Misc=0x05
+| Content Type | Vanilla Range | Mod Range | Notes |
+|--------------|---------------|-----------|-------|
+| Scripts | 0-? (varies) | vanillaCount-4095 | Hash-based from filename, max 4096 total |
+| Items Art | 0-? (varies) | artCount-? | Hash-based, check `art_list.txt` |
+| Critters Art | 0-? (varies) | artCount-? | Hash-based, check `art_list.txt` |
+| Interface Art | 0-? (varies) | artCount-? | Hash-based, check `art_list.txt` |
+| Items Protos | 0x00XXXXXX | 0x0000C8-0xFFFFFF | Type 0, hash-based PIDs |
+| Critters Protos | 0x01XXXXXX | 0x0100C8-0xFFFFFF | Type 1, hash-based PIDs |
+| Scenery Protos | 0x02XXXXXX | 0x0200C8-0xFFFFFF | Type 2, hash-based PIDs |
+| Walls Protos | 0x03XXXXXX | 0x0300C8-0xFFFFFF | Type 3, hash-based PIDs |
+| Tiles Protos | 0x04XXXXXX | 0x0400C8-0xFFFFFF | Type 4, hash-based PIDs |
+| Misc Protos | 0x05XXXXXX | 0x0500C8-0xFFFFFF | Type 5, hash-based PIDs |
+| Quests | 0-199 | 200-999 | Hash-based |
+| Maps | 0-199 | 200-1999 | Hash-based |
+| Areas | 0-199 | 200-999 | Hash-based |
+| Holodisks | 0-? (by GVAR) | 50000+ | Message IDs, blocks of 500 |
+| Messages | 0-32767 | 32768-65535 | Hash-based |
 
 ### 15.4 Critical Rules
 
-1.  Map names ≤8 characters
-
+#### Core Rules:
+1.  Map names ≤8 characters (DOS 8.3 limitation)
 2.  Quest keys lowercase: `quest:0`
-
 3.  Holodisk keys lowercase: `holodisk:0:name`
-
 4.  Area names uppercase in configs
-
 5.  Consistent mod name across all files
+6.  Message keys use exact lowercase prefixes
 
-6.  Message keys use exact lowercase prefixes: `area_name:`, `lookup_name:`, `entrance_`, `holodisk:`
+#### Asset Rules:
+7.  Script `.lst` files must be in `scripts/` directory
+8.  Art `.lst` files use `mod_{modname}.lst` naming in respective `art/` subdirectories
+9.  Proto `.lst` files use `{type}_{modname}.lst` naming in respective `proto/` subdirectories
+10. Script names in `.lst` files determine their stable index (hash-based)
+11. Art filenames in `.lst` files determine their stable index (hash-based)
+12. Proto names in `.lst` files determine their stable PID (hash-based)
+13. Hash collisions skip assets - rename files to resolve
+14. Check generated reports (`*_list.txt`) for actual IDs before using them
+15. Localized assets go in language subdirectories (optional)
 
-7.  .lst files must be in correct proto subdirectory
-
-8.  .pro files must match names in .lst files exactly
-
-9.  Message sections for protos must contain "proto" or "pro_"
+#### Proto-Specific Rules:
+16. `.pro` file internal PIDs are ignored - system generates stable PIDs
+17. Proto messages must be in sections containing "proto" or "pro_"
+18. Use PIDs from `proto_list.txt`, not from `.pro` file contents
 
 * * * * *
 
@@ -2000,20 +2460,36 @@ MyFirstMod/
 │       └── game/
 │           └── messages_myfirst.txt
 ├── art/
-│   └── intrface/
-│       ├── mod_myfirst.lst
-│       └── myasset.frm
+│   ├── intrface/
+│   │   ├── intrface_myfirst.lst
+│   │   ├── mybutton.frm
+│   │   └── myicon.frm
+│   ├── items/
+│   │   ├── items_myfirst.lst
+│   │   └── mygun.frm
+│   └── critters/
+│       ├── critters_myfirst.lst
+│       └── newmutant.frm
 ├── scripts/
 │   ├── scripts_myfirst.lst
-│   └── myscript.int
+│   ├── myfirst_gun.int
+│   ├── myfirst_door.int
+│   └── english/ # Localized version (optional)
+│       ├── scripts_myfirst.lst
+│       └── myfirst_gun.int
 ├── proto/
 │   ├── items/
 │   │   ├── items_myfirst.lst
-│   │   ├── testitem.pro
-│   │   └── supergun.pro
-│   └── critters/
-│       ├── critters_myfirst.lst
-│       └── testcritter.pro
+│   │   ├── mygun.pro
+│   │   └── specialarmor.pro
+│   ├── critters/
+│   │   ├── critters_myfirst.lst
+│   │   └── newcritter.pro
+│   └── scenery/
+│       ├── scenery_myfirst.lst
+│       └── mydoor.pro
+├── dialog/ # Script dialog messages (optional)
+│   └── myfirst_gun.msg
 └── README.txt
 ```
 
@@ -2124,49 +2600,60 @@ end
 
 ### 16.2 Installation and Testing
 
-1.  Copy all files to the correct directories in your Fallout 2 install
-
-2.  Run the game and check these generated reports in `data/lists/`:
-
-    -   `proto_list.txt` - Shows generated proto PIDs
-
-    -   `quests_list.txt` - Shows quest IDs and message IDs
-
-    -   `holodisks_list.txt` - Shows holodisk details
-
-    -   `area_list.txt` - Shows area information
-
-    -   `maps_list.txt` - Shows map information
-
-3.  Test in-game:
-
-    -   Travel to coordinates 100,100 on world map to see your area
-
-    -   Enter the area to see your map
-
-    -   Open Pip-Boy to see quests and holodisks
-
-    -   Check inventory for the test item
+1.  **Copy all files** to the correct directories in your Fallout 2 install
+2.  **Run the game** and check these generated reports in `data/lists/`:
+    - `scripts_list.txt` - Check script indices (e.g., 450, 451)
+    - `art_list.txt` - Check art indices for interface, items, critters
+    - `proto_list.txt` - Check generated PIDs (e.g., 0x00DB240E, 0x01A1B2C3)
+    - `quests_list.txt` - Check quest IDs and message IDs
+    - `holodisks_list.txt` - Check holodisk details
+    - `area_list.txt` - Check area information
+    - `maps_list.txt` - Check map information
+3.  **Test in-game**:
+    - Travel to coordinates 100,100 on world map to see your area
+    - Enter the area to see your map
+    - Open Pip-Boy to see quests and holodisks
+    - Check inventory for the test item (if created by script)
+    - Verify art displays correctly (buttons, icons, items)
+    - Test script execution for doors, critters, etc.
 
 ### 16.3 Notes for Modders
 
-1.  Replace example PIDs with actual IDs from your generated reports
-
-2.  Use mapper.exe to create `.pro` files for protos
-
-3.  Test with new saves before using existing saves
-
-4.  Check all reports after loading to verify everything worked
-
-5.  Use uppercase for area names in config files for consistency
-
-6.  Remember map_name ≤8 characters (DOS 8.3 limitation)
+1.  **Replace example IDs** with actual IDs from your generated reports
+2.  **Use mapper.exe** to create or edit `.pro` files for protos
+3.  **Test with new saves** before using existing saves
+4.  **Check all reports** after loading to verify everything worked
+5.  **Use uppercase** for area names in config files for consistency
+6.  **Remember map_name ≤8 characters** (DOS 8.3 limitation)
+7.  **Localization is optional** - system falls back to default if missing
 
 ### 16.4 Generated IDs Reference
 
-After running with this mod, check these reports:
+After running with this mod, check these reports for actual IDs:
 
-From `proto_list.txt`:
+#### From `scripts_list.txt`:
+
+```
+MOD SCRIPTS:
+450: myfirst_gun (local_vars=0)
+451: myfirst_door (local_vars=3)
+```
+
+#### From `art_list.txt`:
+
+```
+INTERFACE ART:
+1560: mybutton.frm (type: interface)
+1561: myicon.frm (type: interface)
+
+ITEMS ART:
+2450: mygun.frm (type: item)
+
+CRITTERS ART:
+3320: newmutant.frm (type: critter)
+```
+
+#### From `proto_list.txt`:
 
 ```
 MOD PROTO STATISTICS:
@@ -2192,7 +2679,7 @@ ITEMS MOD PROTOS:
     Desc:     An upgraded weapon.
 ```
 
-From `quests_list.txt`:
+#### From `quests_list.txt`:
 
 ```
 MOD QUESTS:
@@ -2202,7 +2689,7 @@ Quest ID | Mod      | Description Message ID | Quest Key
 201      | myfirst  | 34121                  | myfirst:1
 ```
 
-From `holodisks_list.txt`:
+#### From `holodisks_list.txt`:
 
 ```
 MOD HOLODISK DETAILS:
@@ -2212,8 +2699,36 @@ Block 1: IDs 50500-50999 (GVAR 901) - Second Holodisk
 
 Use these exact IDs in your scripts for a fully working mod!
 
+### 16.5 Example Script Usage
+
+```
+// Give player the mod item using PID from proto_list.txt
+int gun_pid = 0x00DB240E; // From proto_list.txt
+obj = create_object(gun_pid, dude_tile, dude_elevation);
+add_mult_objs_to_inven(dude, obj, 1);
+
+// Display item name using proto message
+display_msg(protoGetName(gun_pid));
+
+// Create critter with mod script (index from scripts_list.txt)
+critter = create_object_sid(0x01A1B2C3, 12345, 0, 450);
+
+// Use art index for custom interface
+display_msg(art_get_name(1560));
+
+// Set quest state
+set_quest(200, 1);
+
+// Display quest description
+display_msg(34120); // From messages_QUESTS_list.txt
+
+// Give holodisk to player
+set_global_var(900, 1);
+```
+
+
 * * * * *
 
 *Document Version: 1.0*\
 *Last Updated: Fallout 2 FISSION*\
-*For more information, see the generated reports in `data/lists/` after running the game.*
+*For more information, see the generated reports in `data/lists/` after running the game.*
