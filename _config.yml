@@ -48,7 +48,7 @@ features                                  :
     fontawesome_icon_name                 : mobile
 
   - title                                 : Pixel Perfect
-    description                           : Play it your way, stretched, original, aspect ration, pixel perfect, or pixl smoothed.
+    description                           : Play it your way, stretched, original, aspect ratio, square pixels, or high quality.
     fontawesome_icon_name                 : play-circle
 
   - title                                 : Extended Pipboy
