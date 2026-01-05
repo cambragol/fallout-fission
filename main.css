@@ -1334,9 +1334,18 @@ code.highlighter-rouge {
 }
 
 .markdown-body blockquote {
-    border-left: .25em solid #dfe2e5;
-    color: #6a737d;
-    padding: 0 1em
+	margin: 0 0 2em;
+	padding: 1em;
+	list-style: none !important;
+	background: #5b6d7f url(/fallout-fission/assets/gradient_20.png) repeat-x;
+	/* background: url("../images/gradient_20.png") repeat-x,
+				url("../images/glow_oval_256_reversed.png") 50% 100% no-repeat;
+	-webkit-background-size: auto auto, 100% auto; */
+	min-height: 2em;
+	-webkit-border-radius: 1em;
+	-moz-border-radius: 1em;
+	-webkit-box-shadow: rgba(255, 255, 255, 0.15) 0 1px 0;
+	-moz-box-shadow: rgba(255, 255, 255, 0.1) 0 0.5px 0;
 }
 
 .markdown-body blockquote>:first-child {
@@ -1477,7 +1486,7 @@ code.highlighter-rouge {
 .markdown-body img {
     background-color: #fff;
     box-sizing: content-box;
-    max-width: 100%
+    max-width: 100%;
 }
 
 .markdown-body img[align=right] {
