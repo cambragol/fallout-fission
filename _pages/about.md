@@ -6,7 +6,7 @@ include_in_footer: true
 ---
 
 <p align="center">
-  <img src="fallout-fission/assets/fallout-fission-logo.jpg" alt="Fallout: F.I.S.S.I.O.N. Logo" width="1024">
+  <img src="/fallout-fission/assets/fallout-fission-logo.jpg" alt="Fallout: F.I.S.S.I.O.N. Logo">
 </p>
 
 # Fallout: F.I.S.S.I.O.N.
@@ -14,7 +14,7 @@ include_in_footer: true
 
 Fallout: F.I.S.S.I.O.N. is a next‑generation, cross‑platform reimplementation of Fallout 1 & 2 (Fallout2-CE) that preserves the original isometric, turn‑based gameplay while adding modern enhancements, widescreen support, and true community‑driven extensibility. Run it on Windows, Linux, macOS, Android, iOS—and even in browsers.
 
-> ⚛️ **Powered by the F.I.S.S.I.O.N. Engine**
+> **Powered by the F.I.S.S.I.O.N. Engine**
 > *Flexible. Isometric. Simulation. System. Interactive. Open‑world. Nuclear‑roleplay.*
 > **Split from the past, Powering the future**
 
@@ -22,16 +22,16 @@ Fallout: F.I.S.S.I.O.N. is a next‑generation, cross‑platform reimplementatio
 
 ## Key Features
 
-- 🔲 **Authentic isometric, turn‑based experience** (SPECIAL, AP‑driven combat)
-- 💻 **True cross‑platform support**: Windows, macOS, Linux, iOS, Android, Web
-- 🖥️ **Widescreen & high‑res scaling** with pixel‑perfect aspect preservation
-- 🧩 **Modular, customizable systems**—community mods plug in seamlessly (one day)
-- 📦 **100% compatible** with original Fallout 1 & 2 assets  (can't run Fallout 1 yet)
-- 🌎 **Future‑proof**: easily extended for new content and Fallout 2 integration (yeah, not yet)
+- **Authentic isometric, turn‑based experience** (SPECIAL, AP‑driven combat)
+- **True cross‑platform support**: Windows, macOS, Linux, iOS, Android, Web
+- **Widescreen & high‑res scaling** with pixel‑perfect aspect preservation
+- **Modular, customizable systems**—community mods plug in seamlessly (one day)
+- **100% compatible** with original Fallout 1 & 2 assets  (can't run Fallout 1 yet)
+- **Future‑proof**: easily extended for new content and Fallout 2 integration (yeah, not yet)
 
 ---
 
-## 🔠 F.I.S.S.I.O.N. Breakdown
+## F.I.S.S.I.O.N. Breakdown
 
 ```
 ╔═══════════════════════╦════════════════════════════════════════════╗
@@ -49,7 +49,7 @@ Fallout: F.I.S.S.I.O.N. is a next‑generation, cross‑platform reimplementatio
 
 ---
 
-## ⚠️ Mod Compatibility
+## Mod Compatibility
 
 **Fully supported**:
 - Fallout: Nevada (original version)
@@ -65,7 +65,7 @@ Fallout: F.I.S.S.I.O.N. is a next‑generation, cross‑platform reimplementatio
 
 ---
 
-## 💾 Installation
+## Installation
 
 You must own Fallout 2. Purchase it from [GOG](https://www.gog.com/game/fallout_2), [Steam](https://store.steampowered.com/app/38410), or [Epic Games](https://store.epicgames.com/p/fallout-2). Then:
 
@@ -77,19 +77,19 @@ You must own Fallout 2. Purchase it from [GOG](https://www.gog.com/game/fallout_
   make
   ```
 
-### ▶️ Quick Start by Platform
+### Quick Start by Platform
 
-#### 🍎 macOS
+#### macOS
 Requires macOS 10.11+ (Intel or Apple Silicon)
 1. Use a Windows or MacPlay install as a base.
 2. Copy `fallout-fission.app` into that folder.
 3. Launch `fallout-fission.app`.
 
-#### 🪟 Windows (partially tested)
+#### Windows (partially tested)
 1. Copy `fallout-fission.exe` and `fission.dat` into your `Fallout2` folder.
 2. Run it instead of `fallout2.exe`.
 
-#### 🐧 Linux (untested)
+#### Linux (untested)
 ```bash
 sudo apt install innoextract libsdl2-2.0-0
 innoextract ~/Downloads/setup_fallout2_*.exe -I app
@@ -98,14 +98,14 @@ cp fallout2-ce ~/Fallout2/
 cd ~/Fallout2 && ./fallout2-ce
 ```
 
-#### 🤖 Android / 🍏 iOS (untested)
+#### Android / iOS (untested)
 1. Copy game data (`master.dat`, `critter.dat`, `patch000.dat`, `data/`).
 2. Install `fallout-fission.apk` and `fission.dat` (Android) or sideload `fallout-fission.ipa` and `fission.dat` (iOS).
 3. Launch and select your data folder.
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
 Use the in-game 'preferences' screen for 'graphics' configuration.
 
@@ -122,12 +122,12 @@ EnhancedBarter=1
 
 ---
 
-## 🛠️ Contributing
+## Contributing
 
 Contributions are welcome! Please open issues or pull requests on GitHub.
 
 ---
 
-## 📜 License
+## License
 
 Released under the [Sustainable Use License](LICENSE.md).
