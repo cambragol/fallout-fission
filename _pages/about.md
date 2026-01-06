@@ -49,118 +49,44 @@ Fallout: F.I.S.S.I.O.N. is a next‑generation, cross‑platform reimplementatio
 
 ---
 
-## Mod/Game Compatibility
+## About **Fallout: FISSION**
 
-**Fully supported**:
-- Fallout 2
-- Fallout: Nevada
-- Fallout: Sonora
+**Fallout: FISSION** is a modern, streamlined evolution of the Fallout 2 engine — born from the foundation of **Fallout2-CE**, but designed with a clear philosophy: to simplify, clarify, and restore the original spirit of Fallout.
 
-**Not supported yet, maybe never**:
-- Fallout 1
-- Fallout Nevada or Sonora 'repacks'
-- Restoration Project
-- Fallout: Et Tu
-- Olympus 2207
-- Resurrection, Yesterday (untested)
-
-(For full Fallout 1 support see [Fallout1-CE](https://github.com/alexbatalov/fallout1-ce).)
+Where *sfall* expanded the classic engine through countless add-ons, experimental tweaks, and mod-specific opcode patches, **FISSION** takes the opposite approach. It consolidates, refines, and integrates — keeping what truly enhances Fallout, and leaving behind the patchwork complexity that accumulated over decades of external modifications.
 
 ---
 
-## Installation
+### **FISSION’s Core Goals**
 
-### Prerequisites
-You must own **Fallout 2** (GOG, Steam, or Epic Games version) and have it fully installed. F.I.S.S.I.O.N. is a drop-in replacement for `Fallout2.exe` and requires the complete game data.
+- **Simplify configuration**  
+  No more juggling multiple INI files like `ddraw.ini` or `f2_res.ini`. All engine and graphics settings are accessible directly inside the game through an integrated preferences interface, or via the original 'fallout2.cfg'.
 
-**Supported base installations:**
-- **Vanilla Fallout 2** - The classic game
-- **Fallout: Nevada** - Russian total conversion mod
-- **Fallout: Sonora** - Russian total conversion mod
+- **Maintain compatibility**  
+  Existing scripts, mods, and art assets built for vanilla Fallout 2 (and CE) still work. The vanilla game, or TCs that worked with the original .exe, work with FISSION.
 
-### Quick Installation
-1. **Ensure you have a working vanilla Fallout 2 installation**
-2. **Download** the latest [F.I.S.S.I.O.N. release](https://github.com/cambragol/fission-ce/releases)
-3. **Extract** the F.I.S.S.I.O.N. files into your Fallout 2 folder
-4. **Run** `fallout-fission.exe` (Windows) or `fallout-fission.app` (macOS) instead of the original executable
+- **Modernize the experience**  
+  True widescreen support, scalable interfaces, and consistent behavior across platforms — macOS, Windows, Linux, and more. Limited improvements to modernize the experience, without undoing the original.
 
-That's it! F.I.S.S.I.O.N. automatically loads all existing content and adds its enhanced modding capabilities.
+- **Preserve authenticity**  
+  Every design choice respects the pacing, tone, and intent of the original Fallout titles. The focus is on preserving what made the games iconic, not rewriting them.
 
-### Platform-Specific Instructions
-
-#### Windows
-
-```
-# Example: Installing into a Steam Fallout 2 installation
-# 1\. Navigate to your Fallout 2 folder (typically):
-cd "C:\Program Files (x86)\Steam\steamapps\common\Fallout 2"
-# 2\. Extract F.I.S.S.I.O.N. files here
-# 3\. Run fallout-fission.exe
-```
-
-#### macOS
-
-```
-# Example: Using a GOG Fallout 2 installation
-# 1. Right-click Fallout2.app → "Show Package Contents"
-# 2. Navigate to Contents/Resources/Data/
-# 3. Extract F.I.S.S.I.O.N. files here
-# 4. Run fallout-fission.app
-```
-
-#### Linux
-
-```
-# Example: Using a Wine Fallout 2 installation
-# 1. Navigate to your Fallout 2 Wine prefix
-cd ~/.wine/drive_c/Program\ Files/Fallout\ 2/
-# 2. Extract F.I.S.S.I.O.N. files
-# 3. Run with: wine fallout-fission.exe
-```
-
-### Expected Folder Structure
-
-After installation, your Fallout 2 folder should contain:
-
-```
-Fallout 2/
-├── fallout-fission.exe       # F.I.S.S.I.O.N. executable (Windows)
-├── fallout-fission.app       # F.I.S.S.I.O.N. application (macOS)
-├── fission.dat               # Engine data file
-├── master.dat                # Original game data
-├── critter.dat               # Original game data
-├── patch000.dat              # Patch data (if present)
-├── data/                     # Game data folder
-│   ├── proto/                # Proto files (vanilla + mods)
-│   ├── text/                 # Text files (vanilla + mods)
-│   ├── maps/                 # Map files
-│   └── data/lists/           # Auto-generated mod reports (created on first run)
-```
-
-### Important Notes
-
--   F.I.S.S.I.O.N. does NOT include game data - you must own Fallout 2
-
--   Your existing saves will work - F.I.S.S.I.O.N. maintains full compatibility
-
--   No configuration needed for basic use - just replace the executable
+- **Encourage accessibility and modding**  
+  A cleaner, easier setup means players and fans can setup, understand, and modify the engine without digging through layers of undocumented hacks, or overlapping extensions.
 
 ---
 
-## Configuration
+### **Why FISSION Matters**
 
-Use the in-game 'preferences' screen for 'graphics' configuration.
+**Fallout: FISSION** isn’t just another compatibility branch — it’s a statement about how to preserve classic games responsibly. Instead of endlessly stacking patches and workarounds, FISSION rebuilds the Fallout 2 experience with deliberate structure, transparency, and respect for its roots. The engine seeks to extend the *world* of Fallout, not *rewrite* the gamplay itself.
 
-Other configuration can be done fia the fallout2.cfg file.
+- For **players**, that means an easier, faster, and more reliable way to enjoy the Fallout world.
+- For **modders**, its opens up a new type of modding, that no longer requires monolithic total conversions or painstackingly combined repacks.
+- For **developers**, it’s a stable foundation to build upon — one that honors the past, but isn’t chained to it.
 
-For advanced tweaks, use the [sfall] sections in 'fallout2.cfg' (Sfall):
+---
 
-```
-[sfall-misc]
-WorldMapTravelMarkers=1
-GaplessMusic=1
-EnhancedBarter=1
-```
+## **Fallout: FISSION — clean code, clear purpose, classic Fallout.**
 
 ---
 
