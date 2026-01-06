@@ -1923,8 +1923,8 @@ a.pill
 }
 
 .pill:hover,
-.pill:focus		{ background-color: #732; }
-.pill:active	{ background-color: #621; }
+.pill:focus		{ background-color: #fcdc30; }
+.pill:active	{ background-color: #fcdc30; }
 
 ul+.pill,
 ol+.pill		{ margin-left: 2em; }
