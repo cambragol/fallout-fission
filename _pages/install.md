@@ -5,9 +5,9 @@ include_in_header: true
 include_in_footer: true
 ---
 
-## Installation
+# Installation
 
-### Prerequisites
+## Prerequisites
 You must own **Fallout 2** (GOG, Steam, or Epic Games version) and have it fully installed. F.I.S.S.I.O.N. is a drop-in replacement for `Fallout2.exe` and requires the complete game data.
 
 **Supported base installations:**
@@ -15,7 +15,7 @@ You must own **Fallout 2** (GOG, Steam, or Epic Games version) and have it fully
 - **Fallout: Nevada** - Russian total conversion mod
 - **Fallout: Sonora** - Russian total conversion mod
 
-### Quick Installation
+## Quick Installation
 1. **Ensure you have a working vanilla Fallout 2 installation**
 2. **Download** the latest [F.I.S.S.I.O.N. release](https://github.com/cambragol/fission-ce/releases)
 3. **Extract** the F.I.S.S.I.O.N. files into your Fallout 2 folder
@@ -23,9 +23,9 @@ You must own **Fallout 2** (GOG, Steam, or Epic Games version) and have it fully
 
 That's it! F.I.S.S.I.O.N. automatically loads all existing content and adds its enhanced modding capabilities.
 
-### Platform-Specific Instructions
+## Platform-Specific Instructions
 
-#### Windows
+### Windows
 
 ```
 # Example: Installing into a Steam Fallout 2 installation
@@ -35,7 +35,7 @@ cd "C:\Program Files (x86)\Steam\steamapps\common\Fallout 2"
 # 3\. Run fallout-fission.exe
 ```
 
-#### macOS
+### macOS
 
 ```
 # Example: Using a GOG Fallout 2 installation
@@ -45,7 +45,7 @@ cd "C:\Program Files (x86)\Steam\steamapps\common\Fallout 2"
 # 4. Run fallout-fission.app
 ```
 
-#### Linux
+### Linux
 
 ```
 # Example: Using a Wine Fallout 2 installation
@@ -55,7 +55,7 @@ cd ~/.wine/drive_c/Program\ Files/Fallout\ 2/
 # 3. Run with: wine fallout-fission.exe
 ```
 
-### Expected Folder Structure
+## Expected Folder Structure
 
 After installation, your Fallout 2 folder should contain:
 
@@ -74,7 +74,7 @@ Fallout 2/
 │   └── data/lists/           # Auto-generated mod reports (created on first run)
 ```
 
-### Important Notes
+## Important Notes
 
 -   F.I.S.S.I.O.N. does NOT include game data - you must own Fallout 2
 
