@@ -9,7 +9,7 @@ include_in_footer: true
   <img src="/fallout-fission/assets/fallout-fission-logo.jpg" alt="Fallout: F.I.S.S.I.O.N. Logo" width="512px">
 </p>-->
 
-# Fallout: F.I.S.S.I.O.N.
+# About Fallout: F.I.S.S.I.O.N.
 *Flexible Isometric Simulation System for Interactive Open‑world Nuclear‑roleplaying*
 
 Fallout: F.I.S.S.I.O.N. is a modern, cross‑platform reimplementation of Fallout 1 & 2 (Fallout2-CE) that preserves the original isometric, turn‑based gameplay while adding modding enhancements, widescreen support, and true community‑driven extensibility. Run it on Windows, Linux, macOS, Android, iOS—and even in browsers.
@@ -49,7 +49,7 @@ Fallout: F.I.S.S.I.O.N. is a modern, cross‑platform reimplementation of Fallou
 
 ---
 
-## About **Fallout: FISSION**
+## What is **Fallout: FISSION**
 
 **Fallout: FISSION** is a modern, streamlined evolution of the Fallout 2 engine — built on the foundation of **Fallout2-CE**, and guided by a clear, deliberate philosophy: **simplify, clarify, and preserve the original spirit of Fallout**, while enabling the **expansion, modification, and improvement of the Fallout world itself**.
 
