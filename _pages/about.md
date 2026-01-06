@@ -12,7 +12,7 @@ include_in_footer: true
 # Fallout: F.I.S.S.I.O.N.
 *Flexible Isometric Simulation System for Interactive Open‑world Nuclear‑roleplaying*
 
-Fallout: F.I.S.S.I.O.N. is a next‑generation, cross‑platform reimplementation of Fallout 1 & 2 (Fallout2-CE) that preserves the original isometric, turn‑based gameplay while adding modding enhancements, widescreen support, and true community‑driven extensibility. Run it on Windows, Linux, macOS, Android, iOS—and even in browsers.
+Fallout: F.I.S.S.I.O.N. is a modern, cross‑platform reimplementation of Fallout 1 & 2 (Fallout2-CE) that preserves the original isometric, turn‑based gameplay while adding modding enhancements, widescreen support, and true community‑driven extensibility. Run it on Windows, Linux, macOS, Android, iOS—and even in browsers.
 
 > **Powered by the F.I.S.S.I.O.N. Engine**
 > *Flexible. Isometric. Simulation. System. Interactive. Open‑world. Nuclear‑roleplay.*
@@ -51,9 +51,9 @@ Fallout: F.I.S.S.I.O.N. is a next‑generation, cross‑platform reimplementatio
 
 ## About **Fallout: FISSION**
 
-**Fallout: FISSION** is a modern, streamlined evolution of the Fallout 2 engine — born from the foundation of **Fallout2-CE**, but designed with a clear philosophy: to simplify, clarify, and restore the original spirit of Fallout.
+**Fallout: FISSION** is a modern, streamlined evolution of the Fallout 2 engine — built on the foundation of **Fallout2-CE**, and guided by a clear, deliberate philosophy: **simplify, clarify, and preserve the original spirit of Fallout**, while enabling the **expansion, modification, and improvement of the Fallout world itself**.
 
-Where *sfall* expanded the classic engine through countless add-ons, experimental tweaks, and mod-specific opcode patches, **FISSION** takes the opposite approach. It consolidates, refines, and integrates — keeping what truly enhances Fallout, and leaving behind the patchwork complexity that accumulated over decades of external modifications.
+Rather than layering new behavior onto the classic engine through patches and extensions, **FISSION** focuses on refinement and narrative-driven world expansion. Where projects like *sfall* extend Fallout by enabling powerful gameplay modifications, experimental mechanics, and mod-specific opcode support, **FISSION** follows a different path: it **consolidates, refines, and integrates core engine features to support modular content and extensibility**. The result is an engine that preserves Fallout’s core gameplay while providing a stable, maintainable foundation for expanding its world over time.
 
 ---
 
@@ -76,13 +76,15 @@ Where *sfall* expanded the classic engine through countless add-ons, experimenta
 
 ---
 
-### **Why FISSION Matters**
+## Why FISSION?
 
-**Fallout: FISSION** isn’t just another compatibility branch — it’s a statement about how to preserve classic games responsibly. Instead of endlessly stacking patches and workarounds, FISSION rebuilds the Fallout 2 experience with deliberate structure, transparency, and respect for its roots. The engine seeks to extend the *world* of Fallout, not *rewrite* the gamplay itself.
+**Fallout: FISSION** isn’t just another compatibility fork — it’s a statement on how classic games should be preserved.
 
-- For **players**, that means an easier, faster, and more reliable way to enjoy the Fallout world.
-- For **modders**, its opens up a new type of modding, that no longer requires monolithic total conversions or painstackingly combined repacks.
-- For **developers**, it’s a stable foundation to build upon — one that honors the past, but isn’t chained to it.
+Instead of endlessly stacking patches and workarounds, FISSION rebuilds the Fallout 2 experience with **structure, extendibility, and respect for its roots**. The engine aims to extend the *world* of Fallout — not rewrite the *gameplay* itself.
+
+- **For players**: a faster, cleaner, and more reliable way to experience Fallout.  
+- **For modders**: new possibilities beyond monolithic total conversions and fragile repacks.  
+- **For developers**: a stable, maintainable foundation that honors the past without being chained to it.
 
 ---
 
