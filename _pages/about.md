@@ -53,7 +53,7 @@ Fallout: F.I.S.S.I.O.N. is a modern, cross‑platform reimplementation of Fallou
 
 **Fallout: FISSION** is a modern, streamlined evolution of the Fallout 2 engine — built on the foundation of **Fallout2-CE**, and guided by a clear, deliberate philosophy: **simplify, clarify, and preserve the original spirit of Fallout**, while enabling the **expansion, modification, and improvement of the Fallout world itself**.
 
-Rather than layering new behavior onto the classic engine through patches and extensions, **FISSION** focuses on refinement and narrative-driven world expansion. Where projects like *sfall* extend Fallout by enabling powerful gameplay modifications, experimental mechanics, and mod-specific opcode support, **FISSION** follows a different path: it **consolidates, refines, and integrates core engine features to support modular content and extensibility**. The result is an engine that preserves Fallout’s core gameplay while providing a stable, maintainable foundation for expanding its world over time.
+Where projects like *sfall* extend Fallout by enabling powerful gameplay modifications, experimental mechanics, and mod-specific opcode support, **FISSION** follows a different path: it **extends, refines, and integrates core engine features to support modular content and narrative extendibility**. The result is an engine that preserves Fallout’s core gameplay while providing a stable, maintainable foundation for expanding its world over time.
 
 ---
 
