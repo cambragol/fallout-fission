@@ -25,16 +25,6 @@ That's it! F.I.S.S.I.O.N. automatically loads all existing content and adds its 
 
 ## Platform-Specific Instructions
 
-### Windows
-
-```
-# Example: Installing into a Steam Fallout 2 installation
-# 1\. Navigate to your Fallout 2 folder (typically):
-cd "C:\Program Files (x86)\Steam\steamapps\common\Fallout 2"
-# 2\. Extract F.I.S.S.I.O.N. files here
-# 3\. Run fallout-fission.exe
-```
-
 ### macOS
 
 ```
@@ -45,7 +35,17 @@ cd "C:\Program Files (x86)\Steam\steamapps\common\Fallout 2"
 # 4. Run fallout-fission.app
 ```
 
-### Linux
+### Windows (limited support)
+
+```
+# Example: Installing into a Steam Fallout 2 installation
+# 1\. Navigate to your Fallout 2 folder (typically):
+cd "C:\Program Files (x86)\Steam\steamapps\common\Fallout 2"
+# 2\. Extract F.I.S.S.I.O.N. files here
+# 3\. Run fallout-fission.exe
+```
+
+### Linux (limited support)
 
 ```
 # Example: Using a Wine Fallout 2 installation
