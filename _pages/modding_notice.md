@@ -1,11 +1,11 @@
 ---
 layout: page
-title: Modding System
+title: Mod
 include_in_header: true
 include_in_footer: true
 ---
 
-Fallout FISSION Modding System: Complete Implementation Guide
+Mod Fallout FISSION
 =============================================================
 
 Coming soon!
