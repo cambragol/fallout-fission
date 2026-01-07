@@ -1,11 +1,11 @@
 ---
 layout: page
-title: Installation
+title: Install
 include_in_header: true
 include_in_footer: true
 ---
 
-# Installation
+# Install Fallout: F.I.S.S.I.O.N.
 
 ## Prerequisites
 You must own **Fallout 2** (GOG, Steam, or Epic Games version) and have it fully installed. F.I.S.S.I.O.N. is a drop-in replacement for `Fallout2.exe` and requires the complete game data.
