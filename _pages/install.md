@@ -17,7 +17,7 @@ You must own **Fallout 2** (GOG, Steam, or Epic Games version) and have it fully
 
 ## Quick Installation
 1. **Ensure you have a working vanilla Fallout 2 installation**
-2. **Download** the latest <a class="pill" href="https://github.com/cambragol/fission-ce/releases/tag/beta">F.I.S.S.I.O.N. release</a>
+2. **Download** the latest <a class="pill" href="https://github.com/cambragol/fallout-fission-release/releases/tag/0.9">F.I.S.S.I.O.N. release</a>
 3. **Extract** the F.I.S.S.I.O.N. files into your Fallout 2 folder
 4. **Run** `fallout-fission.exe` (Windows) or `fallout-fission.app` (macOS) instead of the original executable
 
