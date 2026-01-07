@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About FISSION
+title: About
 include_in_header: true
 include_in_footer: true
 ---
