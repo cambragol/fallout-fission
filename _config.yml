@@ -70,50 +70,50 @@ features                                  :
 # Screenshot List                         Edit, add or remove screenshots to be presented.
 screenshots                               :
 
-  - title                                 : GitHub Pages Jekyll Theme
-    description                           : Designed for GitHub Pages. Fork. Edit _config.yml. Upload screenshot/video. Push to gh-pages branch. Voilá!
+  - title                                 : Full Screen Video
+    description                           : Videos can be stretched to full screen, maintain aspect ratio, or with square pixels.
     fontawesome_icon_name                 : magic
     image                                 : assets/screenshot1.png
     thumb                                 : assets/screenshot1_thumb.png
     
-  - title                                 : iPhone Device Preview
-    description                           : Preview your app in the context of an iPhone device. Five different device colors included.
+  - title                                 : Enhanced Preferences
+    description                           : Change all the critical settings from within the game in the enhanced preferences screen.
     fontawesome_icon_name                 : mobile
     image                                 : assets/screenshot2.png
     thumb                                 : assets/screenshot2_thumb.png
 
-  - title                                 : Video Support
-    description                           : Preview app video on the iPhone device simply by placing your video files in the videos folder.
+  - title                                 : Widescreen Character Selection
+    description                           : Customized widescreen character graphics
     fontawesome_icon_name                 : play-circle
     image                                 : assets/screenshot3.png
     thumb                                 : assets/screenshot3_thumb.png
 
-  - title                                 : Screenshot 4
-    description                           : Designed for GitHub Pages. Fork. Edit _config.yml. Upload screenshot/video. Push to gh-pages branch. Voilá!
+  - title                                 : Widescreen Character Editor
+    description                           : Customized offsets for all interfaces in widescreen.
     fontawesome_icon_name                 : magic
     image                                 : assets/screenshot4.png
     thumb                                 : assets/screenshot4_thumb.png
     
-  - title                                 : Screenshot 5
-    description                           : Preview your app in the context of an iPhone device. Five different device colors included.
+  - title                                 : Customized Splash Screens
+    description                           : All splash screens customized for wide screens.
     fontawesome_icon_name                 : mobile
     image                                 : assets/screenshot5.png
     thumb                                 : assets/screenshot5_thumb.png
 
-  - title                                 : Screenshot 6
-    description                           : Preview app video on the iPhone device simply by placing your video files in the videos folder.
+  - title                                 : Customized Load Screens
+    description                           : Widescreen load/save screens with expanded slots.
     fontawesome_icon_name                 : play-circle
     image                                 : assets/screenshot6.png
     thumb                                 : assets/screenshot6_thumb.png
 
-  - title                                 : Screenshot 7
-    description                           : Designed for GitHub Pages. Fork. Edit _config.yml. Upload screenshot/video. Push to gh-pages branch. Voilá!
+  - title                                 : Widescreen Worldmap
+    description                           : World map and town screens are supported in widescreen
     fontawesome_icon_name                 : magic
     image                                 : assets/screenshot7.png
     thumb                                 : assets/screenshot7_thumb.png
     
-  - title                                 : Screenshot 8
-    description                           : Preview your app in the context of an iPhone device. Five different device colors included.
+  - title                                 : Large Play Area
+    description                           : Play area can be set to original, default, large or huge.
     fontawesome_icon_name                 : mobile
     image                                 : assets/screenshot8.png
     thumb                                 : assets/screenshot8_thumb.png
