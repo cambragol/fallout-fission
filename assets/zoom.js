@@ -55,19 +55,44 @@ function makeZoomPane()
 
 //Add event handlers to every image link
 //Skips links that have "nozoom" in their rel tag
+// Modify prepLinks to preload on page load:
 function prepLinks()
 {
-	var i, p, l	= document[gT]('a'),
-		evts	= {
-		click:		linkClicked,
-		mouseover:	linkFocused,
-		focus:		linkFocused
-	};
+    var i, p, l = document[gT]('a'),
+        evts = {
+            click: linkClicked,
+            mouseover: linkFocused,
+            focus: linkFocused
+        };
 
-	for (i=0; i<l.length; i++)
-		if (!/\bnozoom\b/i.test(l[i].rel)
-		&& /\.(jpe?g|png|gif|bmp|tiff?)$/i.test(l[i].pathname))
-			for (p in evts) addEvent(l[i], p, evts[p]);
+    for (i = 0; i < l.length; i++) {
+        if (!/\bnozoom\b/i.test(l[i].rel) &&
+            /\.(jpe?g|png|gif|bmp|tiff?)$/i.test(l[i].pathname)) {
+            for (p in evts) addEvent(l[i], p, evts[p]);
+            
+            // PRELOAD IT NOW! - But we need to use a separate image
+            // because the main preloader can only load one at a time
+            if (!preloader.images[l[i].href]) {
+                preloadImage(l[i].href);
+            }
+        }
+    }
+}
+
+// Add a separate function for background preloading:
+function preloadImage(url) {
+    // Skip if already loaded
+    if (preloader.images[url]) return;
+    
+    var img = new Image();
+    img.onload = function() {
+        // Store in the preloader's cache
+        preloader.images[this.src] = { 
+            width: this.width, 
+            height: this.height 
+        };
+    };
+    img.src = url;
 }
 
 /* Event handlers */
