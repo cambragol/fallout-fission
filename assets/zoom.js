@@ -141,9 +141,23 @@ function showSpinner()
 /* Zoom */
 
 //Zoom the pane to its final width and height, using the source link as a starting-point
-function zoomIn(fromLink)
-{
-	var z=zoomPane;
+function zoomIn(fromLink) {
+    var z = zoomPane;
+    
+    // Clear any current zoom immediately
+    if (z.zoomAnim) {
+        z.zoomAnim.stop(true);
+        z.style.visibility = 'hidden';
+        z.image.src = ''; // Clear current image
+    }
+    
+    // Halt any pending preload priorities
+    preloader.priority = null;
+    preloader.src = ''; // Stop any current loading
+
+
+
+	
 
 	//Halt any zooms in the queue
 	if (z.zoomAnim) z.zoomAnim.stop(true);
