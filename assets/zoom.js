@@ -19,40 +19,7 @@ p.onload	= function()
 	if (t.priority) { zoomIn(t.priority); t.priority = null; }
 }
 p.onerror	= function() { this.priority = null; }
-p.preload = function(from, prioritise) {
-    var t = this;
-    var url = from.href;
-    
-    // Don't reload if already loading or loaded
-    if (t.images[url] || t.loading === url) return;
-    
-    var img = new Image();
-    t.loading = url;
-    
-    img.onload = function() {
-        t.images[url] = { width: this.width, height: this.height };
-        t.loading = null;
-        if (url === t.priorityURL) {
-            t.priorityURL = null;
-            zoomIn(t.priorityLink);
-            t.priorityLink = null;
-        }
-    };
-    
-    img.onerror = function() {
-        t.loading = null;
-        t.priorityURL = null;
-        t.priorityLink = null;
-    };
-    
-    if (prioritise) {
-        t.priorityURL = url;
-        t.priorityLink = from;
-        setTimeout(showSpinner, 150);
-    }
-    
-    img.src = url;
-};	= function(from, prioritise)
+p.preload	= function(from, prioritise)
 {
 	var t=this;
 	if (prioritise || !t.priority) {
@@ -88,25 +55,19 @@ function makeZoomPane()
 
 //Add event handlers to every image link
 //Skips links that have "nozoom" in their rel tag
-function prepLinks() {
-    var i, p, l = document[gT]('a'),
-        evts = {
-            click: linkClicked,
-            mouseover: linkFocused,
-            focus: linkFocused
-        };
+function prepLinks()
+{
+	var i, p, l	= document[gT]('a'),
+		evts	= {
+		click:		linkClicked,
+		mouseover:	linkFocused,
+		focus:		linkFocused
+	};
 
-    for (i = 0; i < l.length; i++) {
-        if (!/\bnozoom\b/i.test(l[i].rel) &&
-            /\.(jpe?g|png|gif|bmp|tiff?)$/i.test(l[i].pathname)) {
-            for (p in evts) addEvent(l[i], p, evts[p]);
-            
-            // PRELOAD IT NOW!
-            if (!preloader.images[l[i].href]) {
-                preloader.preload(l[i]);
-            }
-        }
-    }
+	for (i=0; i<l.length; i++)
+		if (!/\bnozoom\b/i.test(l[i].rel)
+		&& /\.(jpe?g|png|gif|bmp|tiff?)$/i.test(l[i].pathname))
+			for (p in evts) addEvent(l[i], p, evts[p]);
 }
 
 /* Event handlers */
