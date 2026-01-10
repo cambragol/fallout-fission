@@ -442,7 +442,7 @@ nav>ul li a:hover,nav>ul li a:active {
     -webkit-clip-path: url(#screenMask);
     clip-path: url(#screenMask);
     margin-left: 88px;
-    margin-top: 25px;
+    margin-top: 18px;
 }
 
 .videoContainer {
@@ -467,7 +467,7 @@ nav>ul li a:hover,nav>ul li a:active {
     .iphoneScreen {
         width: 490px;
         margin-left: 75px;
-        margin-top: 23px;
+        margin-top: 15px;
     }
 
     .videoContainer {
@@ -499,7 +499,7 @@ nav>ul li a:hover,nav>ul li a:active {
         -webkit-clip-path: url(#screenMask);
         clip-path: url(#screenMask);
         margin: 0px;
-        margin-top: 16px;
+        margin-top: 12px;
     }
 
     .videoContainer {
@@ -531,7 +531,7 @@ nav>ul li a:hover,nav>ul li a:active {
         -webkit-clip-path: url(#screenMask);
         clip-path: url(#screenMask);
         margin: 0px;
-        margin-top: 8px;
+        margin-top: 7px;
     }
 
     .videoContainer {
