@@ -97,6 +97,7 @@ a:active	{ color: #375e76; }
 .subPageContainer {
     grid-template-rows: 115px auto auto auto;
     background-color: #7f8d9b;
+	padding: 0 5px;
 }
 
 @media only screen and (max-width: 768px) {
