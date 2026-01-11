@@ -56,8 +56,8 @@ function makeZoomPane()
 //Add event handlers to every image link
 //Skips links that have "nozoom" in their rel tag
 // Modify prepLinks to preload on page load:
-function prepLinks()
-{
+// Replace your existing prepLinks function with:
+function prepLinks() {
     var i, p, l = document[gT]('a'),
         evts = {
             click: linkClicked,
@@ -70,12 +70,46 @@ function prepLinks()
             /\.(jpe?g|png|gif|bmp|tiff?)$/i.test(l[i].pathname)) {
             for (p in evts) addEvent(l[i], p, evts[p]);
             
-            // PRELOAD IT NOW! - But we need to use a separate image
-            // because the main preloader can only load one at a time
+            // PRELOAD IT NOW!
             if (!preloader.images[l[i].href]) {
                 preloadImage(l[i].href);
             }
         }
+    }
+    
+    // ALSO set up tab switch listeners here
+    setupTabSwitchListeners();
+}
+
+function setupTabSwitchListeners() {
+    addEvent(window, 'focus', function() {
+        // Refresh all images on focus
+        var links = document[gT]('a');
+        for (var i = 0; i < links.length; i++) {
+            var link = links[i];
+            if (!/\bnozoom\b/i.test(link.rel) &&
+                /\.(jpe?g|png|gif|bmp|tiff?)$/i.test(link.pathname)) {
+                // Trigger a fresh preload
+                preloadImage(link.href);
+            }
+        }
+    });
+    
+    // Also use visibility API if available
+    if ('visibilityState' in document) {
+        addEvent(document, 'visibilitychange', function() {
+            if (document.visibilityState === 'visible') {
+                // Same refresh logic as focus
+                var links = document[gT]('a');
+                for (var i = 0; i < links.length; i++) {
+                    var link = links[i];
+                    if (!/\bnozoom\b/i.test(link.rel) &&
+                        /\.(jpe?g|png|gif|bmp|tiff?)$/i.test(link.pathname)) {
+                        preloadImage(link.href);
+                    }
+                }
+            }
+        });
     }
 }
 
