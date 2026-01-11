@@ -12,27 +12,11 @@ var gT='getElementsByTagName';
 //Image preloader
 var p = preloader = new Image();
 p.images	= {};
-p.onload = function() {
-    var t = this;
-    
-    // Create a canvas to convert image to data URL
-    var canvas = document.createElement('canvas');
-    canvas.width = this.width;
-    canvas.height = this.height;
-    var ctx = canvas.getContext('2d');
-    ctx.drawImage(this, 0, 0);
-    
-    // Store as data URL (keeps it in memory)
-    t.images[t.src] = {
-        dataUrl: canvas.toDataURL(),
-        width: this.width,
-        height: this.height
-    };
-    
-    if (t.priority && t.priority.href === t.src) {
-        zoomIn(t.priority);
-        t.priority = null;
-    }
+p.onload	= function()
+{
+	var t=this;
+	t.images[t.src] = { width: t.width, height: t.height };
+	if (t.priority) { zoomIn(t.priority); t.priority = null; }
 }
 p.onerror	= function() { this.priority = null; }
 p.preload	= function(from, prioritise)
@@ -216,7 +200,7 @@ function zoomIn(fromLink) {
 	var from	= getPos(z.origin);
 
 	//Determine final size from preloaded image dimensions
-	var uri		= z.image.src = img.dataUrl; // Use data URL instead of regular URL
+	var uri		= z.image.src = fromLink.href,
 		img		= preloader.images[uri];
 	var to		= { width: img.width, height: img.height };
 	var ratio	= to.width / to.height;
