@@ -173,7 +173,7 @@ function zoomIn(fromLink) {
     if (z.zoomAnim) {
         z.zoomAnim.stop(true);
         z.style.visibility = 'hidden';
-        z.image.src = ''; // Clear current image
+        //z.image.src = ''; // Clear current image
     }
     
     // Halt any pending preload priorities
