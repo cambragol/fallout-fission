@@ -557,20 +557,20 @@ addEvent(window, 'load', function() { makeZoomPane(), prepLinks() });
     });
     
     // Method 2: Visibility API
-    document.addEventListener('visibilitychange', function() {
+    /*document.addEventListener('visibilitychange', function() {
         console.log('Visibility changed:', document.visibilityState);
         if (document.visibilityState === 'visible') {
             refreshAllImages();
         }
-    });
+    });*/
     
     // Method 3: Also refresh when mouse enters window (fallback)
-    document.addEventListener('mouseenter', function() {
+    /*document.addEventListener('mouseenter', function() {
         // Only refresh if page was hidden recently
         if (document.visibilityState === 'visible') {
             setTimeout(refreshAllImages, 100);
         }
-    });
+    });*/
     
     console.log('Tab return refresh setup complete');
 })();
