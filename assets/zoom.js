@@ -495,3 +495,82 @@ function cancelEvent(e)
 }
 
 addEvent(window, 'load', function() { makeZoomPane(), prepLinks() });
+
+// Tab return image refresh - uses native addEventListener
+
+(function() {
+    console.log('Setting up tab return refresh...');
+    
+    // Flag to prevent multiple rapid refreshes
+    var lastRefresh = 0;
+    
+    function refreshAllImages() {
+        // Don't refresh more than once every 2 seconds
+        var now = Date.now();
+        if (now - lastRefresh < 2000) {
+            console.log('Skipping refresh - too soon');
+            return;
+        }
+        lastRefresh = now;
+        
+        console.log('🔄 Refreshing all images from tab return');
+        
+        var links = document.getElementsByTagName('a');
+        var count = 0;
+        
+        for (var i = 0; i < links.length; i++) {
+            var link = links[i];
+            // Same logic as your prepLinks
+            if (!/\bnozoom\b/i.test(link.rel) &&
+                /\.(jpe?g|png|gif|bmp|tiff?)$/i.test(link.pathname)) {
+                
+                count++;
+                
+                // Clear from cache to force fresh load
+                delete preloader.images[link.href];
+                
+                // Re-preload with cache buster
+                var img = new Image();
+                var cacheBuster = '?_refresh=' + Date.now() + '_' + i;
+                
+                img.onload = function() {
+                    var originalUrl = this.src.split('?')[0];
+                    preloader.images[originalUrl] = {
+                        width: this.width,
+                        height: this.height,
+                        refreshed: Date.now()
+                    };
+                    console.log('Refreshed:', originalUrl);
+                };
+                
+                img.src = link.href + cacheBuster;
+            }
+        }
+        
+        console.log('Started refresh of ' + count + ' images');
+    }
+    
+    // Method 1: Focus/blur events
+    window.addEventListener('focus', function() {
+        console.log('Tab focused - refreshing images');
+        refreshAllImages();
+    });
+    
+    // Method 2: Visibility API
+    document.addEventListener('visibilitychange', function() {
+        console.log('Visibility changed:', document.visibilityState);
+        if (document.visibilityState === 'visible') {
+            refreshAllImages();
+        }
+    });
+    
+    // Method 3: Also refresh when mouse enters window (fallback)
+    document.addEventListener('mouseenter', function() {
+        // Only refresh if page was hidden recently
+        if (document.visibilityState === 'visible') {
+            setTimeout(refreshAllImages, 100);
+        }
+    });
+    
+    console.log('Tab return refresh setup complete');
+})();
