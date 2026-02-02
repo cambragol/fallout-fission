@@ -1,3 +1,10 @@
+---
+layout: page
+title: Quick Start OFF
+include_in_header: false
+include_in_footer: false
+---
+
 # Fallout FISSION Modding: Quick Start Guide
 ## Get Your First Mod Running in 10 Minutes
 
