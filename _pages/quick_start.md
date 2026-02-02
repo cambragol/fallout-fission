@@ -100,16 +100,16 @@ Copy all files to your Fallout 2 install directory:
 
 ```
 Fallout 2 Game Folder/
-??? data/
-?   ??? maps/
-?   ?   ??? mytown1.map           ? Your created map file
-?   ??? city_myquest.txt          ? Put here
-?   ??? maps_myquest.txt          ? Put here
-?   ??? quests_myquest.txt        ? Put here
-??? text/
-    ??? english/
-        ??? game/
-            ??? messages_myquest.txt  ? Put here
+├── data/
+│   ├── maps/
+│   │   └── mytown1.map           # Your created map file
+│   ├── city_myquest.txt          # Put here
+│   ├── maps_myquest.txt          # Put here
+│   └── quests_myquest.txt        # Put here
+└── text/
+    └── english/
+        └── game/
+            └── messages_myquest.txt  # Put here
 ```
 
 Critical Check:
