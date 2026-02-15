@@ -43,8 +43,8 @@ features                                  :
     description                           : The original game, but fine-tuned for modern, widescreen monitors.
     fontawesome_icon_name                 : magic
     
-  - title                                 : Mulit-platform
-    description                           : Works on macOS, Windows, Linus, and maybe even your phone!
+  - title                                 : Multi-platform
+    description                           : Works on macOS, Windows, Linux, and maybe even your phone!
     fontawesome_icon_name                 : mobile
 
   - title                                 : Pixel Perfect
