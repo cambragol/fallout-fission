@@ -67,6 +67,26 @@ features                                  :
     description                           : # New Feature Description
     fontawesome_icon_name                 : # Enter Font Awesome icon name (e.g. star). Find icons on fontawesome.com/icons.
 
+# Feature List                            Edit, add or remove features to be presented.
+features1                                  :
+
+  - title                                 : Fallout 2 Widescreen
+    description                           : The original game, but fine-tuned for modern, widescreen monitors.
+    fontawesome_icon_name                 : magic
+    image                                 : assets/screenshot1.png
+
+    
+  - title                                 : Multi-platform
+    description                           : Works on macOS, Windows, Linux, and maybe even your phone!
+    fontawesome_icon_name                 : mobile
+    image                                 : assets/screenshot2.png
+
+  - title                                 : Pixel Perfect
+    description                           : Play it your way, stretched, original, aspect ratio, square pixels, or high quality.
+    fontawesome_icon_name                 : play-circle
+    image                                 : assets/screenshot3.png
+
+
 # Screenshot List                         Edit, add or remove screenshots to be presented.
 screenshots                               :
 
