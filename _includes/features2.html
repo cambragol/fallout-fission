@@ -1,6 +1,7 @@
-<div class="features">
+{% for feature1 in site.features1 %}
 
-    {% for feature1 in site.features1 %}
+
+<div class="features">
 
     {% if feature1.title %}
     <div class="feature">
@@ -22,6 +23,6 @@
     </div>
     {% endif %}
 
-    {% endfor %}
-
 </div>
+
+{% endfor %}
