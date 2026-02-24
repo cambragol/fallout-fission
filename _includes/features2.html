@@ -1,9 +1,9 @@
 {% for feature1 in site.features1 %}
 
+{% if feature1.title %}
 
 <div class="features">
 
-    {% if feature1.title %}
     <div class="feature">
         <div>
             <span class="fa-stack fa-1x">
@@ -21,8 +21,9 @@
           <img src="{{ feature1.image }}" alt="{{ feature1.description }}"></img
         </div>
     </div>
-    {% endif %}
 
 </div>
+
+{% endif %}
 
 {% endfor %}
