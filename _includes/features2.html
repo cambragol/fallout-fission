@@ -2,7 +2,9 @@
 {% for presentation in site.presentations %}
 
 {% if presentation.title %}
+          <div class="features">
           <img src="{{ presentation.image }}" alt="{{ presentation.title }}" width="450px">
+          </div>
 {% endif %}
 
 {% endfor %}
