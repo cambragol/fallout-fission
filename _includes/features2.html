@@ -3,6 +3,7 @@
 
 {% if presentation.title %}
           <div class="presentation">
+          <p>{{ presentation.description }}</p>
           <img src="{{ presentation.image }}" alt="{{ presentation.title }}" width="450px">
           </div>
 {% endif %}
