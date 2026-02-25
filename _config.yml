@@ -67,8 +67,8 @@ features                                  :
     description                           : # New Feature Description
     fontawesome_icon_name                 : # Enter Font Awesome icon name (e.g. star). Find icons on fontawesome.com/icons.
 
-# Feature List                            Edit, add or remove features to be presented.
-features1                                  :
+# Presentation List                            Edit, add or remove features to be presented.
+presentations                                  :
 
   - title                                 : Fallout 2 Widescreen
     description                           : The original game, but fine-tuned for modern, widescreen monitors.
