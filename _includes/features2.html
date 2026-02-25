@@ -2,25 +2,8 @@
 {% for feature1 in site.features1 %}
 
 {% if feature1.title %}
+          <img src="{{ feature1.image }}" alt="{{ feature1.title }}"></img
 
-
-    <div class="feature">
-        <div>
-            <span class="fa-stack fa-1x">
-                <i class="iconBack fas fa-circle fa-stack-2x"></i>
-                <i class="iconTop fas fa-{{ feature.fontawesome_icon_name }} fa-stack-1x"></i>
-            </span>
-        </div>
-        <div class="featureText">
-            <h3>
-                {{ feature1.title }}
-            </h3>
-            <p>
-                {{ feature1.description }}
-            </p>
-          <img src="{{ feature1.image }}" alt="{{ feature1.description }}"></img
-        </div>
-    </div>
 {% endif %}
 
 {% endfor %}
