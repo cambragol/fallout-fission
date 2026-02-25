@@ -75,7 +75,6 @@ features1                                  :
     fontawesome_icon_name                 : magic
     image                                 : assets/screenshot1.png
 
-    
   - title                                 : Multi-platform
     description                           : Works on macOS, Windows, Linux, and maybe even your phone!
     fontawesome_icon_name                 : mobile
