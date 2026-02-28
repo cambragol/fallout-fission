@@ -309,6 +309,11 @@ nav>ul li a:hover,nav>ul li a:active {
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	font-family: Gothic821 Cn BT;
+	font-size: clamp(3.5rem, 5.5vw, 6.3rem);
+    font-weight: 600;
+    line-height: 1.02;
+	    letter-spacing: 0.005em;
+
 }
 
 .appPrice {
@@ -600,15 +605,16 @@ nav>ul li a:hover,nav>ul li a:active {
     top: -2rem;
     left: -1rem;
 
-    font-size: clamp(10rem, 22vw, 24rem);
+    font-size: clamp(10rem, 20vw, 24rem);
     font-weight: 900;
     line-height: 1;
     letter-spacing: -0.05em;
 
-    opacity: 0.035;
+    opacity: 0.045;
     pointer-events: none;
     z-index: 0;
 }
+
 
 .presentation.right .feature-number {
     left: auto;
@@ -627,6 +633,12 @@ nav>ul li a:hover,nav>ul li a:active {
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	font-family: Gothic821 Cn BT;
+}
+
+.presentation-title {
+    font-size: clamp(3.4rem, 5.5vw, 6.2rem);
+    font-weight: 900;
+    line-height: 1.02;
 }
 
 .presentation-description {
@@ -742,7 +754,9 @@ nav>ul li a:hover,nav>ul li a:active {
     opacity: 0.6;
 }
 
-
+.presentation-description {
+    margin-top: 2.5rem;
+}
 
 /* =========================
    RESPONSIVE
@@ -806,13 +820,14 @@ nav>ul li a:hover,nav>ul li a:active {
 /* Main statement */
 
 .statement-text {
-    font-size: clamp(4rem, 8vw, 9rem);
-    font-weight: 800;
+font-size: clamp(3.2rem, 6.5vw, 7rem);    font-weight: 800;
     line-height: 1.05;
     letter-spacing: -0.03em;
 
     margin: 0;
 }
+
+
 
 
 /* Attribution */
@@ -825,6 +840,10 @@ nav>ul li a:hover,nav>ul li a:active {
     text-transform: uppercase;
 
     opacity: 0.6;
+}
+
+.statement-inner {
+    max-width: 900px;
 }
 
 .features {
