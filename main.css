@@ -634,6 +634,16 @@ nav>ul li a:hover,nav>ul li a:active {
     z-index: 0;
 }
 
+.feature-number {
+    font-size: clamp(8rem, 18vw, 20rem);
+    opacity: 0.035;
+}
+
+.presentation.right .feature-number {
+    left: auto;
+    right: -1rem;
+}
+
 .presentation-title {
     position: relative;
     z-index: 1;
