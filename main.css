@@ -38,6 +38,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #54544c;
+	overflow-x: hidden;
 }
 
 a			{color: #364857;font-weight: bold; text-decoration: none;}
@@ -491,7 +492,7 @@ nav>ul li a:hover,nav>ul li a:active {
         background-position: center 0;
         margin-top: 47px;
         justify-content: center;
-        padding-bottom: 75px
+        padding-bottom: 75px;
     }
 
     .iphoneScreen {
@@ -548,75 +549,48 @@ nav>ul li a:hover,nav>ul li a:active {
     }
 }
 
+/* =========================
+   WRAPPER
+========================= */
+
 .presentations {
-    grid-column: 1 / -1;  /* span all 12 columns */
+    grid-column: 1 / -1;
     width: 100%;
 }
+
+
+/* =========================
+   BAND LAYOUT
+========================= */
 
 .presentation {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 6rem;
+
     width: 100%;
-	padding: 4rem 4rem;
+    padding-top: 6rem;
+
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-.presentation {
-    padding: 6rem 4rem;
-    border-top: 1px solid rgba(0,0,0,0.08);
-	min-height: 70vh;
+
+/* LEFT layout (image visually on right side) */
+.presentation:not(.right) {
+    padding-left: 4rem;
 }
 
-.presentation:first-child {
-    border-top: none;
-}
-
+/* RIGHT layout */
 .presentation.right {
     flex-direction: row-reverse;
-    background-color: rgba(0,0,0,0.14);
+    padding-right: 4rem;
 }
 
-.presentation-content {
-    flex: 0 0 38%;
-}
 
-.presentation-media {
-    flex: 0 0 58%;
-    overflow: hidden;
-}
-
-.presentation-media img {
-    width: 100%;
-    height: auto;
-    display: block;
-
-    transform: scale(1) translateX(0);
-    transition: transform 0.6s cubic-bezier(.2,.6,.2,1);
-}
-
-.presentation:hover .presentation-media img {
-    transform: scale(1.03) translateX(-2%);
-}
-
-.presentation.right:hover .presentation-media img {
-    transform: scale(1.03) translateX(2%);
-}
-
-.presentation-title {
-    font-size: clamp(2.8rem, 4vw, 4.5rem);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin-bottom: 2rem;
-    line-height: 1.1;
-}
-
-.presentation-description {
-    font-size: clamp(1.45rem, 1.6vw, 1.75rem);
-    line-height: 1.9;
-    max-width: 55ch;
-    opacity: 0.9;
-}
+/* =========================
+   CONTENT
+========================= */
 
 .presentation-content {
     position: relative;
@@ -628,20 +602,14 @@ nav>ul li a:hover,nav>ul li a:active {
     top: -2rem;
     left: -1rem;
 
-    font-size: clamp(6rem, 12vw, 14rem);
+    font-size: clamp(10rem, 22vw, 24rem);
     font-weight: 900;
     line-height: 1;
-
-    opacity: 0.05;
     letter-spacing: -0.05em;
 
+    opacity: 0.035;
     pointer-events: none;
     z-index: 0;
-}
-
-.feature-number {
-    font-size: clamp(8rem, 18vw, 20rem);
-    opacity: 0.035;
 }
 
 .presentation.right .feature-number {
@@ -657,9 +625,131 @@ nav>ul li a:hover,nav>ul li a:active {
     font-weight: 800;
     letter-spacing: -0.03em;
     line-height: 1.05;
+
     margin-bottom: 2rem;
 }
+
+.presentation-description {
+    font-size: clamp(1.65rem, 1.7vw, 1.85rem);
+    line-height: 1.7;
+    max-width: 55ch;
+
+    opacity: 0.9;
+}
+
+
+/* =========================
+   MEDIA — EDGE BLEED
+========================= */
+
+.presentation-media {
+    flex: 0 0 48%;
+    position: relative;
+
+    aspect-ratio: 16 / 10;
+    overflow: hidden; /* clips bottom + inside edge */
+}
+
+.presentation-media img {
+    position: absolute;
+
+    width: 115%; /* overscale */
+    height: auto;
+
+    object-fit: cover;
+	transition: transform 0.6s ease;
+}
+
+/* LEFT layout (image visually on right side) */
+.presentation:not(.right) .presentation-media img {
+    left: 0;
+}
+
+/* RIGHT layout */
+.presentation.right .presentation-media img {
+    right: 0;
+}
+
+/* LEFT layout (image visually on right side) */
+.presentation:not(.right) .presentation-media:hover img {
+    transform: translateX(-6px);
+}
+
+/* RIGHT layout */
+.presentation.right .presentation-media:hover img {
+    transform: translateX(6px);
+}
+
+.presentation {
+    background:
+        linear-gradient(
+            to right,
+            rgba(0,0,0,0.06),
+			rgba(0,0,0,0.06),
+            rgba(0,0,0,0.12)
+        );
+}
+
+.presentation.right {
+    background:
+        linear-gradient(
+            to left,
+            rgba(0,0,0,0.02),
+            rgba(0,0,0,0.12)
+        );
+		background-color: rgba(0, 0, 0, 0.14);
+
+}
+
+.presentation {
+    position: relative;
+    overflow: hidden;
+}
+
+.presentation::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            rgba(0,0,0,0.0) 0px,
+            rgba(0,0,0,0.02) 7px,
+            transparent 2px,
+            transparent 8px
+        );
+
+    opacity: 0.5;
+}
+
+.presentation.right::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    background:
+        repeating-linear-gradient(
+            deg,
+            rgba(0,0,0,0.3) 7px,
+            rgba(0,0,0,0.0) 0px,
+            transparent 5px,
+            transparent 8px
+        );
+
+    opacity: 0.6;
+}
+
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
 @media (max-width: 1000px) {
+
     .presentation {
         flex-direction: column;
         gap: 3rem;
@@ -673,6 +763,19 @@ nav>ul li a:hover,nav>ul li a:active {
     .presentation-content,
     .presentation-media {
         flex: 0 0 100%;
+        width: 100%;
+    }
+
+    .presentation-media {
+        height: auto;
+    }
+
+    .presentation-media img {
+        position: relative;
+        width: 100%;
+        height: auto;
+        left: 0;
+        right: 0;
     }
 }
 
