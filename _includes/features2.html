@@ -4,7 +4,7 @@
       <section class="presentation {% cycle 'left', 'right' %}">
         
         <div class="presentation-content">
-          <span class="feature-number">{{ forloop.index }}</span>
+          <span class="feature-number">{{ forloop.index | prepend: '0' }}</span>
           <h2 class="presentation-title">
             {{ presentation.title }}
           </h2>
