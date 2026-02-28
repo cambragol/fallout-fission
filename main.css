@@ -85,14 +85,15 @@ a:active	{ color: #375e76; }
     /* padding-left: 15px; */
     /* padding-right: 15px; */
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: 115px 650px auto auto;
-    grid-column-gap: 30px;
-    grid-template-areas:
-        "h h h h h h h h h h h h"
-        "p p p p p i i i i i i i"
-        "s s s s s s s s s s s s"
-        "c c c c c c c c c c c c"
-        "f f f f f f f f f f f f";
+	grid-template-rows: 115px 650px auto auto auto;
+	grid-column-gap: 30px;
+grid-template-areas:
+    "h h h h h h h h h h h h"
+    "p p p p p i i i i i i i"
+    "l l l l l l l l l l l l"
+    "s s s s s s s s s s s s"
+    "c c c c c c c c c c c c"
+    "f f f f f f f f f f f f";
 }
 
 .subPageContainer {
