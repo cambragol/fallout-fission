@@ -620,13 +620,15 @@ nav>ul li a:hover,nav>ul li a:active {
 .presentation-title {
     position: relative;
     z-index: 1;
-
     font-size: clamp(3rem, 5vw, 5rem);
-    font-weight: 800;
-    letter-spacing: -0.03em;
     line-height: 1.05;
-
     margin-bottom: 2rem;
+	font-size: 4rem;
+	color: #fcdc30;
+	text-shadow: rgba(0, 0, 0, 0.33) 0 1px 2px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-family: Gothic821 Cn BT;
 }
 
 .presentation-description {
