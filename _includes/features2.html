@@ -1,12 +1,26 @@
 <div class="presentations">
-{% for presentation in site.presentations %}
+  {% for presentation in site.presentations %}
+    {% if presentation.title %}
+      <section class="presentation {% cycle 'left', 'right' %}">
+        
+        <div class="presentation-content">
+          <h2 class="presentation-title">
+            {{ presentation.title }}
+          </h2>
 
-{% if presentation.title %}
-          <div class="presentation">
-          <p>{{ presentation.description }}</p>
-          <img src="{{ presentation.image }}" alt="{{ presentation.title }}" width="450px">
-          </div>
-{% endif %}
+          <p class="presentation-description">
+            {{ presentation.description }}
+          </p>
+        </div>
 
-{% endfor %}
+        <div class="presentation-media">
+          <img 
+            src="{{ presentation.image }}" 
+            alt="{{ presentation.title }}"
+            loading="lazy">
+        </div>
+
+      </section>
+    {% endif %}
+  {% endfor %}
 </div>
