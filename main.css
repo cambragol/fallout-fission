@@ -846,6 +846,44 @@ font-size: clamp(3.2rem, 6.5vw, 7rem);    font-weight: 800;
     max-width: 900px;
 }
 
+/* =========================
+   ARCHITECTURAL QUOTES
+========================= */
+
+.statement-band {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Opening quote */
+.statement-band::before {
+    content: "“";
+    position: absolute;
+    top: -2rem;
+    left: 6rem;
+
+    font-size: clamp(12rem, 20vw, 26rem);
+    font-weight: 900;
+    line-height: 1;
+
+    opacity: 0.03;
+    pointer-events: none;
+}
+
+/* Closing quote */
+.statement-band::after {
+    content: "”";
+    position: absolute;
+    bottom: -1rem;
+    right: 6rem;
+
+    font-size: clamp(12rem, 20vw, 26rem);
+    font-weight: 900;
+    line-height: 1;
+
+    opacity: 0.03;
+    pointer-events: none;
+}
 .features {
     grid-area: c;
     display: flex;
