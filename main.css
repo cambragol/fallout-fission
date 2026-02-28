@@ -548,6 +548,39 @@ nav>ul li a:hover,nav>ul li a:active {
     }
 }
 
+.presentations {
+    grid-column: 1 / -1;  /* span all 12 columns */
+    width: 100%;
+}
+
+.presentation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6rem;
+    width: 100%;
+	padding: 4rem 4rem;
+}
+
+.presentation.right {
+    flex-direction: row-reverse;
+	background-color: #b2b3b7;
+}
+
+.presentation-content {
+    flex: 0 0 38%;
+}
+
+.presentation-media {
+    flex: 0 0 58%;
+}
+
+.presentation-media img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 .features {
     grid-area: c;
     display: flex;
