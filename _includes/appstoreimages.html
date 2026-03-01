@@ -21,55 +21,11 @@
 
 <script>
 $(function () {
-
-    const $terminal = $('.terminal-boot');
-
-    const lines = [
-        "ROBCO UOS v2.3.7",
-        "BOOTING F.I.S.S.I.O.N.",
-        "",
-        "DISPLAY 800x500 ........ OK  ::  FULLSCREEN UI ........ OK  ::  INVENTORY SORTING ........ OK  ::  GAME SPEED CTRL ........ OK  ::  MASS HIGHLIGHT ........ OK  ::  SAVE ARCHITECTURE ........ OK  ::  SYSTEM STATUS ........ STABLE"
-    ];
-
-    let currentLine = 0;
-
-    $terminal.teletype({
-        text: lines,
-        loop: false,
-        autoDelete: false,   // 🚨 prevents rewind
-        pause: 600,
-
-        delay: function (char) {
-
-            // ===== FAST BURST BASE SPEED =====
-            let baseSpeed = 4 + Math.random() * 6;
-
-            // Hard disk access pauses
-            if (char === ".") {
-                return 2; // fast progress ticks
-            }
-
-            if (char === ":") {
-                return 120; // small parsing pause
-            }
-
-            if (char === "O" && Math.random() < 0.2) {
-                return 140; // occasional hiccup before OK
-            }
-
-            // Rare mechanical stall
-            if (Math.random() < 0.015) {
-                return 180 + Math.random() * 120;
-            }
-
-            return baseSpeed;
-        },
-
-        beforeLine: function () {
-            currentLine++;
-        }
+    $('.type-text-machine').teletype({
+        delay: 18,     // fast base typing
+        pause: 0,
+        loop: false
     });
-
 });
 </script>
 
