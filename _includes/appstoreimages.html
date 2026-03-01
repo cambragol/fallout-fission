@@ -21,9 +21,14 @@
 
 <script>
 $(function () {
-    $('.type-text-machine').teletype({
-        delay: 18,
-        loop: false
+    $('.type-text-machine').each(function () {
+        $(this).teletype({
+            delay: 18,
+            loop: false,
+            preserve: true,
+            humanise: false,
+            cursor: '',
+        });
     });
 });
 </script>
