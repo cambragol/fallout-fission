@@ -31,24 +31,55 @@ $(function() {
             });
     });
 });
+<script>
+$(function() {
+
+  const terminal = document.querySelector('.terminal-band');
+
+  if (!terminal) return;
+
+  const observer = new IntersectionObserver(function(entries, obs) {
+
+    entries.forEach(entry => {
+
+      if (entry.isIntersecting) {
+
+        const $machine = $('.terminal-band .type-text-machine');
+
+        $machine.each(function() {
+
+          if ($(this).data('started')) return;
+          $(this).data('started', true);
+
+          const items = $(this).attr('title');
+
+          $(this)
+            .empty()
+            .attr('title', '')
+            .teletype({
+              text: [ items ],
+              typeDelay: 4,
+              humanise: false,
+              cursor: false,
+              preserve: true,
+              loop: 0
+            });
+
+        });
+
+        obs.disconnect(); // fire once only
+      }
+
+    });
+
+  }, {
+    threshold: 0.4   // 40% visible before firing
+  });
+
+  observer.observe(terminal);
+
+});
 </script>
-
-
-		<script>
-		$(function() {
-		  $('.type-text-machine').each(function() {
-		    var items = $(this).attr('title');
-		    $(this).empty().attr('title', '').teletype({
-		      text: [ items ],
-		      typeDelay: 4,      // much faster
-		      humanise: false,   // critical
-		      cursor: false,     // machines don't blink
-		      preserve: true,
-		      loop: 0
-		    });
-		  });
-		});
-		</script>
 
 {% if site.ios_app_id %}
 
