@@ -20,26 +20,37 @@
 		</script>
 
 
-		<script>
-		$(function() {
-		  $('.type-text-machine').each(function() {
-		
-		    var items = $(this).attr('title');
-		
-		    $(this).empty().attr('title', '').teletype({
-		      text: [ items ],
-		      typeDelay: 3,
-			  backDelay: 0,
-		      humanise: false,
-		      cursor: false,
-		      preserve: false,
-		      loop: 1,
-		      delay: 3500
-		    });
-		
-		  });
-		});
-		</script>
+$('.type-text-machine').each(function() {
+
+  var $el = $(this);
+  var text = $el.attr('title');
+
+  function run() {
+
+    $el.empty().teletype({
+      text: [ text ],
+      typeDelay: 3,
+      humanise: false,
+      cursor: false,
+      preserve: true,     // ← THIS STOPS AUTO DELETE
+      loop: 0,
+      delay: 0,
+      backDelay: 0,
+      callbackFinished: function() {
+
+        setTimeout(function() {
+          run();          // manual restart
+        }, 2000);
+
+      }
+    });
+
+  }
+
+  $el.attr('title','');
+  run();
+
+});
 
 {% if site.ios_app_id %}
 
