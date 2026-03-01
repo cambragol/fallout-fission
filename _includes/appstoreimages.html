@@ -45,7 +45,6 @@ $(function() {
       if (entry.isIntersecting) {
 
         const $band = $('.terminal-band');
-        const $window = $('.terminal-window');
         const $machine = $('.terminal-band .type-text-machine');
 
         if ($band.data('started')) return;
@@ -56,7 +55,7 @@ $(function() {
 
         // Power flicker
         setTimeout(function() {
-          $window.addClass('power-on');
+          $band.addClass('power-on');
         }, 150);
 
         // Start typing
