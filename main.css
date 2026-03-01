@@ -85,7 +85,7 @@ a:active	{ color: #375e76; }
     /* padding-left: 15px; */
     /* padding-right: 15px; */
     grid-template-columns: repeat(12, 1fr);
-	grid-template-rows: 115px 650px auto auto auto;
+	grid-template-rows: 115px 650px auto auto auto auto;
 	grid-column-gap: 30px;
 grid-template-areas:
     "h h h h h h h h h h h h"
@@ -93,6 +93,7 @@ grid-template-areas:
     "l l l l l l l l l l l l"
     "s s s s s s s s s s s s"
     "c c c c c c c c c c c c"
+	"t t t t t t t t t t t t"
     "f f f f f f f f f f f f";
 }
 
@@ -271,7 +272,7 @@ nav>ul li a:hover,nav>ul li a:active {
 
 @media only screen and (max-width: 1150px) {
 	.imageWrapper {
-    height: 918px;
+    height: 894px;
  }
     .appInfo {
         padding-top:50px;
@@ -356,13 +357,12 @@ nav>ul li a:hover,nav>ul li a:active {
 	color: #c4cbcd;
 	text-shadow: rgba(0, 0, 0, 0.33) 0 1px 2px;
 	text-align: center;
-	height: 70px;
+	/* height: 100px; */
 }
 
 @media only screen and (max-width: 1150px) {
     .appDescription {
-        text-align:center;
-		height: unset;
+        text-align:center
     }
 }
 
