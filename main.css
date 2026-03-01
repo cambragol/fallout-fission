@@ -860,7 +860,7 @@ font-size: clamp(3.2rem, 6.5vw, 7rem);    font-weight: 800;
 .statement-band::before {
     content: "“";
     position: absolute;
-    top: -2rem;
+    top: 4rem;
     left: 6rem;
 
     font-size: clamp(12rem, 20vw, 26rem);
@@ -875,7 +875,7 @@ font-size: clamp(3.2rem, 6.5vw, 7rem);    font-weight: 800;
 .statement-band::after {
     content: "”";
     position: absolute;
-    bottom: -1rem;
+    bottom: -2rem;
     right: 6rem;
 
     font-size: clamp(12rem, 20vw, 26rem);
