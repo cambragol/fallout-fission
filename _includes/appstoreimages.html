@@ -21,67 +21,10 @@
 
 <script>
 $(function () {
-
-    const intro = [
-        "FALLOUT: F.I.S.S.I.O.N. v0.1.0",
-        "Flexible Isometric Simulation System — Initializing...",
-        ""
-    ];
-
-    const modules = [
-        "CORE_RUNTIME",
-        "ISOMETRIC_RENDER_PIPELINE",
-        "ASSET_STREAMING_ENGINE",
-        "SCRIPT_EXECUTION_LAYER",
-        "WORLD_SIMULATION_KERNEL",
-        "UI_FRAMEWORK",
-        "SAVE_STATE_MANAGER",
-        "EVENT_DISPATCH_SYSTEM"
-    ];
-
-    const moduleStream =
-        modules.join(" ........ ") +
-        " ........ COMPLETE";
-
-    const output = intro.concat([moduleStream]);
-
-    $('#terminal').teletype({
-        text: output,
+    $('.type-text-machine').teletype({
         loop: false,
-        pause: 800,
-
-        delay: function (char, index) {
-
-            // Fast progress dots
-            if (char === ".") {
-                return 6;
-            }
-
-            // Slight hesitation at spaces (drive reposition)
-            if (char === " ") {
-                return 40;
-            }
-
-            // Slight stall at module boundaries
-            if (char === "_") {
-                return 90;
-            }
-
-            // Heavy feel for capital letters
-            if (/[A-Z]/.test(char)) {
-                return 60 + Math.random() * 40;
-            }
-
-            // Occasional random micro-stall (rare disk seek)
-            if (Math.random() < 0.02) {
-                return 180;
-            }
-
-            // Default typing speed
-            return 25 + Math.random() * 30;
-        }
+        delay: 25 + Math.random() * 20
     });
-
 });
 </script>
 
