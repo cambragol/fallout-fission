@@ -33,19 +33,22 @@ $(function() {
 });
 </script>
 
-<script>
-$(function () {
-    $('.type-text-machine').each(function () {
-        $(this).teletype({
-            delay: 18,
-            loop: false,
-            preserve: true,
-            humanise: false,
-            cursor: '',
-        });
-    });
-});
-</script>
+
+		<script>
+		$(function() {
+		  $('.type-text-machine').each(function() {
+		    var items = $(this).attr('title');
+		    $(this).empty().attr('title', '').teletype({
+		      text: [ items ],
+		      typeDelay: 4,      // much faster
+		      humanise: false,   // critical
+		      cursor: false,     // machines don't blink
+		      preserve: true,
+		      loop: 0
+		    });
+		  });
+		});
+		</script>
 
 {% if site.ios_app_id %}
 
