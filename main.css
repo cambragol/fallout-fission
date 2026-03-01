@@ -1068,7 +1068,6 @@ font-size: clamp(3.2rem, 6.5vw, 7rem);    font-weight: 800;
 .terminal-boot {
   height: 190px;      /* lock height */
   overflow: hidden;   /* stop growth */
-  white-space: pre;
 }
 
 .terminal-window {
