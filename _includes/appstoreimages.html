@@ -28,39 +28,16 @@ $(function() {
 
     $el.teletype({
       text: [ text ],
-      typeDelay: 3,
+      typeDelay: 4,
       humanise: false,
       cursor: false,
       preserve: false,
       loop: 0,
       backDelay: 0,
-	  delay: 3000,
-      callback: function() {
-
-        // Hard reset instantly (no animation)
-        setTimeout(function() {
-          $el.html('');
-          runBoot($el);
-        }, 2000);
-
-      }
-    });
-
-  }
-
-  $('.type-text-machine').each(function() {
-    var $this = $(this);
-    var text = $this.attr('title');
-
-    $this
-      .data('boot-text', text)
-      .empty()
-      .attr('title','');
-
-    runBoot($this);
-  });
-
-});
+	  delay: 6000
+		} );
+	} );
+} );
 </script>
 
 {% if site.ios_app_id %}
