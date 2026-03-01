@@ -21,10 +21,85 @@
 
 <script>
 $(function () {
-    $('.type-text-machine').teletype({
+
+    const $terminal = $('.terminal-boot');
+
+    const title = "ROBCO UOS v2.3.7";
+    const subtitle = "BOOTING F.I.S.S.I.O.N.";
+    const modules = [
+        "DISPLAY 800x500",
+        "FULLSCREEN UI",
+        "INVENTORY SORTING",
+        "GAME SPEED CTRL",
+        "MASS HIGHLIGHT",
+        "SAVE ARCHITECTURE"
+    ];
+
+    const status = "SYSTEM STATUS STABLE";
+
+    const moduleStream =
+        modules.join(" ........ ") +
+        " ........ " + status;
+
+    const lines = [
+        title,
+        subtitle,
+        "",
+        moduleStream
+    ];
+
+    let currentLine = 0;
+
+    $terminal.teletype({
+        text: lines,
         loop: false,
-        delay: 25 + Math.random() * 20
+        pause: 800,
+
+        delay: function (char) {
+
+            // ----- TITLE LINE -----
+            if (currentLine === 0) {
+                if (/[A-Z0-9]/.test(char))
+                    return 120 + Math.random() * 60;
+
+                return 90 + Math.random() * 50;
+            }
+
+            // ----- SUBTITLE -----
+            if (currentLine === 1) {
+                return 45 + Math.random() * 30;
+            }
+
+            // ----- MODULE STREAM -----
+            if (currentLine === 3) {
+
+                // Fast progress dots
+                if (char === ".")
+                    return 6;
+
+                // Small pause at spaces
+                if (char === " ")
+                    return 40;
+
+                // Slight stall at word transitions
+                if (char === "T" || char === "S")
+                    return 85;
+
+                // Rare disk seek jitter
+                if (Math.random() < 0.025)
+                    return 160;
+
+                return 28 + Math.random() * 25;
+            }
+
+            return 35;
+        },
+
+        beforeLine: function () {
+            currentLine++;
+        }
     });
+
 });
 </script>
 
