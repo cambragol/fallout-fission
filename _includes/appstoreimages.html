@@ -23,6 +23,7 @@
 $(function() {
 
   function runBoot($el) {
+
     var text = $el.data('boot-text');
 
     $el.teletype({
@@ -32,12 +33,18 @@ $(function() {
       cursor: false,
       preserve: false,
       loop: 0,
+      backDelay: 0,
       callback: function() {
+
+        // Hard reset instantly (no animation)
         setTimeout(function() {
-          runBoot($el);   // restart cleanly
-        }, 2000);        // pause before restart
+          $el.html('');
+          runBoot($el);
+        }, 2000);
+
       }
     });
+
   }
 
   $('.type-text-machine').each(function() {
