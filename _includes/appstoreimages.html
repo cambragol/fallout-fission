@@ -18,18 +18,23 @@
 			} );
 		} );
 		</script>
+
 		<script>
 		$(function() {
 		  $('.type-text-machine').each(function() {
+		
 		    var items = $(this).attr('title');
+		
 		    $(this).empty().attr('title', '').teletype({
 		      text: [ items ],
 		      typeDelay: 3,
 		      humanise: false,
 		      cursor: false,
 		      preserve: false,
-		      loop: 0
+		      loop: 1,
+		      delay: 1500
 		    });
+		
 		  });
 		});
 		</script>
