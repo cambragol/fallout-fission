@@ -19,25 +19,41 @@
 		} );
 		</script>
 
-		<script>
-		$(function() {
-		  $('.type-text-machine').each(function() {
-		
-		    var items = $(this).attr('title');
-		
-		    $(this).empty().attr('title', '').teletype({
-		      text: [ items ],
-		      typeDelay: 3,
-		      humanise: false,
-		      cursor: false,
-		      preserve: false,
-		      loop: 1,
-		      delay: 1500
-		    });
-		
-		  });
-		});
-		</script>
+<script>
+$(function() {
+
+  function runBoot($el) {
+    var text = $el.data('boot-text');
+
+    $el.teletype({
+      text: [ text ],
+      typeDelay: 3,
+      humanise: false,
+      cursor: false,
+      preserve: false,
+      loop: 0,
+      callback: function() {
+        setTimeout(function() {
+          runBoot($el);   // restart cleanly
+        }, 2000);        // pause before restart
+      }
+    });
+  }
+
+  $('.type-text-machine').each(function() {
+    var $this = $(this);
+    var text = $this.attr('title');
+
+    $this
+      .data('boot-text', text)
+      .empty()
+      .attr('title','');
+
+    runBoot($this);
+  });
+
+});
+</script>
 
 {% if site.ios_app_id %}
 
