@@ -985,7 +985,7 @@ font-size: clamp(3.2rem, 6.5vw, 7rem);    font-weight: 800;
     position: relative;
     overflow: hidden;
 
-    padding: 8rem 4rem;
+    padding: 4rem 8rem;
 
     background: #282828;   /* deep green-black */
 	color: #3cf800;
@@ -1058,6 +1058,12 @@ font-size: clamp(3.2rem, 6.5vw, 7rem);    font-weight: 800;
     0% { opacity: 0; transform: scaleY(0.95); }
     60% { opacity: 1; transform: scaleY(1.02); }
     100% { opacity: 1; transform: scaleY(1); }
+}
+
+.terminal-boot {
+  height: 190px;      /* lock height */
+  overflow: hidden;   /* stop growth */
+  white-space: pre;
 }
 
 .feature {
