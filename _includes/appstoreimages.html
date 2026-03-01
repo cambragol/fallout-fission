@@ -24,28 +24,11 @@ $(function () {
 
     const $terminal = $('.terminal-boot');
 
-    const title = "ROBCO UOS v2.3.7";
-    const subtitle = "BOOTING F.I.S.S.I.O.N.";
-    const modules = [
-        "DISPLAY 800x500",
-        "FULLSCREEN UI",
-        "INVENTORY SORTING",
-        "GAME SPEED CTRL",
-        "MASS HIGHLIGHT",
-        "SAVE ARCHITECTURE"
-    ];
-
-    const status = "SYSTEM STATUS STABLE";
-
-    const moduleStream =
-        modules.join(" ........ ") +
-        " ........ " + status;
-
     const lines = [
-        title,
-        subtitle,
+        "ROBCO UOS v2.3.7",
+        "BOOTING F.I.S.S.I.O.N.",
         "",
-        moduleStream
+        "DISPLAY 800x500 ........ OK  ::  FULLSCREEN UI ........ OK  ::  INVENTORY SORTING ........ OK  ::  GAME SPEED CTRL ........ OK  ::  MASS HIGHLIGHT ........ OK  ::  SAVE ARCHITECTURE ........ OK  ::  SYSTEM STATUS ........ STABLE"
     ];
 
     let currentLine = 0;
@@ -53,46 +36,33 @@ $(function () {
     $terminal.teletype({
         text: lines,
         loop: false,
-        pause: 800,
+        autoDelete: false,   // 🚨 prevents rewind
+        pause: 600,
 
         delay: function (char) {
 
-            // ----- TITLE LINE -----
-            if (currentLine === 0) {
-                if (/[A-Z0-9]/.test(char))
-                    return 120 + Math.random() * 60;
+            // ===== FAST BURST BASE SPEED =====
+            let baseSpeed = 4 + Math.random() * 6;
 
-                return 90 + Math.random() * 50;
+            // Hard disk access pauses
+            if (char === ".") {
+                return 2; // fast progress ticks
             }
 
-            // ----- SUBTITLE -----
-            if (currentLine === 1) {
-                return 45 + Math.random() * 30;
+            if (char === ":") {
+                return 120; // small parsing pause
             }
 
-            // ----- MODULE STREAM -----
-            if (currentLine === 3) {
-
-                // Fast progress dots
-                if (char === ".")
-                    return 6;
-
-                // Small pause at spaces
-                if (char === " ")
-                    return 40;
-
-                // Slight stall at word transitions
-                if (char === "T" || char === "S")
-                    return 85;
-
-                // Rare disk seek jitter
-                if (Math.random() < 0.025)
-                    return 160;
-
-                return 28 + Math.random() * 25;
+            if (char === "O" && Math.random() < 0.2) {
+                return 140; // occasional hiccup before OK
             }
 
-            return 35;
+            // Rare mechanical stall
+            if (Math.random() < 0.015) {
+                return 180 + Math.random() * 120;
+            }
+
+            return baseSpeed;
         },
 
         beforeLine: function () {
