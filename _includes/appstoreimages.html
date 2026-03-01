@@ -1,23 +1,37 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 		<script src="/fallout-fission/assets/jquery.teletype.js"></script>
-		<script>
-		$( function() {
-			$( '.type-text' ).each( function() {
-				var items = $( this ).attr( 'title' ) + ';' + $( this ).text();
-				$( this ).empty().attr( 'title', '' ).teletype( {
-					text: $.map( items.split( ';' ), $.trim ),
-					typeDelay: 10,
-					backDelay: 20,
-					humanise: true,
-					cursor: '▋', 
-					delay: 3000,
-					preserve: false,
-					prefix: '',
-					loop: 0
-				} );
-			} );
-		} );
-		</script>
+<script>
+$(function() {
+    $('.type-text').each(function() {
+
+        var titleText = $(this).attr('title') || '';
+        var bodyText  = $(this).text() || '';
+
+        var combined = titleText + (titleText && bodyText ? ';' : '') + bodyText;
+
+        var items = $.map(combined.split(';'), function(item) {
+            return $.trim(item);
+        }).filter(function(item) {
+            return item.length > 0;
+        });
+
+        $(this)
+            .empty()
+            .removeAttr('title')
+            .teletype({
+                text: items,
+                typeDelay: 10,
+                backDelay: 20,
+                humanise: true,
+                cursor: '▋',
+                delay: 3000,
+                preserve: false,
+                prefix: '',
+                loop: false
+            });
+    });
+});
+</script>
 
 <script>
 $(function () {
