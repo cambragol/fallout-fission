@@ -271,7 +271,7 @@ nav>ul li a:hover,nav>ul li a:active {
 
 @media only screen and (max-width: 1150px) {
 	.imageWrapper {
-    height: 894px;
+    height: 918px;
  }
     .appInfo {
         padding-top:50px;
@@ -356,12 +356,13 @@ nav>ul li a:hover,nav>ul li a:active {
 	color: #c4cbcd;
 	text-shadow: rgba(0, 0, 0, 0.33) 0 1px 2px;
 	text-align: center;
-	/* height: 100px; */
+	height: 70px;
 }
 
 @media only screen and (max-width: 1150px) {
     .appDescription {
-        text-align:center
+        text-align:center;
+		height: unset;
     }
 }
 
