@@ -1090,7 +1090,7 @@ font-size: clamp(3.2rem, 6.5vw, 7rem);    font-weight: 800;
   mix-blend-mode: multiply;
 }
 
-.teletype-text {
+.terminal-boot .teletype-text {
   text-shadow:
     0 0 2px rgba(0,255,120,0.6),
     0 0 6px rgba(0,255,120,0.4),
