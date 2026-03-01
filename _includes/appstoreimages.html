@@ -19,39 +19,42 @@
 		} );
 		</script>
 
-	<script>
-$('.type-text-machine').each(function() {
+<script>
+$(function() {
 
-  var $el = $(this);
-  var text = $el.attr('title');
+  $('.type-text-machine').each(function() {
 
-  function run() {
+    var $el = $(this);
+    var text = $el.attr('title');
+    var speed = 3;            // must match typeDelay
+    var pause = 2000;         // pause after finishing
 
-    $el.empty().teletype({
-      text: [ text ],
-      typeDelay: 3,
-      humanise: false,
-      cursor: false,
-      preserve: true,     // ← THIS STOPS AUTO DELETE
-      loop: 0,
-      delay: 0,
-      backDelay: 0,
-      callbackFinished: function() {
+    $el.attr('title','');
 
-        setTimeout(function() {
-          run();          // manual restart
-        }, 2000);
+    function run() {
 
-      }
-    });
+      $el.empty().teletype({
+        text: [ text ],
+        typeDelay: speed,
+        humanise: false,
+        cursor: false,
+        preserve: true,
+        loop: 0,
+        delay: 0
+      });
 
-  }
+      // Calculate total typing time
+      var totalTime = (text.length * speed) + pause;
 
-  $el.attr('title','');
-  run();
+      setTimeout(run, totalTime);
+    }
+
+    run();
+
+  });
 
 });
-	</script>
+</script>
 
 {% if site.ios_app_id %}
 
