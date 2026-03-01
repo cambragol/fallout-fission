@@ -994,16 +994,11 @@ font-size: clamp(3.2rem, 6.5vw, 7rem);    font-weight: 800;
     grid-column: 1 / -1;
     position: relative;
     overflow: hidden;
-
     padding: 4rem 8rem;
-
     background: #282828;   /* deep green-black */
-	color: #3cf800;
-	
+    color: #3cf800;
     border-top: 1px solid rgba(255,255,255,0.05);
     border-bottom: 1px solid rgba(255,255,255,0.05);
-
-    font-family: "Courier New", monospace;
 }
 
 
@@ -1029,9 +1024,7 @@ font-size: clamp(3.2rem, 6.5vw, 7rem);    font-weight: 800;
 /* Boot sequence text */
 .terminal-boot {
     font-size: 1.5rem;
-    line-height: 1.8;
-    margin-bottom: 3rem;
-	
+    line-height: 1.8;	
 }
 
 
@@ -1065,7 +1058,7 @@ font-size: clamp(3.2rem, 6.5vw, 7rem);    font-weight: 800;
 }
 
 .terminal-band {
-    animation: crt-on 0.8s ease-out forwards;
+    animation: crt-on 1.2s ease-out forwards;
     opacity: 0;
 }
 
