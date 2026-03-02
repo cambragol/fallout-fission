@@ -96,6 +96,32 @@ $(function() {
 
 });
 </script>
+<script>
+$(function() {
+
+  const sections = document.querySelectorAll('.presentation');
+
+  const observer = new IntersectionObserver(function(entries, obs) {
+
+    entries.forEach(entry => {
+
+      if (entry.isIntersecting) {
+        entry.target.classList.add('reveal');
+        obs.unobserve(entry.target);
+      }
+
+    });
+
+  }, {
+    threshold: 0.25
+  });
+
+  sections.forEach(section => {
+    observer.observe(section);
+  });
+
+});
+</script>
 
 {% if site.ios_app_id %}
 
