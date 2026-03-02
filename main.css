@@ -321,7 +321,7 @@ nav>ul li a:hover,nav>ul li a:active {
 	letter-spacing: 2px;
 	font-family: Gothic821 Cn BT;
 	font-size: clamp(3.5rem, 5.5vw, 6.3rem);
-    font-weight: 600;
+    font-weight: 300;
     line-height: 1.02;
 	    letter-spacing: 0.005em;
 
@@ -648,7 +648,7 @@ nav>ul li a:hover,nav>ul li a:active {
 
 .presentation-title {
     font-size: clamp(2.7rem, 5.5vw, 5.6rem);
-    font-weight: 900;
+    font-weight: 100;
     line-height: 1.02;
 }
 
