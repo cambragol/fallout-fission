@@ -811,7 +811,7 @@ nav>ul li a:hover,nav>ul li a:active {
     transition:
         opacity 0.8s ease,
         transform 0.8s cubic-bezier(.22,.9,.33,1);
-	height: 100vh;
+	/*height: 100vh;*/
 }
 
 .presentation.reveal {
