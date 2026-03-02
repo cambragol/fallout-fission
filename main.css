@@ -805,6 +805,37 @@ nav>ul li a:hover,nav>ul li a:active {
 }
 
 /* =========================
+   SCROLL REVEAL
+========================= */
+
+.presentation {
+    opacity: 0;
+    transform: translateY(40px);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(.22,.9,.33,1);
+}
+
+.presentation.reveal {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Directional slide enhancement */
+
+.presentation:not(.right) {
+    transform: translateX(60px);
+}
+
+.presentation.right {
+    transform: translateX(-60px);
+}
+
+.presentation.reveal {
+    transform: translateX(0);
+}
+
+/* =========================
    STATEMENT BAND
 ========================= */
 
