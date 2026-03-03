@@ -122,25 +122,7 @@ $(function() {
 
 });
 </script>
-<script>
-$(function(){
 
-  $('.archive-item').on('click', function(){
-
-    var target = $(this).data('target');
-
-    // left side active state
-    $('.archive-item').removeClass('active');
-    $(this).addClass('active');
-
-    // right side swap
-    $('.archive-content').removeClass('active');
-    $('#' + target).addClass('active');
-
-  });
-
-});
-</script>
 
 {% if site.ios_app_id %}
 
