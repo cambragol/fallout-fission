@@ -123,23 +123,19 @@ $(function() {
 });
 </script>
 <script>
-$(function() {
+$(function(){
 
-  $('[data-directive]').each(function() {
+  $('.archive-item').on('click', function(){
 
-    var directive = $(this);
-    var header = directive.find('.directive-header');
+    var target = $(this).data('target');
 
-    header.on('click', function() {
+    // left side active state
+    $('.archive-item').removeClass('active');
+    $(this).addClass('active');
 
-      if (directive.hasClass('active')) {
-        directive.removeClass('active');
-      } else {
-        $('.directive.active').removeClass('active');
-        directive.addClass('active');
-      }
-
-    });
+    // right side swap
+    $('.archive-content').removeClass('active');
+    $('#' + target).addClass('active');
 
   });
 
