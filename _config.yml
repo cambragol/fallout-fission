@@ -73,7 +73,7 @@ presentations                                  :
   - title                                 : Fallout 2 Widescreen
     description                           : The original game, but fine-tuned for modern, widescreen monitors.
     fontawesome_icon_name                 : magic
-    image                                 : assets/screenshot1.png
+    image                                 : assets/widescreen.png
 
   - title                                 : Multi-platform
     description                           : Works on macOS, Windows, Linux, and maybe even your phone!
