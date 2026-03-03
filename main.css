@@ -565,46 +565,105 @@ nav>ul li a:hover,nav>ul li a:active {
     }
 }
 
-/* =========================
-   WRAPPER
-========================= */
+/* =====================================================
+   WRAPPERS
+===================================================== */
 
 .presentations {
     grid-column: 1 / -1;
     width: 100%;
 }
 
+.features {
+    grid-area: c;
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    padding: 93px 10%;
+    background-color: #7f8d9b;
+    filter:
+        drop-shadow(0px 5px 10px rgba(0,0,0,0.1))
+        drop-shadow(0px 1px 1px rgba(0,0,0,0.2));
+}
 
-/* =========================
-   BAND LAYOUT
-========================= */
+
+/* =====================================================
+   PRESENTATION BAND LAYOUT
+===================================================== */
 
 .presentation {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 6rem;
     width: 100%;
     padding-top: 6rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
-}
+    border-top: 1px solid rgba(0,0,0,0.08);
+    overflow: hidden;
 
+    /* background */
+    background: linear-gradient(
+        to right,
+        rgba(0,0,0,0.06),
+        rgba(0,0,0,0.06),
+        rgba(0,0,0,0.12)
+    );
 
-/* LEFT layout (image visually on right side) */
-.presentation:not(.right) {
-    padding-left: 4rem;
+    /* scroll reveal base */
+    opacity: 0;
+    transform: translateX(60px);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(.22,.9,.33,1);
 }
 
 /* RIGHT layout */
 .presentation.right {
     flex-direction: row-reverse;
     padding-right: 4rem;
+
+    background: linear-gradient(
+        to left,
+        rgba(0,0,0,0.02),
+        rgba(0,0,0,0.12)
+    );
+    background-color: rgba(0,0,0,0.14);
+
+    transform: translateX(-60px);
+}
+
+/* LEFT layout padding */
+.presentation:not(.right) {
+    padding-left: 4rem;
+}
+
+/* Reveal state */
+.presentation.reveal {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* subtle diagonal texture */
+.presentation::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(0,0,0,0.02) 0px,
+        rgba(0,0,0,0.02) 7px,
+        transparent 7px,
+        transparent 14px
+    );
+    opacity: 0.5;
 }
 
 
-/* =========================
-   CONTENT
-========================= */
+/* =====================================================
+   PRESENTATION CONTENT
+===================================================== */
 
 .presentation-content {
     position: relative;
@@ -615,17 +674,14 @@ nav>ul li a:hover,nav>ul li a:active {
     position: absolute;
     top: -2rem;
     left: -1rem;
-
     font-size: clamp(10rem, 20vw, 24rem);
     font-weight: 900;
     line-height: 1;
     letter-spacing: -0.05em;
-
     opacity: 0.045;
     pointer-events: none;
     z-index: 0;
 }
-
 
 .presentation.right .feature-number {
     left: auto;
@@ -635,440 +691,203 @@ nav>ul li a:hover,nav>ul li a:active {
 .presentation-title {
     position: relative;
     z-index: 1;
-    font-size: clamp(3rem, 5vw, 5rem);
-    line-height: 1.05;
-    margin-bottom: 2rem;
-	font-size: 4rem;
-	color: #fcdc30;
-	text-shadow: rgba(0, 0, 0, 0.33) 0 1px 2px;
-	text-transform: uppercase;
-	letter-spacing: 2px;
-	font-family: Gothic821 Cn BT;
-}
-
-.presentation-title {
+    font-family: Gothic821 Cn BT;
     font-size: clamp(2.7rem, 5.5vw, 5.6rem);
     font-weight: 100;
     line-height: 1.02;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #fcdc30;
+    text-shadow: rgba(0,0,0,0.33) 0 1px 2px;
+    margin-bottom: 2rem;
 }
 
 .presentation-description {
+    margin-top: 2.5rem;
     font-size: clamp(1.65rem, 1.7vw, 1.85rem);
     line-height: 1.7;
     max-width: 55ch;
-
     opacity: 0.9;
 }
 
 
-/* =========================
-   MEDIA — EDGE BLEED
-========================= */
+/* =====================================================
+   PRESENTATION MEDIA (EDGE BLEED)
+===================================================== */
 
 .presentation-media {
     flex: 0 0 48%;
     position: relative;
     aspect-ratio: 16 / 10;
-    /* overflow: hidden; */ /* clips bottom + inside edge */
 }
 
 .presentation-media img {
     position: absolute;
-    width: 115%; /* overscale */
+    width: 115%;
     height: auto;
     object-fit: cover;
     transition: transform 0.6s ease;
 }
 
-/* LEFT layout (image visually on right side) */
-.presentation:not(.right) .presentation-media img {
-    left: 0;
-}
+/* Positioning */
+.presentation:not(.right) .presentation-media img { left: 0; }
+.presentation.right .presentation-media img { right: 0; }
 
-/* RIGHT layout */
-.presentation.right .presentation-media img {
-    right: 0;
-}
-
-/* LEFT layout (image visually on right side) */
+/* Hover micro slide */
 .presentation:not(.right) .presentation-media:hover img {
     transform: translateX(-6px);
 }
-
-/* RIGHT layout */
 .presentation.right .presentation-media:hover img {
     transform: translateX(6px);
 }
 
-.presentation {
-    background:
-        linear-gradient(
-            to right,
-            rgba(0,0,0,0.06),
-			rgba(0,0,0,0.06),
-            rgba(0,0,0,0.12)
-        );
-}
 
-.presentation.right {
-    background:
-        linear-gradient(
-            to left,
-            rgba(0,0,0,0.02),
-            rgba(0,0,0,0.12)
-        );
-		background-color: rgba(0, 0, 0, 0.14);
-
-}
-
-.presentation {
-    position: relative;
-    overflow: hidden;
-}
-
-.presentation::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-
-    background:
-        repeating-linear-gradient(
-            45deg,
-            rgba(0,0,0,0.0) 0px,
-            rgba(0,0,0,0.02) 7px,
-            transparent 2px,
-            transparent 8px
-        );
-
-    opacity: 0.5;
-}
-
-.presentation.right::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-
-    background:
-        repeating-linear-gradient(
-            deg,
-            rgba(0,0,0,0.3) 7px,
-            rgba(0,0,0,0.0) 0px,
-            transparent 5px,
-            transparent 8px
-        );
-
-    opacity: 0.6;
-}
-
-.presentation-description {
-    margin-top: 2.5rem;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 1000px) {
-
-    .presentation {
-        flex-direction: column;
-        gap: 3rem;
-        padding: 4rem 2rem;
-    }
-
-    .presentation.right {
-        flex-direction: column;
-    }
-
-    .presentation-content,
-    .presentation-media {
-        flex: 0 0 100%;
-        width: 100%;
-    }
-
-    .presentation-media {
-        height: auto;
-    }
-
-    .presentation-media img {
-        position: relative;
-        width: 100%;
-        height: auto;
-        left: 0;
-        right: 0;
-    }
-}
-
-/* =========================
-   SCROLL REVEAL
-========================= */
-
-.presentation {
-    opacity: 0;
-    transform: translateY(40px);
-    transition:
-        opacity 0.8s ease,
-        transform 0.8s cubic-bezier(.22,.9,.33,1);
-	/*height: 100vh;*/
-}
-
-.presentation.reveal {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Directional slide enhancement */
-
-.presentation:not(.right) {
-    transform: translateX(60px);
-}
-
-.presentation.right {
-    transform: translateX(-60px);
-}
-
-.presentation.reveal {
-    transform: translateX(0);
-}
-
-/* =========================
+/* =====================================================
    STATEMENT BAND
-========================= */
+===================================================== */
 
 .statement-band {
     grid-column: 1 / -1;
-    width: 100%;
     position: relative;
     overflow: hidden;
     padding: 6rem 4rem;
-    background: radial-gradient(circle at 20% 30%, rgba(0, 0, 0, 0.06), transparent 60%), radial-gradient(circle at 80% 70%, rgba(0, 0, 0, 0.05), transparent 60%), #5b6e7f;
     border-top: 1px solid rgba(0,0,0,0.08);
     border-bottom: 1px solid rgba(0,0,0,0.08);
-}
 
-
-/* Inner container */
-
-.statement-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-
-/* Main statement */
-
-.statement-text {
-font-size: clamp(3.2rem, 6.5vw, 7rem);    font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-
-    margin: 0;
-}
-
-
-
-
-/* Attribution */
-
-.statement-meta {
-    margin-top: 3rem;
-
-    font-size: 1.4rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-
-    opacity: 0.6;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(0,0,0,0.06), transparent 60%),
+        radial-gradient(circle at 80% 70%, rgba(0,0,0,0.05), transparent 60%),
+        #5b6e7f;
 }
 
 .statement-inner {
     max-width: 900px;
+    margin: 0 auto;
 }
 
-/* =========================
-   ARCHITECTURAL QUOTES
-========================= */
-
-.statement-band {
-    position: relative;
-    overflow: hidden;
+.statement-text {
+    font-size: clamp(3.2rem, 6.5vw, 7rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin: 0;
 }
 
-/* Opening quote */
+.statement-meta {
+    margin-top: 3rem;
+    font-size: 1.4rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+/* Architectural quote marks */
+.statement-band::before,
+.statement-band::after {
+    position: absolute;
+    font-size: clamp(12rem, 20vw, 26rem);
+    font-weight: 900;
+    line-height: 1;
+    opacity: 0.03;
+    pointer-events: none;
+}
+
 .statement-band::before {
     content: "“";
-    position: absolute;
     top: 4rem;
     left: 6rem;
-
-    font-size: clamp(12rem, 20vw, 26rem);
-    font-weight: 900;
-    line-height: 1;
-
-    opacity: 0.03;
-    pointer-events: none;
 }
 
-/* Closing quote */
 .statement-band::after {
     content: "”";
-    position: absolute;
     bottom: -2rem;
     right: 6rem;
-
-    font-size: clamp(12rem, 20vw, 26rem);
-    font-weight: 900;
-    line-height: 1;
-
-    opacity: 0.03;
-    pointer-events: none;
-}
-.features {
-    grid-area: c;
-    display: flex;
-    flex: 0 1 auto;
-    align-content: flex-start;
-    justify-content: flex-start;
-    flex-grow: 1;
-    flex-wrap: wrap;
-    padding: 93px 10%;
-    background-color: #7f8d9b;
-    filter: drop-shadow(0px 5px 10px rgba(0,0,0,0.1)) drop-shadow(0px 1px 1px rgba(0,0,0,0.2));
 }
 
-/* =========================
-   LANDSCAPE STATEMENT BAND
-========================= */
+
+/* =====================================================
+   LANDSCAPE BAND
+===================================================== */
 
 .landscape-band {
     grid-column: 1 / -1;
-    width: 100%;
     position: relative;
     overflow: hidden;
-
     height: clamp(160px, 18vw, 240px);
 
     background-image: url("/fallout-fission/assets/landscape.jpg");
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-
-    /* Tone flattening */
     filter: grayscale(30%) contrast(55%) brightness(95%);
 }
-
-
-/* Color overlay layer */
 
 .landscape-band::before {
     content: "";
     position: absolute;
     inset: 0;
-    pointer-events: none;
-
-	background: #4875a8;
-	mix-blend-mode:color
+    background: #4875a8;
+    mix-blend-mode: color;
 }
-
-
-/* Optional soft fade top + bottom */
 
 .landscape-band::after {
     content: "";
     position: absolute;
     inset: 0;
-    pointer-events: none;
-
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(0,0,0,0.35),
-            transparent 25%,
-            transparent 75%,
-            rgba(0,0,0,0.35)
-        );
-
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.35),
+        transparent 25%,
+        transparent 75%,
+        rgba(0,0,0,0.35)
+    );
     opacity: 0.4;
 }
-
-
-/* Inner content */
 
 .landscape-inner {
     position: relative;
     z-index: 1;
-
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-
     padding: 0 4rem;
 }
-
-
-/* Statement text */
 
 .landscape-text {
     font-size: clamp(2.4rem, 4vw, 4rem);
     font-weight: 800;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-
     color: #f2f1ec;
 }
+
+
+/* =====================================================
+   TERMINAL BAND (CRT)
+===================================================== */
 
 .terminal-band {
     grid-column: 1 / -1;
     position: relative;
     overflow: hidden;
     padding: 4rem 8rem;
-    background: #282828;   /* deep green-black */
+    background: #282828;
     color: #3cf800;
     border-top: 1px solid rgba(255,255,255,0.05);
     border-bottom: 1px solid rgba(255,255,255,0.05);
+
+    animation: crt-on 1.2s ease-out forwards;
+    opacity: 0;
 }
 
-
-/* Window container */
-.terminal-window {
-    max-width: 1100px;
-    margin: 0 auto;
-	
+/* CRT power-on */
+@keyframes crt-on {
+    0%   { opacity: 0; transform: scaleY(0.95); }
+    60%  { opacity: 1; transform: scaleY(1.02); }
+    100% { opacity: 1; transform: scaleY(1); }
 }
 
-
-/* Header */
-.terminal-header {
-    font-size: 1.2rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    opacity: 0.5;
-    margin-bottom: 3rem;
-	
-}
-
-
-/* Boot sequence text */
-.terminal-boot {
-    font-size: 1.5rem;
-    line-height: 1.8;	
-}
-
-
-/* Feature lines */
-.terminal-body {
-    font-size: 1.7rem;
-    line-height: 1.9;
-	
-}
-
-.terminal-line {
-    opacity: 0.85;
-	
-}
-
+/* Scanlines */
 .terminal-band::before {
     content: "";
     position: absolute;
@@ -1086,50 +905,87 @@ font-size: clamp(3.2rem, 6.5vw, 7rem);    font-weight: 800;
     opacity: 0.12;
 }
 
-.terminal-band {
-    animation: crt-on 1.2s ease-out forwards;
-    opacity: 0;
+/* CRT vignette + glass depth */
+.terminal-band::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    background: radial-gradient(
+        ellipse at center,
+        rgba(255,255,255,0.04) 0%,
+        rgba(0,0,0,0.15) 70%,
+        rgba(0,0,0,0.35) 100%
+    );
+
+    mix-blend-mode: multiply;
 }
 
-@keyframes crt-on {
-    0% { opacity: 0; transform: scaleY(0.95); }
-    60% { opacity: 1; transform: scaleY(1.02); }
-    100% { opacity: 1; transform: scaleY(1); }
-}
-
-.terminal-boot {
-  height: 190px;      /* lock height */
-  overflow: hidden;   /* stop growth */
-}
-
+/* INNER WINDOW (layout only) */
 .terminal-window {
-  border-radius: 6px;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    border-radius: 6px;
 }
 
-.terminal-window::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-
-  background: radial-gradient(
-    ellipse at center,
-    rgba(255,255,255,0.04) 0%,
-    rgba(0,0,0,0.15) 70%,
-    rgba(0,0,0,0.35) 100%
-  );
-
-  mix-blend-mode: multiply;
+/* Header */
+.terminal-header {
+    font-size: 1.2rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 3rem;
 }
 
+/* Boot sequence */
+.terminal-boot {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    height: 190px;
+    overflow: hidden;
+}
+
+/* Glow */
 .terminal-boot .teletype-text {
-  font-family: "JH_Fallout";
-  text-shadow:
-    0 0 2px rgba(0,255,120,0.6),
-    0 0 6px rgba(0,255,120,0.4),
-    0 0 12px rgba(0,255,120,0.15);
+    font-family: "JH_Fallout";
+    text-shadow:
+        0 0 2px rgba(0,255,120,0.6),
+        0 0 6px rgba(0,255,120,0.4),
+        0 0 12px rgba(0,255,120,0.15);
 }
 
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1000px) {
+
+    .presentation {
+        flex-direction: column;
+        gap: 3rem;
+        padding: 4rem 2rem;
+        transform: translateY(40px);
+    }
+
+    .presentation.right {
+        flex-direction: column;
+    }
+
+    .presentation-content,
+    .presentation-media {
+        flex: 0 0 100%;
+        width: 100%;
+    }
+
+    .presentation-media img {
+        position: relative;
+        width: 100%;
+        left: 0;
+        right: 0;
+    }
+}
 
 .feature {
     display: flex;
