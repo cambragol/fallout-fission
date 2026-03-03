@@ -71,7 +71,10 @@ features                                  :
 presentations                                  :
 
   - title                                 : Fallout 2 Widescreen
-    description                           : The original game, but fine-tuned for modern, widescreen monitors.
+    description                           : The interface you remember — carefully expanded for the screens you use today.
+Every menu and panel has been redrawn by hand to support widescreen resolutions while preserving the pacing, layout, and pixel integrity of the original design.
+
+Not remade. Refined.
     fontawesome_icon_name                 : magic
     image                                 : assets/widescreen.png
 
