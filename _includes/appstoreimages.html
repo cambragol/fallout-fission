@@ -122,6 +122,29 @@ $(function() {
 
 });
 </script>
+<script>
+$(function() {
+
+  $('[data-directive]').each(function() {
+
+    var directive = $(this);
+    var header = directive.find('.directive-header');
+
+    header.on('click', function() {
+
+      if (directive.hasClass('active')) {
+        directive.removeClass('active');
+      } else {
+        $('.directive.active').removeClass('active');
+        directive.addClass('active');
+      }
+
+    });
+
+  });
+
+});
+</script>
 
 {% if site.ios_app_id %}
 
