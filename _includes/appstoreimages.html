@@ -123,42 +123,57 @@ $(function() {
 });
 </script>
 <script>
-document.querySelectorAll(".presentation-image-stack").forEach(stack => {
+(function () {
 
-    const slides = Array.from(stack.querySelectorAll("img"));
-    if (slides.length <= 1) return;
+    const slideshows = document.querySelectorAll(".safe-slideshow");
 
-    let index = Math.floor(Math.random() * slides.length);
-    slides[index].classList.add("active");
+    slideshows.forEach(slideshow => {
 
-    const delay = 4200;
-    let timer;
+        const slides = slideshow.querySelectorAll("img");
 
-    function showNext() {
+        if (slides.length < 2) return;
 
-        const next = (index + 1) % slides.length;
+        let current = Math.floor(Math.random() * slides.length);
+        let timer = null;
+        let paused = false;
 
-        slides[next].classList.add("active");
+        slides[current].classList.add("active");
 
-        setTimeout(() => {
-            slides[index].classList.remove("active");
-            index = next;
-        }, 900); // overlap timing
-    }
+        function nextSlide() {
 
-    function start() {
-        timer = setInterval(showNext, delay);
-    }
+            if (paused) return;
 
-    function stop() {
-        clearInterval(timer);
-    }
+            slides[current].classList.remove("active");
 
-    stack.addEventListener("mouseenter", stop);
-    stack.addEventListener("mouseleave", start);
+            current = (current + 1) % slides.length;
 
-    start();
-});
+            slides[current].classList.add("active");
+
+        }
+
+        function start() {
+            timer = setInterval(nextSlide, 4500);
+        }
+
+        function stop() {
+            clearInterval(timer);
+        }
+
+        slideshow.addEventListener("mouseenter", () => {
+            paused = true;
+            stop();
+        });
+
+        slideshow.addEventListener("mouseleave", () => {
+            paused = false;
+            start();
+        });
+
+        start();
+
+    });
+
+})();
 </script>
 
 {% if site.ios_app_id %}
