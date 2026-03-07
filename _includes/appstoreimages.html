@@ -123,57 +123,20 @@ $(function() {
 });
 </script>
 <script>
-(function () {
+const demo = document.getElementById("widescreen-demo");
+const images = demo.querySelectorAll("img");
 
-    const slideshows = document.querySelectorAll(".safe-slideshow");
+let current = 0;
 
-    slideshows.forEach(slideshow => {
+demo.addEventListener("click", () => {
 
-        const slides = slideshow.querySelectorAll("img");
+    images[current].classList.remove("active");
 
-        if (slides.length < 2) return;
+    current = (current + 1) % images.length;
 
-        let current = Math.floor(Math.random() * slides.length);
-        let timer = null;
-        let paused = false;
+    images[current].classList.add("active");
 
-        slides[current].classList.add("active");
-
-        function nextSlide() {
-
-            if (paused) return;
-
-            slides[current].classList.remove("active");
-
-            current = (current + 1) % slides.length;
-
-            slides[current].classList.add("active");
-
-        }
-
-        function start() {
-            timer = setInterval(nextSlide, 4500);
-        }
-
-        function stop() {
-            clearInterval(timer);
-        }
-
-        slideshow.addEventListener("mouseenter", () => {
-            paused = true;
-            stop();
-        });
-
-        slideshow.addEventListener("mouseleave", () => {
-            paused = false;
-            start();
-        });
-
-        start();
-
-    });
-
-})();
+});
 </script>
 
 {% if site.ios_app_id %}
