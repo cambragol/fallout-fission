@@ -122,7 +122,28 @@ $(function() {
 
 });
 </script>
+<script>
+	$(function(){
 
+    $('.presentation-media.slideshow').each(function(){
+
+        const slides = $(this).find('img');
+        let index = 0;
+
+        setInterval(function(){
+
+            slides.eq(index).removeClass('active');
+
+            index = (index + 1) % slides.length;
+
+            slides.eq(index).addClass('active');
+
+        }, 3500);
+
+    });
+
+});
+</script>
 
 {% if site.ios_app_id %}
 
