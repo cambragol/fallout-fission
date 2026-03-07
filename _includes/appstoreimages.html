@@ -123,26 +123,81 @@ $(function() {
 });
 </script>
 <script>
-	$(function(){
+(function(){
 
-    $('.presentation-media.slideshow').each(function(){
+const container = document.getElementById("widescreen-slideshow");
+const slides = container.querySelectorAll(".slide");
 
-        const slides = $(this).find('img');
-        let index = 0;
+let current = Math.floor(Math.random() * slides.length);
+let interval = null;
 
-        setInterval(function(){
+const slideDelay = 4200;
+const fadeTime = 1800;
 
-            slides.eq(index).removeClass('active');
-
-            index = (index + 1) % slides.length;
-
-            slides.eq(index).addClass('active');
-
-        }, 3500);
-
-    });
-
+/* preload images */
+slides.forEach(img=>{
+    const preload = new Image();
+    preload.src = img.src;
 });
+
+/* initialize randomized starting slide */
+slides[current].classList.add("active");
+
+function nextSlide(){
+
+    const prev = current;
+
+    current++;
+
+    if(current >= slides.length){
+        current = 0;
+    }
+
+    slides[current].classList.add("active");
+
+    /* crossfade overlap */
+    setTimeout(()=>{
+        slides[prev].classList.remove("active");
+    }, fadeTime);
+}
+
+function start(){
+    if(interval) return;
+    interval = setInterval(nextSlide, slideDelay);
+}
+
+function stop(){
+    clearInterval(interval);
+    interval = null;
+}
+
+/* pause when offscreen */
+const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            start();
+        } else {
+            stop();
+        }
+    });
+},{
+    threshold: 0.4
+});
+
+observer.observe(container);
+
+/* pause on hover */
+
+container.addEventListener("mouseenter", stop);
+container.addEventListener("mouseleave", start);
+
+/* reduced motion safety */
+
+if(window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+    stop();
+}
+
+})();
 </script>
 
 {% if site.ios_app_id %}
