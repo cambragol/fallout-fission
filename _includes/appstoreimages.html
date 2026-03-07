@@ -123,81 +123,42 @@ $(function() {
 });
 </script>
 <script>
-(function(){
+document.querySelectorAll(".presentation-image-stack").forEach(stack => {
 
-const container = document.getElementById("widescreen-slideshow");
-const slides = container.querySelectorAll(".slide");
+    const slides = Array.from(stack.querySelectorAll("img"));
+    if (slides.length <= 1) return;
 
-let current = Math.floor(Math.random() * slides.length);
-let interval = null;
+    let index = Math.floor(Math.random() * slides.length);
+    slides[index].classList.add("active");
 
-const slideDelay = 4200;
-const fadeTime = 1800;
+    const delay = 4200;
+    let timer;
 
-/* preload images */
-slides.forEach(img=>{
-    const preload = new Image();
-    preload.src = img.src;
-});
+    function showNext() {
 
-/* initialize randomized starting slide */
-slides[current].classList.add("active");
+        const next = (index + 1) % slides.length;
 
-function nextSlide(){
+        slides[next].classList.add("active");
 
-    const prev = current;
-
-    current++;
-
-    if(current >= slides.length){
-        current = 0;
+        setTimeout(() => {
+            slides[index].classList.remove("active");
+            index = next;
+        }, 900); // overlap timing
     }
 
-    slides[current].classList.add("active");
+    function start() {
+        timer = setInterval(showNext, delay);
+    }
 
-    /* crossfade overlap */
-    setTimeout(()=>{
-        slides[prev].classList.remove("active");
-    }, fadeTime);
-}
+    function stop() {
+        clearInterval(timer);
+    }
 
-function start(){
-    if(interval) return;
-    interval = setInterval(nextSlide, slideDelay);
-}
+    stack.addEventListener("mouseenter", stop);
+    stack.addEventListener("mouseleave", start);
 
-function stop(){
-    clearInterval(interval);
-    interval = null;
-}
-
-/* pause when offscreen */
-const observer = new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-        if(entry.isIntersecting){
-            start();
-        } else {
-            stop();
-        }
-    });
-},{
-    threshold: 0.4
+    start();
 });
-
-observer.observe(container);
-
-/* pause on hover */
-
-container.addEventListener("mouseenter", stop);
-container.addEventListener("mouseleave", start);
-
-/* reduced motion safety */
-
-if(window.matchMedia("(prefers-reduced-motion: reduce)").matches){
-    stop();
-}
-
-})();
 </script>
 
 {% if site.ios_app_id %}
