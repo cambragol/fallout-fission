@@ -732,14 +732,14 @@ nav>ul li a:hover,nav>ul li a:active {
 
 /* Positioning */
 .presentation:not(.right) .presentation-media img { left: 0; }
-.presentation.right .presentation-media img { right: 0; }
+.presentation.right .presentation-media img {right: 0;}
 
 /* Hover micro slide */
 .presentation:not(.right) .presentation-media:hover img {
-    transform: translateX(-20%, -15%);
+    transform: translateX(-15%, -12%);
 }
 .presentation.right .presentation-media:hover img {
-    transform: translate(20%, -15%);
+    transform: translate(15%, -12%);
 }
 
 /* =========================================
@@ -754,8 +754,7 @@ nav>ul li a:hover,nav>ul li a:active {
 .feature-image img {
     position: absolute;
     opacity: 0;
-    transition: opacity 0.8s ease;
-}
+¥}
 
 /* visible slide */
 
