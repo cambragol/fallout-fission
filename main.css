@@ -622,14 +622,12 @@ nav>ul li a:hover,nav>ul li a:active {
 .presentation.right {
     flex-direction: row-reverse;
     padding-right: 4rem;
-
     background: linear-gradient(
         to left,
         rgba(0,0,0,0.02),
         rgba(0,0,0,0.12)
     );
     background-color: rgba(0,0,0,0.14);
-
     transform: translateX(-60px);
 }
 
@@ -724,7 +722,7 @@ nav>ul li a:hover,nav>ul li a:active {
 
 .presentation-media img {
     position: absolute;
-    width: 115%;
+    width: 110%;
     height: auto;
     object-fit: cover;
     transition: transform 0.6s ease;
@@ -740,6 +738,25 @@ nav>ul li a:hover,nav>ul li a:active {
 }
 .presentation.right .presentation-media:hover img {
     transform: translate(15%, -12%);
+}
+
+@media only screen and (max-width: 1150px) {
+	/* Positioning */
+.presentation:not(.right) .presentation-media img {width: 120%;}
+.presentation.right .presentation-media img {width: 120%;}
+}
+
+@media only screen and (max-width: 1000px) {
+	
+.presentation:not(.right) .presentation-media img {right: 0;width: 80%;}
+.presentation.right .presentation-media img {left: 0;width: 90%;}
+	/* Hover micro slide */
+.presentation:not(.right) .presentation-media:hover img {
+    transform: scale(105%);
+}
+.presentation.right .presentation-media:hover img {
+    transform: scale(105%);
+}
 }
 
 /* =========================================
