@@ -144,7 +144,7 @@ If both appear, your mod loaded successfully!
 ### Test 2: Play Your Mod
 
 1. Start a new game or load a save.
-2. Open the world map (press `M`).
+2. Enter the world map.
 3. Travel to coordinates **400,300**.
 4. You should see a circle labelled “My Town”.
 5. Click the circle to enter – you’ll load into `mytown1.map`.
@@ -200,11 +200,11 @@ Extend `map_mytown.msg` with the three elevation names for the second map (offse
 
 Once your basic area works, you can add:
 
-- **Quests** – `quests_<modname>.txt` + `quests_<modname>.msg`
-- **Holodisks** – `holodisk_<modname>.txt` + `holodisk_<modname>_<holodiskname>.msg`
-- **Scripts** – `scripts/scripts_<modname>.lst` + `.int` files
-- **Art** – `art/intrface/mod_<modname>.lst` + `.frm` files
-- **Items** – `proto/items/items_<modname>.lst` + `pro_item_<modname>.msg` + `.pro` files
+- **Quests**    –   `quests_<modname>.txt` + `quests_<modname>.msg`
+- **Holodisks** –   `holodisk_<modname>.txt` + `holodisk_<modname>_<holodiskname>.msg`
+- **Scripts**   –   `scripts/scripts_<modname>.lst` + `.int` files
+- **Art**       –   `art/intrface/mod_<modname>.lst` + `.frm` files
+- **Items**     –   `proto/items/items_<modname>.lst` + `pro_item_<modname>.msg` + `.pro` files
 
 ---
 
