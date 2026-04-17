@@ -11,7 +11,7 @@ include_in_footer: false
 
 ---
 
-## 1. What is FISSION?
+## 1\. What is FISSION?
 
 FISSION is a modding system for Fallout 2 that lets you add new content **without editing original game files**. You simply add your files inside a mod folder (or `.dat` archive) inside the `mods/` directory.
 
@@ -23,7 +23,7 @@ FISSION is a modding system for Fallout 2 that lets you add new content **withou
 
 ---
 
-## 2. Your First Mod in 4 Steps
+## 2. Your First 'Location' Mod in 4 Steps
 
 ### Before You Start: Pick a Mod Name
 Choose a short, unique name. Example: `mytown`  
@@ -75,12 +75,12 @@ music = fs_grand # Optional: music track name
 
 *(Map elevation names + area name)*
 ```
-Map elevation names (3 per map, sequential)
+# Map elevation names (3 per map, sequential)
 {0}{}{Town Gate}
 {1}{}{Town Interior}
 {2}{}{Town Basement}
 
-Area name (starts at 1500)
+# Area name (starts at 1500)
 {1500}{}{My Town}
 ```
 
@@ -105,17 +105,17 @@ Your mod folder (or `.dat` archive) must mirror the game’s original structure:
 ```
 Fallout 2/
 └─ mods/
-└─ mod_mytown/ ← can be a folder or mod_mytown.dat
-├─ data/
-│ ├─ city_mytown.txt
-│ ├─ maps_mytown.txt
-│ └─ MAPS/
-│ └─ mytown1.map
-└─ text/
-└─ english/
-└─ game/
-├─ map_mytown.msg
-└─ worldmap_mytown.msg
+    └─ mod_mytown.dat/ <- can be a folder or actual .dat file
+        ├─ data/
+        │   ├─ city_mytown.txt
+        │   ├─ maps_mytown.txt
+        │   └─ MAPS/
+        │       └─ mytown1.map
+        └─ text/
+            └─ english/
+                └─ game/
+                    ├─ map_mytown.msg
+                    └─ worldmap_mytown.msg
 ```
 
 **Notes:**
