@@ -9,9 +9,7 @@ include_in_footer: false
 # Fallout FISSION Modding: Quick Start Guide  
 ## Get Your First Mod Running in About 10 Minutes
 
----
-
-## 1\. What is FISSION?
+## 1. What is FISSION?
 
 FISSION is a modding system for Fallout 2 that lets you add new content **without editing original game files**. You simply add your files inside a mod folder (or `.dat` archive) inside the `mods/` directory.
 
@@ -20,8 +18,6 @@ FISSION is a modding system for Fallout 2 that lets you add new content **withou
 - Automatic, stable ID assignment – no manual number wrangling
 - Built‑in testing reports – see exactly what the game loaded
 - Works with vanilla saves – your mods are optional
-
----
 
 ## 2. Your First 'Location' Mod in 4 Steps
 
@@ -54,8 +50,17 @@ size = medium # small, medium, large (lowercase)
 entrance_0 = on,100,200,MYMAP,-1,-1,0
 ```
 
-- `entrance_0` fields:  
-  `state` (on/off), `x`, `y` (town map button position), `lookup_name` (matches `lookup_name` in maps file), `elevation` (‑1 = any), `tile` (‑1 = random start), `rotation`.
+**`entrance_0` field format (comma‑separated):**
+
+| Position | Field | Example | Meaning |
+|----------|-------|---------|---------|
+| 1 | `state` | `on` | `on` or `off` – whether this entrance is available |
+| 2 | `x` | `100` | X coordinate of the entrance button on the town map (in pixels) |
+| 3 | `y` | `200` | Y coordinate of the entrance button on the town map (in pixels) |
+| 4 | `lookup_name` | `MYMAP` | Must match a `lookup_name` in your `maps_<modname>.txt` file |
+| 5 | `elevation` | `-1` | Which map elevation to use (`-1` = any, or `0`, `1`, `2`) |
+| 6 | `tile` | `-1` | Starting tile on the map (`-1` = random valid start point) |
+| 7 | `rotation` | `0` | Facing direction when entering (`0` = north, `2` = east, `4` = south, `6` = west) |
 
 #### File 2: `mods/mod_mytown/data/maps_mytown.txt` 
 
