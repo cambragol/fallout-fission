@@ -201,17 +201,10 @@ Extend `map_mytown.msg` with the three elevation names for the second map (offse
 Once your basic area works, you can add:
 
 - **Quests** – `quests_<modname>.txt` + `quests_<modname>.msg`
-- **Holodisks** – `holodisk_<modname>.txt`
+- **Holodisks** – `holodisk_<modname>.txt` + `holodisk_<modname>_<holodiskname>.msg`
 - **Scripts** – `scripts/scripts_<modname>.lst` + `.int` files
 - **Art** – `art/intrface/mod_<modname>.lst` + `.frm` files
-- **Items** – `proto/items/items_<modname>.lst` + `.pro` files
-
-### Use Generated IDs
-
-Check the reports in `data/lists/` to find your mod’s IDs:
-
-- Quest IDs for `op_set_quest(ID, state)`
-- Message IDs for `display_msg(ID)`
+- **Items** – `proto/items/items_<modname>.lst` + `pro_item_<modname>.msg` + `.pro` files
 
 ---
 
