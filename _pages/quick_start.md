@@ -11,7 +11,7 @@ include_in_footer: false
 
 ## 1. What is FISSION?
 
-FISSION is a modding system for Fallout 2 that lets you add new content **without editing original game files**. You simply add your files inside a mod folder (or `.dat` archive) inside the `mods/` directory.
+FISSION is a new engine for Fallout 2 that lets you add new content **without editing original game files**. You simply add your files inside a mod folder (or `.dat` archive) inside the `mods/` directory.
 
 **Key Benefits:**
 - No original file editing – just add new files
