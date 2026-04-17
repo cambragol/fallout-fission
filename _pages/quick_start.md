@@ -6,217 +6,214 @@ include_in_footer: false
 ---
 
 
-# Fallout FISSION Modding: Quick Start Guide
-## Get Your First Mod Running in 10 Minutes
+# Fallout FISSION Modding: Quick Start Guide  
+## Get Your First Mod Running in About 10 Minutes
 
 ---
 
-## 1\. What is FISSION?
+## 1. What is FISSION?
 
-FISSION is a modding system for Fallout 2 that lets you add new content **without editing original game files**. Just add your files alongside the originals.
+FISSION is a modding system for Fallout 2 that lets you add new content **without editing original game files**. You simply add your files inside a mod folder (or `.dat` archive) inside the `mods/` directory.
 
 **Key Benefits:**
-- No original file editing - just add new files
-- Automatic ID assignment - no manual number wrangling
-- Built-in testing reports - see what the game sees
-- Works with vanilla saves - your mods are optional
+- No original file editing – just add new files
+- Automatic, stable ID assignment – no manual number wrangling
+- Built‑in testing reports – see exactly what the game loaded
+- Works with vanilla saves – your mods are optional
 
 ---
 
-## 2\. Your First Mod in 4 Steps
+## 2. Your First Mod in 4 Steps
 
-### Before You Start: Create Your Map
-1. **Open Mapper.exe** (in your Fallout 2 tools folder)
-2. **Create a new map** or use a simple test map
-3. **Save it** with a name ?8 characters (e.g., `mytown1.map`)
-   - **Critical**: Map name MUST be 8 characters or less!
-4. **Export the .map file** to your Fallout 2 install's `data/maps/` folder
+### Before You Start: Pick a Mod Name
+Choose a short, unique name. Example: `mytown`  
+This name goes in **all** your filenames. It will be used to generate unique, stable IDs for your mod’s assets.
 
-### Step 1: Pick a Mod Name
-Choose a short, unique name. Example: `myquest`
-This name goes in ALL your filenames.
+### Step 1: Create Your Map
+1. **Put FISSION** in your game directory and run it once – this creates the `mods/` folder.
+2. **Open Mapper.exe** (original Fallout 2 location).
+3. **Create a new map** or use a simple test map.
+4. **Save it** with a name **8 characters or less** (e.g., `mytown1.map`).  
+   ⚠️ **Critical**: Map names longer than 8 characters will fail to load.
+5. **Create a mod folder** inside `mods/` called `mod_mytown` (or `mod_mytown.dat` if you prefer a single archive).
+6. **Export the `.map` file** to:  
+   `mods/mod_mytown/data/MAPS/mytown1.map`  
+   *(The `MAPS` folder must be uppercase.)*
 
-### Step 2: Create These 4 Files
+### Step 2: Create These 4 Essential Files
 
-#### File 1: `data/city_myquest.txt` (Your World Map Area)
+#### File 1: `mods/mod_mytown/data/city_mytown.txt`
 
 ```
+*(Defines your new location on the world map)*
 [Area 0]
-area_name = MYTOWN                # UPPERCASE, unique name
-world_pos = 400,300               # Where it appears on world map
-start_state = On                  # On, Off, or Secret
-size = Medium
-entrance_0 = On,100,200,MYTOWN1,-1,-1,0  # "MYTOWN1" links to your map's lookup_name
+area_name = MYTOWN # UPPERCASE, globally unique name
+world_pos = 400,300 # Where it appears on world map (x,y)
+start_state = on # on, off
+size = medium # small, medium, large (lowercase)
+entrance_0 = on,100,200,MYMAP,-1,-1,0
 ```
 
-#### File 2: `data/maps_myquest.txt` (Your Game Map Definition)
+- `entrance_0` fields:  
+  `state` (on/off), `x`, `y` (town map button position), `lookup_name` (matches `lookup_name` in maps file), `elevation` (‑1 = any), `tile` (‑1 = random start), `rotation`.
+
+#### File 2: `mods/mod_mytown/data/maps_mytown.txt` 
 
 ```
+*(Defines your actual game map)*
 [Map 0]
-lookup_name = MYTOWN1             # Unique identifier - matches entrance_X above
-map_name = mytown1                # MUST match your .map filename (?8 chars!)
-music = fs_grand                  # Music track
-saved = Yes                       # Game can save here
-automap = yes                     # Shows on automap
+lookup_name = MYMAP # Matches entrance_0 above
+map_name = mytown1 # Must match .map filename (no extension)
+saved = yes # yes or no (lowercase)
+automap = yes # yes or no (lowercase)
+music = fs_grand # Optional: music track name
 ```
 
-Connection: `entrance_0` in city file references `lookup_name` in maps file.
+**Connection:** `entrance_0` in `city_mytown.txt` references `lookup_name` in `maps_mytown.txt`.
 
-#### File 3: `text/english/game/messages_myquest.txt` (All Text)
-
-```
-[map]
-area_name:MYTOWN = My New Town    # What players see on world map
-lookup_name:MYTOWN1:0 = Town Square  # What players see when entering
-
-[worldmap]
-entrance_0:MYTOWN = Main Gate     # Label on town map
-
-[quests]
-quest:0 = Find the hidden artifact
-```
-
-#### File 4: `data/quests_myquest.txt` (Your Quest)
+#### File 3: `mods/mod_mytown/text/english/game/map_mytown.msg`
 
 ```
-# Format: location,description,gvar,displayThreshold,completedThreshold
-# Note: The 'description' field is ignored - FISSION generates its own IDs
-1500, 0, 79, 1, 2
+*(Map elevation names + area name)*
+Map elevation names (3 per map, sequential)
+{0}{}{Town Gate}
+{1}{}{Town Interior}
+{2}{}{Town Basement}
+
+Area name (starts at 1500)
+{1500}{}{My Town}
 ```
 
-Important Relationships:
+⚠️ **Important**: Each map uses **three consecutive IDs** (elevations 0,1,2).  
+If you add a second map, its elevations start at `{3}{}{...}`, `{4}{}{...}`, `{5}{}{...}`.
 
--   `entrance_X` in city file ? `lookup_name` in maps file
-
--   `map_name` in maps file ? Your `.map` filename
-
--   `area_name` in city file ? Message key `area_name:AREA_NAME`
-
-* * * * *
-
-3\. Where to Put All Files
---------------------------
-
-Copy all files to your Fallout 2 install directory:
+#### File 4: `mods/mod_mytown/text/english/game/worldmap_mytown.msg`
 
 ```
-Fallout 2 Game Folder/
-├── data/
-│   ├── maps/
-│   │   └── mytown1.map           # Your created map file
-│   ├── city_myquest.txt          # Put here
-│   ├── maps_myquest.txt          # Put here
-│   └── quests_myquest.txt        # Put here
-└── text/
-    └── english/
-        └── game/
-            └── messages_myquest.txt  # Put here
+*(Town map entrance labels – one per entrance)*
+{0}{}{My Town - Main Gate}
 ```
 
-Critical Check:
+Each `entrance_X` gets one label, in the same order as defined in `city_mytown.txt`.
 
--   Your `.map` file MUST be in `data/maps/`
+---
 
--   The `map_name` in `maps_myquest.txt` MUST match the `.map` filename (without extension)
+## 3. Where to Put All Files
 
-* * * * *
+Your mod folder (or `.dat` archive) must mirror the game’s original structure:
 
-4\. Test Your Mod
------------------
+```
+Fallout 2/
+└─ mods/
+└─ mod_mytown/ ← can be a folder or mod_mytown.dat
+├─ data/
+│ ├─ city_mytown.txt
+│ ├─ maps_mytown.txt
+│ └─ MAPS/
+│ └─ mytown1.map
+└─ text/
+└─ english/
+└─ game/
+├─ map_mytown.msg
+└─ worldmap_mytown.msg
+```
+
+**Notes:**
+- The `mods/` folder is created automatically the first time you run FISSION.
+- Your mod folder **must** start with `mod_` (e.g., `mod_mytown`).
+- It can be a normal folder (for easy editing) or a `.dat` archive (for distribution).
+
+---
+
+## 4. Test Your Mod
 
 ### Test 1: Check the Reports
 
-Run the game, then check `data/lists/` for these files:
+Run the game once, then look in `data/lists/` (inside the game’s root folder – **not** inside your mod):
 
--   `area_list.txt` - Your area "MYTOWN" should be listed
+- **`area_list.txt`** – Your area “MYTOWN” should be listed.
+- **`maps_list.txt`** – Your map “MYMAP” should be listed.
 
--   `maps_list.txt` - Your map "MYTOWN1" should be listed
-
--   `quests_list.txt` - Your quest should be listed
-
-If all three appear in the reports, your mod loaded successfully!
+If both appear, your mod loaded successfully!
 
 ### Test 2: Play Your Mod
 
-1.  Start a new game or load a save
+1. Start a new game or load a save.
+2. Open the world map (press `M`).
+3. Travel to coordinates **400,300**.
+4. You should see a circle labelled “My Town”.
+5. Click the circle to enter – you’ll load into `mytown1.map`.
+6. The location name should show “Town Gate” (elevation 0).
 
-2.  Open world map (M key)
+If you can walk around your map, your mod is working!
 
-3.  Travel to coordinates 400,300
+---
 
-4.  You should see "My New Town" on the map
+## 5. Common Mistakes & Troubleshooting
 
-5.  Click to enter - you'll load into your map "mytown1"
+| Problem | Likely Fix |
+|---------|-------------|
+| “Cannot load map” error | `map_name` in `maps_mytown.txt` must exactly match the `.map` filename (no extension, ≤8 chars). |
+| Area not on world map | Check `area_list.txt`. If missing, your `city_mytown.txt` has a syntax error. |
+| Can’t enter area | Verify `entrance_0` references the correct `lookup_name`. |
+| Map name shows “Error!” | Your `map_mytown.msg` elevation offsets are wrong (must be 0,1,2 for first map). |
+| No reports generated | The game didn’t load your mod – check that your mod folder is named `mod_xxx` and is inside `mods/`. |
 
-6.  The location name should show "Town Square"
+**Remember:** All text values are case‑insensitive, but it’s safest to use **lowercase** for `on`/`off`, `yes`/`no`, `small`/`medium`/`large`.
 
-7.  Open Pip-Boy (P key) ? Quests tab
+---
 
-8.  You should see "Find the hidden artifact"
+## 6. What’s Next?
 
-If you can enter and walk around your map, your mod is working!
+### Add a Second Map to the Same Area
 
-* * * * *
-
-5\. What's Next?
-----------------
-
-### Add More Maps to Your Area
-
-Add more entrances to `city_myquest.txt`:
+Add another entrance in `city_mytown.txt`:
 
 ```
-entrance_1 = On,200,200,MYTOWN2,-1,-1,0
+entrance_1 = on,200,200,MYMAP2,-1,-1,0
 ```
 
-Add corresponding map definitions in `maps_myquest.txt`:
+Add a new map definition in `maps_mytown.txt`:
 
 ```
 [Map 1]
-lookup_name = MYTOWN2
+lookup_name = MYMAP2
 map_name = mytown2
-music = f1_dsrt
-saved = Yes
+saved = yes
 automap = yes
+```
+
+Extend `map_mytown.msg` with the three elevation names for the second map (offsets 3,4,5):
+
+```
+{3}{}{Underground Entrance}
+{4}{}{Underground Tunnels}
+{5}{}{Hidden Vault}
 ```
 
 ### Add More Content Types
 
 Once your basic area works, you can add:
 
--   Holodisks: `data/holodisk_myquest.txt`
-
--   Scripts: `scripts/scripts_myquest.lst` + `.int` files
-
--   Art: `art/intrface/mod_myquest.lst` + `.frm` files
-
--   Items: `proto/items/items_myquest.lst` + `.pro` files
+- **Quests** – `quests_<modname>.txt` + `quests_<modname>.msg`
+- **Holodisks** – `holodisk_<modname>.txt`
+- **Scripts** – `scripts/scripts_<modname>.lst` + `.int` files
+- **Art** – `art/intrface/mod_<modname>.lst` + `.frm` files
+- **Items** – `proto/items/items_<modname>.lst` + `.pro` files
 
 ### Use Generated IDs
 
-Check the reports in `data/lists/` to find your generated IDs:
+Check the reports in `data/lists/` to find your mod’s IDs:
 
--   Use quest IDs with `op_set_quest(ID, state)`
+- Quest IDs for `op_set_quest(ID, state)`
+- Message IDs for `display_msg(ID)`
 
--   Use message IDs with `display_msg(ID)`
+---
 
-### Learn More
+## 7. Final Notes
 
-For detailed information on all FISSION features, see the full FISSION Modding Reference Guide.
+- **Mod name stability:** If you change your mod’s name after starting a game, saved games will no longer recognise your mod’s content. Choose a name once and keep it. Hashed IDs will also be changed, breaking some of your content.
+- **`lookup_name` uniqueness:** Avoid using common names like “VAULT13”. Use a prefix like `MYTOWN_MAP1` to prevent accidental overrides with other mods.
+- **No manual ID assignment:** FISSION calculates stable IDs automatically from your mod’s name and the order of items in your files.
 
-* * * * *
-
-Quick Troubleshooting
----------------------
-
-| Problem | Solution |
-| --- | --- |
-| "Cannot load map" error | Check `map_name` exactly matches your `.map` filename |
-| Area not on world map | Check `area_list.txt` - if missing, format error in city file |
-| Can't enter area | Check `entrance_X` references correct `lookup_name` |
-| Map name shows "Error" | Check `messages_myquest.txt` has correct `lookup_name:` line |
-| No reports generated | Game didn't load mod - check file names and locations |
-
-Common Mistake: Map names longer than 8 characters will fail. Keep them short!
-
-Need Help? Check the full reference guide for detailed troubleshooting and advanced features.
+Happy modding!
