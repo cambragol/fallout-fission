@@ -44,8 +44,8 @@ This name goes in **all** your filenames. It will be used to generate unique, st
 
 #### File 1: `mods/mod_mytown/data/city_mytown.txt`
 
-```
 *(Defines your new location on the world map)*
+```
 [Area 0]
 area_name = MYTOWN # UPPERCASE, globally unique name
 world_pos = 400,300 # Where it appears on world map (x,y)
@@ -59,8 +59,8 @@ entrance_0 = on,100,200,MYMAP,-1,-1,0
 
 #### File 2: `mods/mod_mytown/data/maps_mytown.txt` 
 
-```
 *(Defines your actual game map)*
+```
 [Map 0]
 lookup_name = MYMAP # Matches entrance_0 above
 map_name = mytown1 # Must match .map filename (no extension)
@@ -73,8 +73,8 @@ music = fs_grand # Optional: music track name
 
 #### File 3: `mods/mod_mytown/text/english/game/map_mytown.msg`
 
-```
 *(Map elevation names + area name)*
+```
 Map elevation names (3 per map, sequential)
 {0}{}{Town Gate}
 {1}{}{Town Interior}
@@ -89,8 +89,8 @@ If you add a second map, its elevations start at `{3}{}{...}`, `{4}{}{...}`, `{5
 
 #### File 4: `mods/mod_mytown/text/english/game/worldmap_mytown.msg`
 
-```
 *(Town map entrance labels – one per entrance)*
+```
 {0}{}{My Town - Main Gate}
 ```
 
