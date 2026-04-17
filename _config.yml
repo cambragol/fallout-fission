@@ -137,6 +137,18 @@ screenshots                               :
     image                                 : assets/screenshot8.png
     thumb                                 : assets/screenshot8_thumb.png
 
+  - title                                 : Multi-column Inventory
+    description                           : Inventory columns can be set to 1, 2, 3 and even 4.
+    fontawesome_icon_name                 : columns
+    image                                 : assets/screenshot9.png
+    thumb                                 : assets/screenshot9_thumb.png
+
+  - title                                 : Realtime Minimap
+    description                           : New Minimap can be used to track and direct map movement in realtime
+    fontawesome_icon_name                 : mobile
+    image                                 : assets/screenshot10.png
+    thumb                                 : assets/screenshot10_thumb.png
+
 # Theme Settings
 topbar_color                              : "#000000"
 topbar_transparency                       : 0.1
