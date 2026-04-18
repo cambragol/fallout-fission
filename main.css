@@ -1822,7 +1822,7 @@ code.highlighter-rouge {
 }
 
 .markdown-body blockquote {
-	margin: 0 0 2em;
+	margin: 2em 0 2em 0;
 	padding: 1em;
 	list-style: none !important;
 	background: #5b6d7f url(/fallout-fission/assets/gradient_20.png) repeat-x;
