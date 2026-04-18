@@ -108,6 +108,8 @@ Or give it to the player:
 add_obj_to_inven(dude_obj, item_pid);
 ```
 
+---
+
 6. Important Notes
 PID generation is stable – the same mod name + proto name always produce the same PID. You can safely hardcode the PID from proto_list.txt in your scripts.
 
@@ -116,6 +118,8 @@ The PID inside the .pro file is ignored – do not worry about what number it sh
 Hash collisions – if two different mods accidentally generate the same PID, a warning message box appears and the second item is skipped. Rename your mod or proto to resolve.
 
 Message IDs – each item uses two consecutive IDs (name, description). The base ID is allocated per mod, so you never need to assign numbers manually.
+
+---
 
 7. Quick Troubleshooting
 | Problem | Likely Fix |
