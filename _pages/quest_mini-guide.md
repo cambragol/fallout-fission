@@ -139,7 +139,7 @@ Example script snippet:
 op_set_quest(5000, 1);
 ```
 
-7. Notes
+## 7. Notes
 Quest descriptions are not editable per quest state – they remain the same whether the quest is active or completed.
 
 You can reuse the same global variable across multiple quests if you manage states carefully, but it’s safer to use a unique GVAR for each quest.
