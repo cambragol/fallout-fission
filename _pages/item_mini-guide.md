@@ -122,6 +122,7 @@ Message IDs – each item uses two consecutive IDs (name, description). The base
 ---
 
 ## 7. Quick Troubleshooting
+
 | Problem | Likely Fix |
 |---------|-------------|
 | Item not in `proto_list.txt` | Check `.lst` filename matches `items_mytown.lst` (with your mod name). |

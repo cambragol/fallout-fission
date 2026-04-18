@@ -139,6 +139,8 @@ Example script snippet:
 op_set_quest(5000, 1);
 ```
 
+---
+
 ## 7. Notes
 Quest descriptions are not editable per quest state – they remain the same whether the quest is active or completed.
 
