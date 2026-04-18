@@ -196,23 +196,13 @@ Extend `map_mytown.msg` with the three elevation names for the second map (offse
 {5}{}{Hidden Vault}
 ```
 
-### Add More Content Types
-
-Once your basic area works, you can add:
-
-- **Quests**    –   `quests_<modname>.txt` + `quests_<modname>.msg`
-- **Holodisks** –   `holodisk_<modname>.txt` + `holodisk_<modname>_<holodiskname>.msg`
-- **Scripts**   –   `scripts/scripts_<modname>.lst` + `.int` files
-- **Art**       –   `art/intrface/mod_<modname>.lst` + `.frm` files
-- **Items**     –   `proto/items/items_<modname>.lst` + `pro_item_<modname>.msg` + `.pro` files
-
 ---
 
 ## 7. Final Notes
 
 - **Mod name stability:** If you change your mod’s name after starting a game, saved games will no longer recognise your mod’s content. Choose a name once and keep it. Hashed IDs will also be changed, breaking some of your content.
 - **`lookup_name` uniqueness:** Avoid using common names like “VAULT13”. Use a prefix like `MYTOWN_MAP1` to prevent accidental overrides with other mods.
-- **No manual ID assignment:** FISSION calculates stable IDs automatically from your mod’s name and the order of items in your files.
+- **No manual ID assignment:** FISSION calculates and assigns stable IDs automatically from your mod’s name and the order of items in your files.
 
 ## 8. What's Next?
 
@@ -220,16 +210,12 @@ Once your basic location mod is working, expand it with these additional feature
 
 | Topic | Guide | Description |
 |-------|-------|-------------|
-| **Quests** | [Quest Mini‑Guide](#) | Add Pip‑Boy tracked quests to your location |
+| **Quests** | [Quest Mini‑Guide](https://cambragol.github.io/fallout-fission/quest_mini-guide.md) | Add Pip‑Boy tracked quests to your location |
 | **Global Variables (GVARs)** | [Using GVARs](#) | Manage persistent flags and quest states |
 | **Scripts** | [Scripting Guide](#) | Add custom behavior with `.int` scripts |
 | **Proto Items** | [Item Creation](#) | Create new weapons, armor, or misc items |
 | **Proto Critters** | [NPC Creation](#) | Design custom NPCs with unique stats and looks |
 | **Holodisks** | [Holodisk Guide](#) | Add readable text entries to the Pip‑Boy |
 | **Art & FRMs** | [Art Guide](#) | Import custom interface graphics and sprites |
-
-
-**Quick links to completed guides:**
-- [Quest Mini‑Guide](#) – Add quests to your existing location mod
 
 Happy modding!
