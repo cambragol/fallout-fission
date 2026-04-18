@@ -110,7 +110,7 @@ add_obj_to_inven(dude_obj, item_pid);
 
 ---
 
-6. Important Notes
+## 6. Important Notes
 PID generation is stable – the same mod name + proto name always produce the same PID. You can safely hardcode the PID from proto_list.txt in your scripts.
 
 The PID inside the .pro file is ignored – do not worry about what number it shows.
@@ -121,7 +121,7 @@ Message IDs – each item uses two consecutive IDs (name, description). The base
 
 ---
 
-7. Quick Troubleshooting
+## 7. Quick Troubleshooting
 | Problem | Likely Fix |
 |---------|-------------|
 | Item not in `proto_list.txt` | Check `.lst` filename matches `items_mytown.lst` (with your mod name). |
