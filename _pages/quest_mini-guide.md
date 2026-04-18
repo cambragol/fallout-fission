@@ -33,13 +33,11 @@ Format: location, description, gvar, displayThreshold, completedThreshold
 
 **Fields explained:**
 
-| Field | Example | Meaning |
-|-------|---------|---------|
-| `location` | `1500` | The message ID of the area this quest belongs to (from `map_<modname>.msg` – usually the area name offset `1500` for the first area) |
-| `description` | `0` | **Ignored** – FISSION auto‑generates the description ID from the `.msg` file |
-| `gvar` | `79` | Global variable used to track quest state (choose any unused GVAR, or use a mod‑specific one like `79`) |
-| `displayThreshold` | `1` | Minimum quest state to show in Pip‑Boy (1 = unstarted/available) |
-| `completedThreshold` | `2` | Quest state at which it’s considered completed (2 = finished) |
+- **`location`** (e.g., `1500`) – The **area index** of the location this quest belongs to. Find this number in `data/lists/area_list.txt` under the "Slot" column for your area.
+- **`description`** (e.g., `0`) – **Ignored** – FISSION auto‑generates the description ID from the `.msg` file.
+- **`gvar`** (e.g., `79`) – Global variable used to track quest state (choose any unused GVAR).
+- **`displayThreshold`** (e.g., `1`) – Minimum quest state to show in Pip‑Boy (`1` = unstarted/available).
+- **`completedThreshold`** (e.g., `2`) – Quest state at which it’s considered completed (`2` = finished).
 
 > **Tip:** You can find your area’s `location` ID in `data/lists/area_list.txt` after running the game once.
 
