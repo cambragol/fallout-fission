@@ -228,9 +228,8 @@ Once your basic location mod is working, expand it with these additional feature
 | **Holodisks** | [Holodisk Guide](#) | Add readable text entries to the Pip‑Boy |
 | **Art & FRMs** | [Art Guide](#) | Import custom interface graphics and sprites |
 
+
 **Quick links to completed guides:**
 - [Quest Mini‑Guide](#) – Add quests to your existing location mod
-
-*Replace `(#)` with your actual documentation URLs when available.*
 
 Happy modding!
