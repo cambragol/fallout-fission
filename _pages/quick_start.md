@@ -7,7 +7,7 @@ include_in_footer: false
 
 
 # Fallout FISSION Modding: Quick Start Guide  
-## Get Your First Mod Running in About 10 Minutes
+> Get Your First Mod Running in About 10 Minutes
 
 ## 1. What is FISSION?
 
@@ -30,7 +30,7 @@ This name goes in **all** your filenames. It will be used to generate unique, st
 2. **Open Mapper.exe** (original Fallout 2 location).
 3. **Create a new map** or use a simple test map.
 4. **Save it** with a name **8 characters or less** (e.g., `mytown1.map`).  
-   ⚠️ **Critical**: Map names longer than 8 characters will fail to load.
+   ⚠︝ **Critical**: Map names longer than 8 characters will fail to load.
 5. **Create a mod folder** inside `mods/` called `mod_mytown` (or `mod_mytown.dat` if you prefer a single archive).
 6. **Export the `.map` file** to:  
    `mods/mod_mytown/data/MAPS/mytown1.map`  
@@ -87,7 +87,7 @@ music = fs_grand # Optional: music track name
 {1500}{}{My Town}
 ```
 
-⚠️ **Important**: Each map uses **three consecutive IDs** (elevations 0,1,2).  
+⚠︝ **Important**: Each map uses **three consecutive IDs** (elevations 0,1,2).  
 If you add a second map, its elevations start at `{3}{}{...}`, `{4}{}{...}`, `{5}{}{...}`.
 
 #### File 4: `mods/mod_mytown/text/english/game/worldmap_mytown.msg`
