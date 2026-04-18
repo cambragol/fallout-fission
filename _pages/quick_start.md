@@ -50,17 +50,15 @@ size = medium # small, medium, large (lowercase)
 entrance_0 = on,100,200,MYMAP,-1,-1,0
 ```
 
-**`entrance_0` field format (comma‑separated):**
+**`entrance_0` field format (comma‑separated, in order):**
 
-| Position | Field | Example | Meaning |
-|----------|-------|---------|---------|
-| 1 | `state` | `on` | `on` or `off` – whether this entrance is available |
-| 2 | `x` | `100` | X coordinate of the entrance button on the town map (in pixels) |
-| 3 | `y` | `200` | Y coordinate of the entrance button on the town map (in pixels) |
-| 4 | `lookup_name` | `MYMAP` | Must match a `lookup_name` in your `maps_<modname>.txt` file |
-| 5 | `elevation` | `-1` | Which map elevation to use (`-1` = any, or `0`, `1`, `2`) |
-| 6 | `tile` | `-1` | Starting tile on the map (`-1` = random valid start point) |
-| 7 | `rotation` | `0` | Facing direction when entering (`0` = north, `2` = east, `4` = south, `6` = west) |
+1. **`state`** – `on` or `off` (whether this entrance is available). Example: `on`
+2. **`x`** – X coordinate of the entrance button on the town map (in pixels). Example: `100`
+3. **`y`** – Y coordinate of the entrance button on the town map (in pixels). Example: `200`
+4. **`lookup_name`** – Must match a `lookup_name` in your `maps_<modname>.txt` file. Example: `MYMAP`
+5. **`elevation`** – Which map elevation to use (`-1` = any, or `0`, `1`, `2`). Example: `-1`
+6. **`tile`** – Starting tile on the map (`-1` = random valid start point). Example: `-1`
+7. **`rotation`** – Facing direction when entering (`0` = north, `2` = east, `4` = south, `6` = west). Example: `0`
 
 #### File 2: `mods/mod_mytown/data/maps_mytown.txt` 
 
