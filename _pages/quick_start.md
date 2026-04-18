@@ -210,10 +210,10 @@ Once your basic location mod is working, expand it with these additional feature
 
 | Topic | Guide | Description |
 |-------|-------|-------------|
-| **Quests** | [Quest Mini‑Guide](https://cambragol.github.io/fallout-fission/quest_mini-guide.md) | Add Pip‑Boy tracked quests to your location |
+| **Quests** | [Quest Mini‑Guide](https://cambragol.github.io/fallout-fission/quest_mini-guide) | Add Pip‑Boy tracked quests to your location |
 | **Global Variables (GVARs)** | [Using GVARs](#) | Manage persistent flags and quest states |
 | **Scripts** | [Scripting Guide](#) | Add custom behavior with `.int` scripts |
-| **Proto Items** | [Item Creation](#) | Create new weapons, armor, or misc items |
-| **Proto Critters** | [NPC Creation](#) | Design custom NPCs with unique stats and looks |
+| **Proto Items** | [Item Creation](https://cambragol.github.io/fallout-fission/item_mini-guide) | Create new weapons, armor, or misc items |
+| **Proto Critters** | [NPC Creation](https://cambragol.github.io/fallout-fission/npc_mini-guide) | Design custom NPCs with unique stats and looks |
 | **Holodisks** | [Holodisk Guide](#) | Add readable text entries to the Pip‑Boy |
 | **Art & FRMs** | [Art Guide](#) | Import custom interface graphics and sprites |
