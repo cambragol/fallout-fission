@@ -1,7 +1,14 @@
+---
+layout: page
+title: NPC Mini-guide
+include_in_header: false
+include_in_footer: false
+---
+
 # FISSION Proto Modding Mini-Guide: NPC Creation  
 > Add a Custom Critter (NPC, Creature, or Enemy)
 
-This guide assumes you have a working mod folder (e.g., `mods/mod_mytown/`). Youíll add a new NPC that can be placed on maps, fight, talk, or follow the player.
+This guide assumes you have a working mod folder (e.g., `mods/mod_mytown/`). You‚Äôll add a new NPC that can be placed on maps, fight, talk, or follow the player.
 
 ---
 
@@ -10,10 +17,10 @@ This guide assumes you have a working mod folder (e.g., `mods/mod_mytown/`). You
 Your existing mod folder: `mods/mod_mytown/` (or `.dat`).  
 You will create **two new files** for your critter:
 
-- `proto/critters/critters_mytown.lst` ñ lists your custom critter file(s)
-- `text/english/game/pro_crit_mytown.msg` ñ provides name and description
+- `proto/critters/critters_mytown.lst` ‚Äì lists your custom critter file(s)
+- `text/english/game/pro_crit_mytown.msg` ‚Äì provides name and description
 
-Plus the actual **`.pro` file** (binary prototype) ñ you can export it from the **Mapper** or copy and modify an existing one.
+Plus the actual **`.pro` file** (binary prototype) ‚Äì you can export it from the **Mapper** or copy and modify an existing one.
 
 ---
 
@@ -37,11 +44,11 @@ myguard.pro fid=450 ai=3 script=12
 
 | Override | Example | Meaning |
 |----------|---------|---------|
-| `fid` | `450` | Replace the creatureís appearance (art frame index) |
+| `fid` | `450` | Replace the creature‚Äôs appearance (art frame index) |
 | `ai` | `3` | Override AI packet index (1?based, from `ai.txt`) |
 | `script` | `12` | Override script index (1?based, from `scripts.lst`) |
 
-> **Why overrides?** They let you reuse a base `.pro` file (e.g., a ìhuman guardî template) but give it a unique look, AI, or behavior without duplicating the entire prototype.
+> **Why overrides?** They let you reuse a base `.pro` file (e.g., a ‚Äúhuman guard‚Äù template) but give it a unique look, AI, or behavior without duplicating the entire prototype.
 
 ---
 
@@ -61,7 +68,7 @@ Each critter gets **two consecutive entries**: name then description.
 - The first critter (`myguard.pro`) will use offsets `0` (name) and `1` (description).
 - The second critter (second line in `.lst`) would use offsets `2` and `3`, etc.
 
-> **Note:** The base ID for these messages is generated automatically from your mod name (`mytown`) and the type (`crit`). You donít need to calculate anything.
+> **Note:** The base ID for these messages is generated automatically from your mod name (`mytown`) and the type (`crit`). You don‚Äôt need to calculate anything.
 
 ---
 
@@ -78,15 +85,15 @@ mods/mod_mytown/
 ```
 
 **How to get a `.pro` file:**
-- **Option A:** Use the **Mapper** ? open the Proto Editor, create a new critter, save it as `myguard.pro` in the modís `proto/critters/` folder.
-- **Option B:** Copy an existing vanilla `.pro` (e.g., from `proto/critters/`) into your mod folder and rename it. The PID inside the `.pro` file is **ignored** ñ FISSION generates its own stable PID from the mod name and filename.
+- **Option A:** Use the **Mapper** ? open the Proto Editor, create a new critter, save it as `myguard.pro` in the mod‚Äôs `proto/critters/` folder.
+- **Option B:** Copy an existing vanilla `.pro` (e.g., from `proto/critters/`) into your mod folder and rename it. The PID inside the `.pro` file is **ignored** ‚Äì FISSION generates its own stable PID from the mod name and filename.
 
 ---
 
 ## 5. Test Your Critter
 
 1. Run the game once (or reload if already running).
-2. Check `data/lists/proto_list.txt` ñ your critter should appear under ìCRITTER MOD PROTOSî.
+2. Check `data/lists/proto_list.txt` ‚Äì your critter should appear under ‚ÄúCRITTER MOD PROTOS‚Äù.
 3. Find the generated PID (e.g., `33686018`). You can now use it in scripts:
 
 ```
@@ -100,15 +107,15 @@ Or place it directly in the Mapper using the PID from the report.
 ---
 
 ## 6. Important Notes
-PID generation is stable ñ the same mod name + proto name always produce the same PID. You can safely hardcode the PID from proto_list.txt in your scripts.
+PID generation is stable ‚Äì the same mod name + proto name always produce the same PID. You can safely hardcode the PID from proto_list.txt in your scripts.
 
-The PID inside the .pro file is ignored ñ do not worry about what number it shows.
+The PID inside the .pro file is ignored ‚Äì do not worry about what number it shows.
 
-Hash collisions ñ if two different mods accidentally generate the same PID, a warning message box appears and the second critter is skipped. Rename your mod or proto to resolve.
+Hash collisions ‚Äì if two different mods accidentally generate the same PID, a warning message box appears and the second critter is skipped. Rename your mod or proto to resolve.
 
-Message IDs ñ each critter uses two consecutive IDs (name, description). The base ID is allocated per mod, so you never need to assign numbers manually.
+Message IDs ‚Äì each critter uses two consecutive IDs (name, description). The base ID is allocated per mod, so you never need to assign numbers manually.
 
-AI packets ñ Standard AI packets are defined in ai.txt (vanilla: 0 = none, 1 = coward, 2 = aggressive, etc.). You can also add custom AI packets via modding.
+AI packets ‚Äì Standard AI packets are defined in ai.txt (vanilla: 0 = none, 1 = coward, 2 = aggressive, etc.). You can also add custom AI packets via modding.
 
 ---
 
@@ -117,7 +124,7 @@ AI packets ñ Standard AI packets are defined in ai.txt (vanilla: 0 = none, 1 = c
 | Problem | Likely Fix |
 |---------|-------------|
 | Critter not in `proto_list.txt` | Check `.lst` filename matches `critters_mytown.lst` (with your mod name). |
-| Name shows ìError!î | The `.msg` file is missing or offsets are wrong. Use `{0}` for first critterís name, `{1}` for its description. |
-| ìHash collisionî popup | Another mod uses the same PID. Change your mod name or rename the proto file. |
-| Art doesnít show | Override `fid` to a valid FRM index, or make sure the art file exists. |
-| NPC doesnít fight | Check the `ai` override or the AI packet set in the `.pro` file. |
+| Name shows ‚ÄúError!‚Äù | The `.msg` file is missing or offsets are wrong. Use `{0}` for first critter‚Äôs name, `{1}` for its description. |
+| ‚ÄúHash collision‚Äù popup | Another mod uses the same PID. Change your mod name or rename the proto file. |
+| Art doesn‚Äôt show | Override `fid` to a valid FRM index, or make sure the art file exists. |
+| NPC doesn‚Äôt fight | Check the `ai` override or the AI packet set in the `.pro` file. |
