@@ -89,6 +89,8 @@ set_global_var(79, 1);   // Makes the "A Mysterious Note" appear
 
 Once the GVAR is set, the holodisk will immediately appear in the Pip‑Boy’s DATA list.
 
+---
+
 ## 6. Test Your Holodisk
 Run the game and load your save (or start a new game).
 
@@ -100,6 +102,8 @@ You should see the holodisk title(s) listed on the right side. Click one to read
 
 If something goes wrong, check data/lists/holodisks_list.txt – it lists every holodisk (vanilla + mod) with its base ID and title.
 
+---
+
 ## 7. Important Notes
 Block allocation – Each holodisk automatically gets 100 consecutive message IDs (0 = title, 1–99 = text, END-DISK required). You never need to assign numbers.
 
@@ -108,6 +112,8 @@ Stable IDs – The same ModName + BlockKey always produce the same base ID. Your
 GVARs – Choose a GVAR that is not used by other mods or vanilla. Or assign your own GVAR in `gvar_mytown.txt`
 
 End marker – Always end with **END-DISK**. Without it, the reader may crash or show garbage.
+
+---
 
 ## 8. Quick Troubleshooting
 
