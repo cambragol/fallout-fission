@@ -5,18 +5,18 @@ include_in_header: false
 include_in_footer: false
 ---
 
-**Jump to:** [Quick Start](https://cambragol.github.io/fallout-fission/quick_start) |[Quests](https://cambragol.github.io/fallout-fission/quest_mini-guide) | [Items](https://cambragol.github.io/fallout-fission/item_mini-guide) | [Critters](https://cambragol.github.io/fallout-fission/npc_mini-guide) | [Scripts](#) | [GVARs](#) | [Holodisks](https://cambragol.github.io/fallout-fission/holodisk_mini-guide) | [Art & FRMs](#)
+**Jump to:** [Quick Start](https://cambragol.github.io/fallout-fission/quick_start) |[Quests](https://cambragol.github.io/fallout-fission/quest_mini-guide) | [Items](https://cambragol.github.io/fallout-fission/item_mini-guide) | [Critters](https://cambragol.github.io/fallout-fission/npc_mini-guide) | [Scripts](https://cambragol.github.io/fallout-fission/script_mini-guide) | [GVARs](#) | [Holodisks](https://cambragol.github.io/fallout-fission/holodisk_mini-guide) | [Art & FRMs](#)
 
 # FISSION Holodisk Mini-Guide  
 > Add Readable Holodisks to the Pip‑Boy
 
-This guide assumes you have a working mod folder (e.g., `mods/mod_mytown/`). You’ll add one or more holodisks that appear in the Pip‑Boy’s “DATA” section.
+This guide assumes you have a working mod folder (e.g., `mods/mod_mytown.dat/` from the Quick Start Guide). You’ll add one or more holodisks that appear in the Pip‑Boy’s “DATA” section.
 
 ---
 
 ## 1. What You Need
 
-This guide assumes you have a working mod folder (e.g., `mods/mod_mytown.dat/` from the Quick Start Guide). You'll add a new holodisk that can be viewed in the pipboy.
+Your existing mod folder: `mods/mod_mytown.dat/`. (a folder for development, compress into actual .dat for release)
 
 You will create **two new files per holodisk**:
 
