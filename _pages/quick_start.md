@@ -9,6 +9,8 @@ include_in_footer: false
 # Fallout FISSION Modding: Quick Start Guide  
 > Get Your First Mod Running in About 10 Minutes
 
+> **Jump to:** [Quests](https://cambragol.github.io/fallout-fission/quest_mini-guide) | [Proto Items](https://cambragol.github.io/fallout-fission/item_mini-guide) | [Proto Critters](https://cambragol.github.io/fallout-fission/npc_mini-guide) | [Scripts](#) | [GVARs](#) | [Holodisks](#) | [Art & FRMs](#)
+
 ## 1. What is FISSION?
 
 FISSION is a new engine for Fallout 2 that lets you add new content **without editing original game files**. You simply add your files inside a mod folder (or `.dat` archive) inside the `mods/` directory.
@@ -212,8 +214,8 @@ Once your basic location mod is working, expand it with these additional feature
 |-------|-------|-------------|
 | **Quests** | [Quest Mini‑Guide](https://cambragol.github.io/fallout-fission/quest_mini-guide) | Add Pip‑Boy tracked quests to your location |
 | **Global Variables (GVARs)** | [Using GVARs](#) | Manage persistent flags and quest states |
-| **Scripts** | [Scripting Guide](#) | Add custom behavior with `.int` scripts |
+| **Scripts** | Scripting Guide | Add custom behavior with `.int` scripts |
 | **Proto Items** | [Item Mini-Guide](https://cambragol.github.io/fallout-fission/item_mini-guide) | Create new weapons, armor, or misc items |
 | **Proto Critters** | [NPC Mini-Guide](https://cambragol.github.io/fallout-fission/npc_mini-guide) | Design custom NPCs with unique stats and looks |
-| **Holodisks** | [Holodisk Guide](#) | Add readable text entries to the Pip‑Boy |
-| **Art & FRMs** | [Art Guide](#) | Import custom interface graphics and sprites |
+| **Holodisks** | Holodisk Guide | Add readable text entries to the Pip‑Boy |
+| **Art & FRMs** | Art Guide | Import custom interface graphics and sprites |
