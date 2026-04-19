@@ -7,7 +7,7 @@ include_in_footer: false
 
 **Jump to:** [Quests](https://cambragol.github.io/fallout-fission/quest_mini-guide) | [Proto Items](https://cambragol.github.io/fallout-fission/item_mini-guide) | [Proto Critters](https://cambragol.github.io/fallout-fission/npc_mini-guide) | [Scripts](#) | [GVARs](#) | [Holodisks](#) | [Art & FRMs](#)
 
-# FISSION Proto Modding Mini-Guide: Item Creation  
+# FISSION Proto Modding Mini-Guide
 > Add a Custom Weapon, Armor, or Misc Item
 
 This guide assumes you have a working mod folder (e.g., `mods/mod_mytown/`). You’ll add a new item that can be placed in the world, given to the player, or used in scripts.

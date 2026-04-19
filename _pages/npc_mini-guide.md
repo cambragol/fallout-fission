@@ -7,7 +7,7 @@ include_in_footer: false
 
 **Jump to:** [Quests](https://cambragol.github.io/fallout-fission/quest_mini-guide) | [Proto Items](https://cambragol.github.io/fallout-fission/item_mini-guide) | [Proto Critters](https://cambragol.github.io/fallout-fission/npc_mini-guide) | [Scripts](#) | [GVARs](#) | [Holodisks](#) | [Art & FRMs](#)
 
-# FISSION Proto Modding Mini-Guide: NPC Creation  
+# FISSION Proto Modding Mini-Guide
 > Add a Custom Critter (NPC, Creature, or Enemy)
 
 This guide assumes you have a working mod folder (e.g., `mods/mod_mytown/`). You’ll add a new NPC that can be placed on maps, fight, talk, or follow the player.
