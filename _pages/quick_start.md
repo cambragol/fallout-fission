@@ -1,7 +1,8 @@
 ---
-layout: page
+layout: modpage
 title: Quick Start OFF
 include_in_header: false
+include_in_mod_header: true
 include_in_footer: false
 ---
 
