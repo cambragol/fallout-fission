@@ -30,7 +30,7 @@ This name goes in **all** your filenames. It will be used to generate unique, st
 2. **Open Mapper.exe** (original Fallout 2 location).
 3. **Create a new map** or use a simple test map.
 4. **Save it** with a name **8 characters or less** (e.g., `mytown1.map`).  
-   ⚠︝ **Critical**: Map names longer than 8 characters will fail to load.
+   ! **Critical**: Map names longer than 8 characters will fail to load.
 5. **Create a mod folder** inside `mods/` called `mod_mytown` (or `mod_mytown.dat` if you prefer a single archive).
 6. **Export the `.map` file** to:  
    `mods/mod_mytown/data/MAPS/mytown1.map`  
@@ -87,7 +87,7 @@ music = fs_grand # Optional: music track name
 {1500}{}{My Town}
 ```
 
-⚠︝ **Important**: Each map uses **three consecutive IDs** (elevations 0,1,2).  
+! **Important**: Each map uses **three consecutive IDs** (elevations 0,1,2).  
 If you add a second map, its elevations start at `{3}{}{...}`, `{4}{}{...}`, `{5}{}{...}`.
 
 #### File 4: `mods/mod_mytown/text/english/game/worldmap_mytown.msg`
@@ -213,7 +213,7 @@ Once your basic location mod is working, expand it with these additional feature
 | **Quests** | [Quest Mini‑Guide](https://cambragol.github.io/fallout-fission/quest_mini-guide) | Add Pip‑Boy tracked quests to your location |
 | **Global Variables (GVARs)** | [Using GVARs](#) | Manage persistent flags and quest states |
 | **Scripts** | [Scripting Guide](#) | Add custom behavior with `.int` scripts |
-| **Proto Items** | [Item Creation](https://cambragol.github.io/fallout-fission/item_mini-guide) | Create new weapons, armor, or misc items |
-| **Proto Critters** | [NPC Creation](https://cambragol.github.io/fallout-fission/npc_mini-guide) | Design custom NPCs with unique stats and looks |
+| **Proto Items** | [Item Mini-Guide](https://cambragol.github.io/fallout-fission/item_mini-guide) | Create new weapons, armor, or misc items |
+| **Proto Critters** | [NPC Mini-Guide](https://cambragol.github.io/fallout-fission/npc_mini-guide) | Design custom NPCs with unique stats and looks |
 | **Holodisks** | [Holodisk Guide](#) | Add readable text entries to the Pip‑Boy |
 | **Art & FRMs** | [Art Guide](#) | Import custom interface graphics and sprites |
