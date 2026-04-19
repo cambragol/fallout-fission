@@ -5,6 +5,8 @@ include_in_header: false
 include_in_footer: false
 ---
 
+**Jump to:** [Quests](https://cambragol.github.io/fallout-fission/quest_mini-guide) | [Proto Items](https://cambragol.github.io/fallout-fission/item_mini-guide) | [Proto Critters](https://cambragol.github.io/fallout-fission/npc_mini-guide) | [Scripts](#) | [GVARs](#) | [Holodisks](#) | [Art & FRMs](#)
+
 # FISSION Proto Modding Mini-Guide: NPC Creation  
 > Add a Custom Critter (NPC, Creature, or Enemy)
 
