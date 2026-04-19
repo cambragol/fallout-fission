@@ -1,5 +1,14 @@
+---
+layout: page
+title: Holodisk Mini-guide
+include_in_header: false
+include_in_footer: false
+---
+
+**Jump to:** [Quick Start](https://cambragol.github.io/fallout-fission/quick_start) |[Quests](https://cambragol.github.io/fallout-fission/quest_mini-guide) | [Items](https://cambragol.github.io/fallout-fission/item_mini-guide) | [Critters](https://cambragol.github.io/fallout-fission/npc_mini-guide) | [Scripts](#) | [GVARs](#) | [Holodisks](https://cambragol.github.io/fallout-fission/holodisk_mini-guide) | [Art & FRMs](#)
+
 # FISSION Holodisk Mini-Guide  
-## Add Readable Text Entries to the Pip‑Boy
+> Add Readable Holodisks to the Pip‑Boy
 
 This guide assumes you have a working mod folder (e.g., `mods/mod_mytown/`). You’ll add one or more holodisks that appear in the Pip‑Boy’s “DATA” section.
 

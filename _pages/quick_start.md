@@ -6,7 +6,7 @@ include_in_mod_header: true
 include_in_footer: false
 ---
 
-**Jump to:** [Quick Start](https://cambragol.github.io/fallout-fission/quick_start) |[Quests](https://cambragol.github.io/fallout-fission/quest_mini-guide) | [Items](https://cambragol.github.io/fallout-fission/item_mini-guide) | [Critters](https://cambragol.github.io/fallout-fission/npc_mini-guide) | [Scripts](#) | [GVARs](#) | [Holodisks](#) | [Art & FRMs](#)
+**Jump to:** [Quick Start](https://cambragol.github.io/fallout-fission/quick_start) |[Quests](https://cambragol.github.io/fallout-fission/quest_mini-guide) | [Items](https://cambragol.github.io/fallout-fission/item_mini-guide) | [Critters](https://cambragol.github.io/fallout-fission/npc_mini-guide) | [Scripts](#) | [GVARs](#) | [Holodisks](https://cambragol.github.io/fallout-fission/holodisk_mini-guide) | [Art & FRMs](#)
 
 # Fallout FISSION Modding: Quick Start Guide  
 > Get Your First Mod Running in About 10 Minutes
