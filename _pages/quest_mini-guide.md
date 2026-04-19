@@ -10,11 +10,12 @@ include_in_footer: false
 # FISSION Quest Modding Mini-Guide  
 > Add a Quest to Your Existing Location Mod
 
-This guide assumes you have a working location mod (e.g., `mytown` from the Quick Start Guide). You'll add a simple quest that appears in the Pip‑Boy.
+This guide assumes you have a working mod folder (e.g., `mods/mod_mytown.dat/` from the Quick Start Guide). You'll add a simple quest that appears in the Pip‑Boy.
 
 ## 1. What You Need
 
-Your existing mod folder: `mods/mod_mytown/` (or `.dat`).  
+Your existing mod folder: `mods/mod_mytown.dat/`. (a folder for development, compress into actual .dat for release)
+
 You will create **two new files**:
 
 - `data/quests_mytown.txt` – defines quest metadata
@@ -138,7 +139,7 @@ Example script snippet:
 
 ```
 // Start the quest when player enters a certain area
-op_set_quest(5000, 1);
+set_global_var(5000, 1);
 ```
 
 ---

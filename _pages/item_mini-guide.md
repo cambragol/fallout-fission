@@ -10,13 +10,14 @@ include_in_footer: false
 # FISSION Proto Modding Mini-Guide
 > Add a Custom Weapon, Armor, or Misc Item
 
-This guide assumes you have a working mod folder (e.g., `mods/mod_mytown/`). You’ll add a new item that can be placed in the world, given to the player, or used in scripts.
+This guide assumes you have a working mod folder (e.g., `mods/mod_mytown.dat/` from the Quick Start Guide). You’ll add a new item that can be placed in the world, given to the player, or used in scripts.
 
 ---
 
 ## 1. What You Need
 
-Your existing mod folder: `mods/mod_mytown/` (or `.dat`).  
+Your existing mod folder: `mods/mod_mytown.dat/`. (a folder for development, compress into actual .dat for release)
+
 You will create **two new files** for your item:
 
 - `proto/items/items_mytown.lst` – lists your custom item file(s)
