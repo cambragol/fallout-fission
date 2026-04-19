@@ -22,7 +22,7 @@ You will create **two new files** for your item:
 - `proto/items/items_mytown.lst` – lists your custom item file(s)
 - `text/english/game/pro_item_mytown.msg` – provides name and description
 
-Plus the actual **`.pro` file** (binary prototype) – you can export it from the **Mapper** or copy and modify an existing one.
+Plus the actual **`.pro` file**  – you can export it from the **Mapper** or copy and modify an existing one.
 
 ---
 
@@ -50,15 +50,13 @@ myweapon.pro fid=120 inventory_fid=250
 | `inventory_fid` | `250` | Replace the inventory icon FID |
 | `script` | `42` | Override script index (1‑based, as in `scripts.lst`) |
 
-> **Note:** For items, the `script` override is rarely used – most item behavior is handled by the prototype itself.
-
 ---
 
 ## 3. Create the Message File
 
 **File:** `mods/mod_mytown/text/english/game/pro_item_mytown.msg`
 
-Each item gets **two consecutive entries**: name then description.
+Each item gets **two consecutive entries**: name and description.
 
 ```
 {0}{}{Laser Sword}
@@ -94,7 +92,7 @@ mods/mod_mytown/
 
 ## 5. Test Your Item
 
-1. Run the game once (or reload if already running).
+1. Run the game once.
 2. Check `data/lists/proto_list.txt` – your item should appear under “ITEM MOD PROTOS”.
 3. Find the generated PID (e.g., `16843034`). You can now use it in scripts:
 
