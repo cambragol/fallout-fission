@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Quick Start
-include_in_header: false
+include_in_header: true
 include_in_mod_header: true
 include_in_footer: false
 ---
