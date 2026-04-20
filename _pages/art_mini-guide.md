@@ -1,8 +1,7 @@
 ---
 layout: page
-title: Mod
-include_in_header: true
-include_in_mod_header: true
+title: Art Mini-guide
+include_in_header: false
 include_in_footer: false
 ---
 
