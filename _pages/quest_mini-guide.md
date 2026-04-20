@@ -12,6 +12,8 @@ include_in_footer: false
 
 This guide assumes you have a working mod folder (e.g., `mods/mod_mytown.dat/` from the Quick Start Guide). You'll add a simple quest that appears in the Pip‑Boy.
 
+---
+
 ## 1. What You Need
 
 Your existing mod folder: `mods/mod_mytown.dat/`. (a folder for development, compress into actual .dat for release)
