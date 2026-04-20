@@ -108,6 +108,7 @@ create_object(npc_pid, tile, elevation);
 ---
 
 ## 6. Important Notes
+
 PID generation is stable – the same mod name + proto name always produce the same PID. You can safely hardcode the PID from proto_list.txt in your scripts.
 
 The PID inside the .pro file is ignored – do not worry about what number it shows.
