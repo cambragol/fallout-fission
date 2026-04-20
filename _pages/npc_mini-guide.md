@@ -129,3 +129,9 @@ AI packets – Standard AI packets are defined in ai.txt (vanilla: 0 = none, 1 =
 | “Hash collision” popup | Another mod uses the same PID. Change your mod name or rename the proto file. |
 | Art doesn’t show | Override `fid` to a valid FRM index, or make sure the art file exists. |
 | NPC doesn’t fight | Check the `ai` override or the AI packet set in the `.pro` file. |
+
+---
+
+## 8. What's Next?
+
+Once your custom NPC is working, give it a unique combat personality with the [AI Mini‑Guide](https://cambragol.github.io/fallout-fission/ai_mini-guide). You can define aggression, weapon preferences, taunts, and even disposition variants (coward, defensive, aggressive, berserk) that respond to the `ai_set_disposition` script command.
