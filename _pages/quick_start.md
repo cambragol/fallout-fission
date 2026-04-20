@@ -6,7 +6,9 @@ include_in_mod_header: true
 include_in_footer: false
 ---
 
-**Jump to:** [Quick Start](https://cambragol.github.io/fallout-fission/quick_start) |[Quests](https://cambragol.github.io/fallout-fission/quest_mini-guide) | [Items](https://cambragol.github.io/fallout-fission/item_mini-guide) | [Critters](https://cambragol.github.io/fallout-fission/npc_mini-guide) | [Scripts](https://cambragol.github.io/fallout-fission/script_mini-guide) | [GVARs](https://cambragol.github.io/fallout-fission/GVAR_mini-guide) | [Holodisks](https://cambragol.github.io/fallout-fission/holodisk_mini-guide) | [Art & FRMs](https://cambragol.github.io/fallout-fission/art_mini-guide)
+**Jump to:** [Quick Start](https://cambragol.github.io/fallout-fission/quick_start) | [Quests](https://cambragol.github.io/fallout-fission/quest_mini-guide) | [Items](https://cambragol.github.io/fallout-fission/item_mini-guide) | [Critters](https://cambragol.github.io/fallout-fission/npc_mini-guide) | [Scripts](https://cambragol.github.io/fallout-fission/script_mini-guide) | [GVARs](https://cambragol.github.io/fallout-fission/GVAR_mini-guide) | [Holodisks](https://cambragol.github.io/fallout-fission/holodisk_mini-guide) | [Art & FRMs](https://cambragol.github.io/fallout-fission/art_mini-guide)
+
+**More:** [Death Endings](https://cambragol.github.io/fallout-fission/end_death_mini-guide) | [Endgame Slides](https://cambragol.github.io/fallout-fission/end_game_mini-guide) | [Combat AI](https://cambragol.github.io/fallout-fission/AI_mini-guide)
 
 # Fallout FISSION Modding: Quick Start Guide  
 > Get Your First Mod Running in About 10 Minutes
@@ -127,6 +129,65 @@ Fallout 2/
 - The `mods/` folder is created automatically the first time you run FISSION.
 - Your mod folder **must** start with `mod_` (e.g., `mod_mytown`).
 - It can be a normal folder (for easy editing) or a `.dat` archive (for distribution).
+
+---
+
+## 3.5 (Optional) Add Mod Metadata & an Icon
+
+FISSION can display your mod in an in‑game **Loaded Mods** mod list (accessible from the main menu FISSION icon). To give your mod a name, description, author credit, and an icon, create a simple configuration file.
+
+### Step A: Create `mods/mod_mytown/data/mod_mytown.cfg`
+
+```
+[mod_info]
+name = mytown
+description = Adds a new settlement called My Town with custom quests.
+author = YourName
+dependencies = anothermod, thirdmod
+```
+
+- **`name`** – Internal name of your mod. **Must be the same as your mod folder name without the `mod_` prefix** (e.g., `mytown`). No spaces or special characters. This is used to generate a stable ID for the mod icon.
+- **`description`** – Short description (shown when the mod is selected in the list).
+- **`author`** – Your name or alias.
+- **`dependencies`** – (Optional) Comma‑separated list of other mod **internal names** that your mod works with or requires. This is **informational only** – it tells players which other mods they should install. The engine does not enforce this list.
+
+> **How to actually check for another mod in your scripts:**  
+> Use the `art_exists` opcode with the other mod’s icon FID. The icon FID is generated from the mod’s internal name (the same as the `name` field above). For example, to check if `anothermod` is installed:
+> ```
+> variable fid;
+> fid := build_fid(OBJ_TYPE_INTERFACE, art_get_stable_index("anothermod"), 0, 0, 0);
+> if (art_exists(fid)) then
+>     // anothermod is present – enable cross‑mod features
+> endif
+> ```
+> This allows your mod to conditionally add content that relies on another mod’s assets.
+
+### Step B: Add the Icon to the Interface Art List
+
+Create an art list file for the interface category:
+
+**File:** `mods/mod_mytown/art/intrface/intrface_mytown.lst`
+
+```
+mytown.frm
+```
+
+Each line is the filename of an interface `.frm` file (one per line). The name must match the `name` field from your `.cfg` file.
+
+### Step C: Place the Icon File
+
+Put your custom icon `.frm` file in the same folder as the `.lst` file:
+
+```
+mods/mod_mytown/art/intrface/mytown.frm
+```
+
+- Recommended size: **140×116** pixels (same size as perk/trait/karma fallout boy images).
+- The icon appears next to your mod in the mod list.
+
+If you omit the icon, it will be blank.
+
+**That’s it!** Your mod will now appear with proper metadata and an icon in the mod list, making it easier for players to identify and manage.
 
 ---
 
