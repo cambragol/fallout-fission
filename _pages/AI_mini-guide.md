@@ -155,21 +155,30 @@ The engine will map these variants to the **base custom packet** ([MyGuard custo
 
 ## 5. How to Use Your AI Packet
 
-### In a Critter Prototype (`.pro` file)
+### In a Critter Prototype (`.pro` file) via `.lst` Override
 
-Set the `aiPacket` field to the **generated number** (found in `data/lists/ai_list.txt`). For mod packets, the number is between 4096 and 8191.
+Add an `ai=` override in your `critters_mytown.lst` file:
+
+```
+myguard.pro ai=4096
+```
+
+Where `4096` is the packet number from `data/lists/ai_list.txt`. This will set the AI packet for all instances of that critter.
 
 ### In a Script
 
 ```
 set_critter_ai_packet(critter_obj, 4096);
-Changing Disposition
-pascal
+```
+
+### Changing Disposition (in Script)
+
+```
 // disposition: -1=none, 0=custom, 1=coward, 2=defensive, 3=aggressive, 4=berserk
 ai_set_disposition(critter_obj, 3);
 ```
 
-This will switch the critter to the aggressive variant of its base packet (if it exists).
+This will switch the critter to the aggressive variant of its base packet (if you created one with the same base name).
 
 ---
 
