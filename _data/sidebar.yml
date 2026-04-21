@@ -1,18 +1,33 @@
-- title: Getting Started
-  url: /docs/getting-started/
+sidebar:
+  - title: Quick Start
+    url: /docs/quick-start
 
-- title: Modding Guide
-  children:
-    - title: Quick Start
-      url: /docs/modding/quick-start/
-    - title: Maps
-      url: /docs/modding/maps/
-    - title: Scripts
-      url: /docs/modding/scripts/
+  - title: Quests
+    url: /docs/quests
 
-- title: Reference
-  children:
-    - title: File Formats
-      url: /docs/reference/files/
-    - title: IDs
-      url: /docs/reference/ids/
+  - title: Items
+    url: /docs/items
+
+  - title: Critters
+    url: /docs/critters
+
+  - title: Scripts
+    url: /docs/scripts
+
+  - title: GVARs
+    url: /docs/gvars
+
+  - title: Holodisks
+    url: /docs/holodisks
+
+  - title: Art & FRMs
+    url: /docs/art-frms
+
+  - title: Death Endings
+    url: /docs/death-endings
+
+  - title: Endgame Slides
+    url: /docs/endgame-slides
+
+  - title: Combat AI
+    url: /docs/combat-ai
