@@ -11,10 +11,7 @@
     <div class="headerBackground subPageHeaderBackground">
         <div class="container subPageContainer">
         {% include mod_header.html %}
-            <aside class="sidebar">
-                {% include sidebar.html %}
-            </aside>
-
+            {% include sidebar.html %}
             <article class="page markdown-body">
                 {{ content }}
             </article>
