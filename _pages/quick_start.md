@@ -43,10 +43,10 @@ This name goes in **all** your filenames. It will be used to generate unique, st
 *(Defines your new location on the world map)*
 ```
 [Area 0]
-area_name = MYTOWN # UPPERCASE, globally unique name
-world_pos = 400,300 # Where it appears on world map (x,y)
-start_state = on # on, off
-size = medium # small, medium, large (lowercase)
+area_name = MYTOWN ; UPPERCASE, globally unique name
+world_pos = 400,300 ; Where it appears on world map (x,y)
+start_state = on ; on, off
+size = medium ; small, medium, large (lowercase)
 entrance_0 = on,100,200,MYMAP,-1,-1,0
 ```
 
@@ -65,11 +65,11 @@ entrance_0 = on,100,200,MYMAP,-1,-1,0
 *(Defines your actual game map)*
 ```
 [Map 0]
-lookup_name = MYMAP # Matches entrance_0 above
-map_name = mytown1 # Must match .map filename (no extension)
-saved = yes # yes or no (lowercase)
-automap = yes # yes or no (lowercase)
-music = fs_grand # Optional: music track name
+lookup_name = MYMAP ; Matches entrance_0 above
+map_name = mytown1 ; Must match .map filename *and* interal .map name
+saved = yes ; yes or no (lowercase)
+automap = yes ; yes or no (lowercase)
+music = fs_grand ; Optional: music track name
 ```
 
 **Connection:** `entrance_0` in `city_mytown.txt` references `lookup_name` in `maps_mytown.txt`.
