@@ -1,14 +1,16 @@
 <aside class="sidebar">
     <nav class="sidebar-nav">
         <ul>
-            {% for item in site.data.sidebar %}
-                <li>
-                    <a href="{{ item.url | relative_url }}"
-                       class="{% if page.url == item.url %}active{% endif %}">
-                        {{ item.title }}
-                    </a>
-                </li>
-            {% endfor %}
+            <li><a href="/quests/">Quests</a></li>
+            <li><a href="/items/">Items</a></li>
+            <li><a href="/critters/">Critters</a></li>
+            <li><a href="/scripts/">Scripts</a></li>
+            <li><a href="/gvars/">GVARs</a></li>
+            <li><a href="/holodisks/">Holodisks</a></li>
+            <li><a href="/art-frms/">Art & FRMs</a></li>
+            <li><a href="/death-endings/">Death Endings</a></li>
+            <li><a href="/endgame-slides/">Endgame Slides</a></li>
+            <li><a href="/combat-ai/">Combat AI</a></li>
         </ul>
     </nav>
 </aside>
