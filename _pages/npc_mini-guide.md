@@ -5,10 +5,6 @@ include_in_header: false
 include_in_footer: false
 ---
 
-**Jump to:** [Quick Start](https://cambragol.github.io/fallout-fission/quick_start) | [Quests](https://cambragol.github.io/fallout-fission/quest_mini-guide) | [Items](https://cambragol.github.io/fallout-fission/item_mini-guide) | [Critters](https://cambragol.github.io/fallout-fission/npc_mini-guide) | [Scripts](https://cambragol.github.io/fallout-fission/script_mini-guide) | [GVARs](https://cambragol.github.io/fallout-fission/GVAR_mini-guide) | [Holodisks](https://cambragol.github.io/fallout-fission/holodisk_mini-guide) | [Art & FRMs](https://cambragol.github.io/fallout-fission/art_mini-guide)
-
-**More:** [Death Endings](https://cambragol.github.io/fallout-fission/end_death_mini-guide) | [Endgame Slides](https://cambragol.github.io/fallout-fission/end_game_mini-guide) | [Combat AI](https://cambragol.github.io/fallout-fission/AI_mini-guide)
-
 # FISSION Critter Modding Mini-Guide
 > Add a Custom Critter (NPC, Creature, or Enemy)
 
