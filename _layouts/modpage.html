@@ -11,9 +11,12 @@
     <div class="headerBackground subPageHeaderBackground">
         <div class="container subPageContainer">
         {% include mod_header.html %}
-            <article class="page markdown-body">
-                {{ content }}
-            </article>
+            <div class="pageLayout">
+                {% include sidebar.html %}
+                <article class="page markdown-body">
+                    {{ content }}
+                </article>
+            </div>
         </div>
         {% include footer.html %}
         {% include appstoreimages.html %}
