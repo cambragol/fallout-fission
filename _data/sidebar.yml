@@ -1,0 +1,18 @@
+- title: Getting Started
+  url: /docs/getting-started/
+
+- title: Modding Guide
+  children:
+    - title: Quick Start
+      url: /docs/modding/quick-start/
+    - title: Maps
+      url: /docs/modding/maps/
+    - title: Scripts
+      url: /docs/modding/scripts/
+
+- title: Reference
+  children:
+    - title: File Formats
+      url: /docs/reference/files/
+    - title: IDs
+      url: /docs/reference/ids/
