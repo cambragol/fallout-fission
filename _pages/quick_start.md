@@ -270,9 +270,12 @@ Once your basic location mod is working, expand it with these additional feature
 | Topic | Guide | Description |
 |-------|-------|-------------|
 | **Quests** | [Quest Mini‑Guide](https://cambragol.github.io/fallout-fission/quest_mini-guide) | Add Pip‑Boy tracked quests to your location |
-| **Global Variables (GVARs)** | [Using GVARs](#) | Manage persistent flags and quest states |
-| **Scripts** | Scripting Guide | Add custom behavior with `.int` scripts |
-| **Proto Items** | [Item Mini-Guide](https://cambragol.github.io/fallout-fission/item_mini-guide) | Create new weapons, armor, or misc items |
-| **Proto Critters** | [NPC Mini-Guide](https://cambragol.github.io/fallout-fission/npc_mini-guide) | Design custom NPCs with unique stats and looks |
-| **Holodisks** | Holodisk Guide | Add readable text entries to the Pip‑Boy |
-| **Art & FRMs** | Art Guide | Import custom interface graphics and sprites |
+| **Holodisks** | [Holodisk Mini‑Guide](https://cambragol.github.io/fallout-fission/holodisk_mini-guide) | Add readable text entries to the Pip‑Boy |
+| **Items** | [Item Mini‑Guide](https://cambragol.github.io/fallout-fission/item_mini-guide) | Create new weapons, armor, or misc items |
+| **Critters** | [NPC Mini‑Guide](https://cambragol.github.io/fallout-fission/npc_mini-guide) | Design custom NPCs with unique stats and looks |
+| **Combat AI** | [AI Mini‑Guide](https://cambragol.github.io/fallout-fission/ai_mini-guide) | Define aggression, weapon preferences, and taunts |
+| **Scripts** | [Script Mini‑Guide](https://cambragol.github.io/fallout-fission/script_mini-guide) | Add custom behavior with `.int` scripts |
+| **GVARs** | [GVAR Mini‑Guide](https://cambragol.github.io/fallout-fission/gvar_mini-guide) | Manage persistent flags and quest states |
+| **Art & FRMs** | [Art Mini‑Guide](https://cambragol.github.io/fallout-fission/art_mini-guide) | Import custom graphics (items, critters, interface) |
+| **Death Endings** | [Death Endings Mini‑Guide](https://cambragol.github.io/fallout-fission/end_death_mini-guide) | Add custom narrations when the player dies |
+| **Endgame Slides** | [Endgame Slides Mini‑Guide](https://cambragol.github.io/fallout-fission/end_game_mini-guide) | Create custom ending slideshows |
