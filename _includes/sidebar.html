@@ -1,20 +1,12 @@
 <aside class="sidebar">
-    <nav>
+    <nav class="sidebar-nav">
         <ul>
-            {% for item in site.data.sidebar %}
+            {% for item in site.sidebar %}
                 <li>
-                    <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
-
-                    {% if item.children %}
-                        <ul>
-                            {% for child in item.children %}
-                                <li>
-                                    <a href="{{ child.url | relative_url }}">{{ child.title }}</a>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-
+                    <a href="{{ item.url | relative_url }}"
+                       class="{% if page.url == item.url %}active{% endif %}">
+                        {{ item.title }}
+                    </a>
                 </li>
             {% endfor %}
         </ul>
