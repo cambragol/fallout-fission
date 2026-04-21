@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: modpage
 title: GVAR Mini-guide
 include_in_header: false
 include_in_footer: false

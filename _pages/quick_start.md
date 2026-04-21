@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: modpage
 title: Mod
 include_in_header: true
 include_in_mod_header: true
