@@ -2412,3 +2412,94 @@ a.pill
 ul+.pill,
 ol+.pill		{ margin-left: 2em; }
 
+/* =====================================================
+   SIDEBAR (FINAL — CLEAN + SCOPED)
+   ===================================================== */
+
+/* Layout placement (grid) */
+.sidebar {
+    grid-column: 1 / 3;
+    margin-top: 30px;
+    padding-right: 20px;
+
+    display: block;
+    max-width: 220px;
+}
+
+/* Ensure main content aligns beside it */
+.page {
+    grid-column: 3 / 11;
+}
+
+
+/* =====================================================
+   SIDEBAR NAV (DESKTOP — VERTICAL)
+   ===================================================== */
+
+.sidebar-nav ul {
+    display: block;              /* override global nav flex */
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.sidebar-nav li {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.sidebar-nav a {
+    display: block;
+    color: #c4cbcd;
+    text-decoration: none;
+    line-height: 1.4;
+}
+
+.sidebar-nav a:hover {
+    color: #fcdc30;
+}
+
+.sidebar-nav a.active {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+
+/* =====================================================
+   RESPONSIVE (≤1150px — HORIZONTAL BAR)
+   ===================================================== */
+
+@media only screen and (max-width: 1150px) {
+
+    .sidebar {
+        grid-column: 1 / -1;
+        max-width: 100%;
+        margin-bottom: 20px;
+        padding-right: 0;
+    }
+
+    /* Turn sidebar into horizontal nav */
+    .sidebar-nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+
+        /* optional: scroll instead of wrap */
+        /* overflow-x: auto;
+           white-space: nowrap; */
+    }
+
+    .sidebar-nav li {
+        margin-bottom: 0;
+    }
+
+    .sidebar-nav a {
+        display: inline-block;
+        padding: 6px 10px;
+    }
+
+    /* Full-width content below */
+    .page {
+        grid-column: 1 / -1;
+    }
+}
