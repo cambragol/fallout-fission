@@ -1,7 +1,7 @@
 <aside class="sidebar">
     <nav class="sidebar-nav">
         <ul>
-            {% for item in site.sidebar %}
+            {% for item in site.data.sidebar %}
                 <li>
                     <a href="{{ item.url | relative_url }}"
                        class="{% if page.url == item.url %}active{% endif %}">
