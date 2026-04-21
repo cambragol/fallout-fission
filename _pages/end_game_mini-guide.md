@@ -27,8 +27,8 @@ Plus art (`.frm`) and voice‑over (`.acm` / `.wav`) files.
 ## 2. Create the Endgame Definition File
 
 **File:** `mods/mod_mytown/data/endgame_mytown.txt`
-Format: GVAR, Value, ArtNum, VoiceOverBase, Direction
 
+Format: GVAR, Value, ArtNum, VoiceOverBase, Direction
 ```
 79, 1, 999, nar_mytown_ending, 1
 ```

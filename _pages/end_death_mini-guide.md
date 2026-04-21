@@ -29,7 +29,6 @@ Plus optional art (`.frm`) and voice‑over (`.acm` / `.wav`) files.
 **File:** `mods/mod_mytown/data/enddeath_mytown.txt`
 
 Format: GVAR, Value, AreaKnown, AreaNotKnown, MinLevel, Percentage, VoiceOverBase
-
 ```
 79, 1, -1, -1, 0, 30, nar_mytown_death
 ```

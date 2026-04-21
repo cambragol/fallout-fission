@@ -26,8 +26,8 @@ You will create **two new files**:
 ## 2. Create the Quest Definition File
 
 **File:** `mods/mod_mytown/data/quests_mytown.txt`
-Format: location, description, gvar, displayThreshold, completedThreshold
 
+Format: location, description, gvar, displayThreshold, completedThreshold
 ```
 1500, 0, 79, 1, 2
 ```

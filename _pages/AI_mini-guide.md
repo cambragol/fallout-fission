@@ -171,8 +171,8 @@ set_critter_ai_packet(critter_obj, 4096);
 
 ### Changing Disposition (in Script)
 
-```
 // disposition: -1=none, 0=custom, 1=coward, 2=defensive, 3=aggressive, 4=berserk
+```
 ai_set_disposition(critter_obj, 3);
 ```
 

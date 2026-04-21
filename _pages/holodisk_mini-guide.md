@@ -27,8 +27,8 @@ You will create **two new files per holodisk**:
 
 **File:** `mods/mod_mytown/data/holodisk_mytown.txt`
 
-```
 Format: GVAR, BlockKey
+```
 79, mynote
 80, another_note
 ```

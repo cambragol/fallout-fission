@@ -28,8 +28,8 @@ Global variables are integer values stored in the save file. They are used for:
 ## 2. Create Your Mod GVAR File
 
 **File:** `mods/mod_mytown/data/gvar_mytown.txt`
-Format: SYMBOL = value (or SYMBOL := value)
 
+Format: SYMBOL = value (or SYMBOL := value)
 ```
 MY_QUEST_STATE = 0
 TOWN_REP_MYTOWN = 0
