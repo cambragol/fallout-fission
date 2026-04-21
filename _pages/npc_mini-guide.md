@@ -133,4 +133,4 @@ AI packets – Standard AI packets are defined in ai.txt (vanilla: 0 = none, 1 =
 
 ## 8. What's Next?
 
-Once your custom NPC is working, give it a unique combat personality with the [AI Mini‑Guide](https://cambragol.github.io/fallout-fission/ai_mini-guide). You can define aggression, weapon preferences, taunts, and even disposition variants (coward, defensive, aggressive, berserk) that respond to the `ai_set_disposition` script command.
+Once your custom NPC is working, give it a unique combat personality with the [AI Mini‑Guide](https://cambragol.github.io/fallout-fission/AI_mini-guide). You can define aggression, weapon preferences, taunts, and even disposition variants (coward, defensive, aggressive, berserk) that respond to the `ai_set_disposition` script command.
