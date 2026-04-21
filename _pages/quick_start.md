@@ -3,7 +3,7 @@ layout: modpage
 title: Mod
 include_in_header: true
 include_in_mod_header: true
-include_in_footer: false
+include_in_footer: true
 ---
 
 # Fallout FISSION Modding: Quick Start Guide  
