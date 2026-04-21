@@ -2503,3 +2503,13 @@ ol+.pill		{ margin-left: 2em; }
         grid-column: 1 / -1;
     }
 }
+.sidebar-nav a.active {
+    color: #fcdc30;
+    background: rgba(0, 0, 0, 0.25);
+    border-left: 3px solid #fcdc30;
+    padding-left: 1.2rem;
+}
+
+.sidebar-nav a {
+    transition: all 0.2s ease;
+}
