@@ -217,7 +217,7 @@ If you can walk around your map, your mod is working!
 
 If you want to skip manual file creation and see a working example, download the pre‑built template:
 
-**[Download `mod_mytown.dat.zip`](https://cambragol.github.io/fallout-fission/assets/mod_mytown.dat.zip)**  
+**Download** <a class="pill" href="https://cambragol.github.io/fallout-fission/assets/mod_mytown.dat.zip">mod_mytown.dat.zip</a>
 
 Inside the zip you’ll find a folder `mod_mytown.dat/` containing the complete file structure from this guide:
 
