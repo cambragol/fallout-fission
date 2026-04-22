@@ -14,7 +14,7 @@ This guide assumes you have a working mod folder (e.g., `mods/mod_mytown.dat/` f
 
 ## 1. What Are Global Scripts?
 
-Global scripts are special `.int` files named `gl_*.int` (e.g., `gl_mymod.int`) placed in the `scripts/` folder. They are **loaded once** when the game starts and can execute code:
+Global scripts are special `.int` files named `gl_*.int` (e.g., `gl_mytown.int`) placed in the `scripts/` folder. They are **loaded once** when the game starts and can execute code:
 
 - On every **map update** (every 10 seconds) and map enter/exit.
 - On every **input tick** (keyboard/mouse events).
@@ -27,10 +27,11 @@ They are perfect for **modifying existing content** without editing original map
 
 ## 2. What You Need
 
-Your existing mod folder: `mods/mod_mytown/` (or `.dat`).  
+Your existing mod folder: `mods/mod_mytown.dat/`. (a folder for development, compress into actual .dat for release)
+
 You will create **one new file**:
 
-- `scripts/gl_mymown.int` – the compiled global script (source `.ssl` file).
+- `scripts/gl_mytown.int` – the compiled global script (source `.ssl` file).
 
 No `.lst` file is required – any file starting with `gl` in the `scripts/` folder is automatically loaded.
 
@@ -38,7 +39,7 @@ No `.lst` file is required – any file starting with `gl` in the `scripts/` fol
 
 ## 3. Basic Global Script Structure
 
-Create a file `gl_mymod.ssl` (source) and compile it with `ssc.exe`.
+Create a file `gl_mytown.ssl` (source) and compile it with `ScriptEditor.exe`.
 
 ```
 // gl_mymod.ssl
@@ -163,7 +164,7 @@ Explanation:
 
 1. Save your `.ssl` source file.
 2. Compile with `ssc.exe` to produce a `.int` file.
-3. Name the `.int` file **starting with `gl_`** (e.g., `gl_mycompanion.int`).
+3. Name the `.int` file **starting with `gl`** (e.g., `gl_mycompanion.int`).
 4. Place it in your mod’s `scripts/` folder:
 
 ```
@@ -184,7 +185,7 @@ No `.lst` entry is needed – the game automatically loads all `gl*.int` files.
 - Save, reload, and re‑enter – the NPC should **not** spawn again (thanks to the GVAR check).
 
 If the script doesn’t run, check:
-- The filename starts with `gl_`.
+- The filename starts with `gl`.
 - The script compiled without errors.
 - Your global variable is set to 0 before testing.
 
