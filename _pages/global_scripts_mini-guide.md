@@ -1,5 +1,12 @@
+---
+layout: modpage
+title: Global Scripts Mini-guide
+include_in_header: false
+include_in_footer: false
+---
+
 # FISSION Global Scripts Mini‑Guide  
-## Add Persistent, Map‑Independent Behaviour (Spawn NPCs, Global Hotkeys, Worldmap Events)
+> Add Persistent, Map‑Independent Behaviour (Spawn NPCs, Global Hotkeys, Worldmap Events)
 
 This guide assumes you have a working mod folder (e.g., `mods/mod_mytown.dat/` from the Quick Start Guide). You’ll add **global scripts** that run automatically, independent of any specific map or object.
 
