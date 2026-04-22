@@ -36,6 +36,8 @@ This name goes in **all** your filenames. It will be used to generate unique, st
    `mods/mod_mytown/data/MAPS/mytown1.map`  
    *(The `MAPS` folder must be uppercase.)*
 
+> *Note:* If your map uses map‑level global variables (e.g., for quest flags), the Mapper will create a .GAM file with the same base name as your .map file. Place it alongside the .map file in data/MAPS/. This is not required for the basic example.
+
 ### Step 2: Create These 4 Essential Files
 
 #### File 1: `mods/mod_mytown/data/city_mytown.txt`
@@ -208,6 +210,28 @@ If both appear, your mod loaded successfully!
 6. The location name should show “Town Gate” (elevation 0).
 
 If you can walk around your map, your mod is working!
+
+---
+
+## 4.5 Example Mod (Download)
+
+If you want to skip manual file creation and see a working example, download the pre‑built template:
+
+**[Download `mod_mytown.dat.zip`](https://cambragol.github.io/fallout-fission/assets/mod_mytown.dat.zip)**  
+
+Inside the zip you’ll find a folder `mod_mytown.dat/` containing the complete file structure from this guide:
+
+- `data/city_mytown.txt`
+- `data/maps_mytown.txt`
+- `data/MAPS/mytown1.map`
+- `text/english/game/map_mytown.msg`
+- `text/english/game/worldmap_mytown.msg`
+
+**How to use it:**  
+1. Extract the zip file into your `mods/` folder (so you have `mods/mod_mytown.dat/`).  
+2. Run the game – the new location “My Town” will appear on the world map at coordinates 400,300.  
+
+You can edit the files inside to learn how each part works or use them as a starting point for your own mod.
 
 ---
 
