@@ -112,6 +112,7 @@ Vanilla GVARs – You cannot override vanilla GVAR indices; they remain in the l
 ---
 
 ## 8. Quick Troubleshooting
+
 | Problem | Likely Fix |
 |---------|-------------|
 | GVAR not in `gvars_list.txt` | Filename must be `gvar_<modname>.txt`. Check the `data/` folder. |
