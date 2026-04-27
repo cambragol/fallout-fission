@@ -150,15 +150,21 @@ dependencies = anothermod, thirdmod
 - **`dependencies`** – (Optional) Comma‑separated list of other mod **internal names** that your mod works with or requires. This is **informational only** – it tells players which other mods they should install. The engine does not enforce this list.
 
 > **How to actually check for another mod in your scripts:**  
-> Use the `art_exists` opcode with the other mod’s icon FID. The icon FID is generated from the mod’s internal name (the same as the `name` field above). For example, to check if `anothermod` is installed:
+> Every mod that provides an icon also gets a **stable art index** (the same index used for the icon). This index is written to `data/lists/mod_ids_list.txt` when the game runs.  
+> To check if another mod (e.g., `anothermod`) is installed, use its icon’s art index in your script:
+> 
 > ```
-> variable fid;
-> fid := build_fid(OBJ_TYPE_INTERFACE, art_get_stable_index("anothermod"), 0, 0, 0);
-> if (art_exists(fid)) then
->     // anothermod is present – enable cross‑mod features
-> endif
+> #define OBJ_TYPE_INVEN 7
+>
+> procedure start begin
+>    if (sfall_func2("art_exists_by_index", OBJ_TYPE_INVEN, 5628)) then
+>        display_msg("Art found!");
+>    else
+>        display_msg("Art not found.");
+>    end
+> end
 > ```
-> This allows your mod to conditionally add content that relies on another mod’s assets.
+> Replace `5628` with the actual ID from `mod_ids_list.txt`. This allows you to conditionally enable cross‑mod features.
 
 ### Step B: Add the Icon to the Interface Art List
 
@@ -182,10 +188,11 @@ mods/mod_mytown/art/intrface/mytown.frm
 
 - Recommended size: **140×116** pixels (same size as perk/trait/karma fallout boy images).
 - The icon appears next to your mod in the mod list.
+- **This icon’s art index is what other mods will use to detect your mod’s presence.**
 
-If you omit the icon, it will be blank.
+If you omit the icon, the mod list will show a blank space, and other mods cannot reliably detect your mod via `art_exists_by_index`.
 
-**That’s it!** Your mod will now appear with proper metadata and an icon in the mod list, making it easier for players to identify and manage.
+**That’s it!** Your mod will now appear with proper metadata and an icon in the mod list, making it easier for players to identify and manage – and for other mods to conditionally integrate with yours.
 
 ---
 
