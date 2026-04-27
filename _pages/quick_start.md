@@ -138,12 +138,14 @@ FISSION can display your mod in an in‑game **Loaded Mods** mod list (accessibl
 
 ```
 [mod_info]
+display_name = The Quick Start Town
 name = mytown
 description = Adds a new settlement called My Town with custom quests.
 author = YourName
 dependencies = anothermod, thirdmod
 ```
 
+- **`display_name`** - User friendly name of your mod. Used only in the Loaded Mods window.
 - **`name`** – Internal name of your mod. **Must be the same as your mod folder name without the `mod_` prefix** (e.g., `mytown`). No spaces or special characters. This is used to generate a stable ID for the mod icon.
 - **`description`** – Short description (shown when the mod is selected in the list).
 - **`author`** – Your name or alias.
