@@ -734,7 +734,7 @@ nav>ul li a:hover,nav>ul li a:active {
 
 /* Hover micro slide */
 .presentation:not(.right) .presentation-media:hover img {
-    transform: translateX(-15%, -12%);
+    transform: translate(-15%, -12%);
 }
 .presentation.right .presentation-media:hover img {
     transform: translate(15%, -12%);
