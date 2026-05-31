@@ -123,18 +123,20 @@ $(function() {
 });
 </script>
 <script>
-const demo = document.getElementById("widescreen-demo");
-const images = demo.querySelectorAll("img");
+document.querySelectorAll(".feature-image").forEach(feature => {
 
-let current = 0;
+    const images = feature.querySelectorAll("img");
+    let current = 0;
 
-demo.addEventListener("click", () => {
+    feature.addEventListener("click", () => {
 
-    images[current].classList.remove("active");
+        images[current].classList.remove("active");
 
-    current = (current + 1) % images.length;
+        current = (current + 1) % images.length;
 
-    images[current].classList.add("active");
+        images[current].classList.add("active");
+
+    });
 
 });
 </script>
