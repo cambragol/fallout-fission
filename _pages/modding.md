@@ -1,8 +1,10 @@
 ---
-layout: page
-title: Modding System OFF
+title: page
+permalink: quick-start
 include_in_header: false
 include_in_footer: false
+redirect_from:
+  - modding
 ---
 
 Fallout FISSION Modding System: Complete Implementation Guide
