@@ -1,6 +1,6 @@
 ---
 title: page
-permalink: moddinge
+permalink: modding
 include_in_header: false
 include_in_footer: false
 ---
