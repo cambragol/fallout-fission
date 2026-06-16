@@ -4,8 +4,6 @@ title: Mod
 include_in_header: true
 include_in_mod_header: true
 include_in_footer: true
-redirect_from:
-  - modding
 ---
 
 # Fallout FISSION Modding: Quick Start Guide  
