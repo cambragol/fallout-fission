@@ -43,11 +43,15 @@ After the filename, you can add `key=value` pairs to override certain fields:
 myguard.pro fid=450 ai=3 script=12
 ```
 
-| Override | Example | Meaning |
-|----------|---------|---------|
-| `fid` | `450` | Replace the creature’s appearance (art frame index) |
-| `ai` | `3` | Override AI packet index (1-based, from `ai.txt` or `ai_mytown.txt`) |
-| `script` | `12` | Override script index (1-based, from `scripts.lst` or `scripts_mytown.lst`) |
+| Override | Example | Applies To | Meaning |
+|----------|---------|------------|---------|
+| `fid` | `450` | Critter (or Item) | Replace the creature’s base appearance (art frame index). For items, this changes the **world model** (ground sprite). |
+| `ai` | `3` | Critter | Override AI packet index (1‑based, from `ai.txt` or `ai_mytown.txt`). |
+| `script` | `12` | Critter/Item/Scenery | Override script index (1‑based, from `scripts.lst` or `scripts_mytown.lst`). |
+| `male_fid` | `23` | Armor only | Set the appearance frame index for **male** characters wearing this armor. *(New in this version)* |
+| `female_fid` | `24` | Armor only | Set the appearance frame index for **female** characters wearing this armor. *(New in this version)* |
+
+> **Important:** `male_fid` and `female_fid` **only apply to armor items** (`ITEM_TYPE_ARMOR`). If you are adding a custom armor, these overrides control how it looks when equipped on male/female critters. The values are raw art indices (e.g., from `art\critters\`), not full FIDs – the engine builds the correct FID automatically.
 
 > **Why overrides?** They let you reuse a base `.pro` file (e.g., a “human guard” template) but give it a unique look, AI, or behavior using mod assets. Currently the mapper.exe will not support assets in beyond the vanilla games base.
 
@@ -128,6 +132,7 @@ AI packets – Standard AI packets are defined in ai.txt (vanilla: 0 = none, 1 =
 | “Hash collision” popup | Another mod uses the same PID. Change your mod name or rename the proto file. |
 | Art doesn’t show | Override `fid` to a valid FRM index, or make sure the art file exists. |
 | NPC doesn’t fight | Check the `ai` override or the AI packet set in the `.pro` file. |
+| Armor appearance not updating on NPCs | This is a known engine limitation. The override works for inventory display and the player character; for NPCs, you need engine‑side changes (see above). |
 
 ---
 
