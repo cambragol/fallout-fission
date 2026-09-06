@@ -48,8 +48,8 @@ myguard.pro fid=450 ai=3 script=12
 | `fid` | `450` | Critter (or Item) | Replace the creature’s base appearance (art frame index). For items, this changes the **world model** (ground sprite). |
 | `ai` | `3` | Critter | Override AI packet index (1‑based, from `ai.txt` or `ai_mytown.txt`). |
 | `script` | `12` | Critter/Item/Scenery | Override script index (1‑based, from `scripts.lst` or `scripts_mytown.lst`). |
-| `male_fid` | `23` | Armor only | Set the appearance frame index for **male** characters wearing this armor. *(New in this version)* |
-| `female_fid` | `24` | Armor only | Set the appearance frame index for **female** characters wearing this armor. *(New in this version)* |
+| `male_fid` | `23` | Armor only | Set the appearance frame index for **male** characters wearing this armor. |
+| `female_fid` | `24` | Armor only | Set the appearance frame index for **female** characters wearing this armor. |
 
 > **Important:** `male_fid` and `female_fid` **only apply to armor items** (`ITEM_TYPE_ARMOR`). If you are adding a custom armor, these overrides control how it looks when equipped on male/female critters. The values are raw art indices (e.g., from `art\critters\`), not full FIDs – the engine builds the correct FID automatically.
 
@@ -111,15 +111,15 @@ create_object(npc_pid, tile, elevation);
 
 ## 6. Important Notes
 
-PID generation is stable – the same mod name + proto name always produce the same PID. You can safely hardcode the PID from proto_list.txt in your scripts.
+- **PID generation is stable** – the same mod name + proto name always produce the same PID. You can safely hardcode the PID from proto_list.txt in your scripts.
 
-The PID inside the .pro file is ignored – do not worry about what number it shows.
+- **PID Ignored** The PID inside the .pro file is ignored – do not worry about what number it shows.
 
-Hash collisions – if two different mods accidentally generate the same PID, a warning message box appears and the second critter is skipped. Rename your mod or proto to resolve.
+- **Hash collisions** – if two different mods accidentally generate the same PID, a warning message box appears and the second critter is skipped. Rename your mod or proto to resolve.
 
-Message IDs – each critter uses two consecutive IDs (name, description). The base ID is allocated per mod, so you never need to assign numbers manually.
+- **Message IDs** – each critter uses two consecutive IDs (name, description). The base ID is allocated per mod, so you never need to assign numbers manually.
 
-AI packets – Standard AI packets are defined in ai.txt (vanilla: 0 = none, 1 = coward, 2 = aggressive, etc.). You can also add custom AI packets via ai_mytown.txt.
+- **AI packets** – Standard AI packets are defined in ai.txt (vanilla: 0 = none, 1 = coward, 2 = aggressive, etc.). You can also add custom AI packets via ai_mytown.txt.
 
 ---
 
