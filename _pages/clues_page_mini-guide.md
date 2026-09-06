@@ -7,9 +7,9 @@ include_in_footer: false
 
 # FISSION Clues System Mini-Guide
 
-> Add Readable Articles, Images, and Cross?Links to the Pip?Boy
+> Add Readable Articles, Images, and Cross‑Links to the Pip‑Boy
 
-This guide assumes you have a working mod folder (e.g. `mods/mod_mytown.dat/` from the Quick Start Guide). You'll add articles that appear under the **CLUES** tab in the Pip?Boy.
+This guide assumes you have a working mod folder (e.g. `mods/mod_mytown.dat/` from the Quick Start Guide). You'll add articles that appear under the **CLUES** tab in the Pip‑Boy.
 
 ---
 
@@ -55,7 +55,7 @@ Your article content supports the following markup:
 | `*text*` | **Bold** text (rendered in a lighter green). |
 | `_text_` | Underlined text. |
 | `[[Target Title]]` | A clickable link to another article. The target must match the title of another article (case-insensitive; spaces and punctuation are preserved). |
-| `[img:filename]` | Inserts an image. `filename` is the name of a `.frm` file (without extension) placed in `art/clues/`. The image is scaled to fit the Pip?Boy screen and rendered with a green CRT effect. |
+| `[img:filename]` | Inserts an image. `filename` is the name of a `.frm` file (without extension) placed in `art/clues/`. The image is scaled to fit the Pip‑Boy screen and rendered with a green CRT effect. |
 
 ### Combining markup
 
@@ -87,16 +87,16 @@ Maybe [[The Security Terminal]] has more info.
 
 ```text
 mods/mod_mytown/
-?? art/
-?  ?? clues/
-?     ?? vault_door.frm
-?     ?? terminal.frm
-?? text/
-   ?? english/
-      ?? clues/
-         ?? my_note.txt
-         ?? security_terminal.txt
-         ?? ...
+├─ art/
+│  └─ clues/
+│     ├─ vault_door.frm
+│     └─ terminal.frm
+└─ text/
+   └─ english/
+      └─ clues/
+         ├─ my_note.txt
+         ├─ security_terminal.txt
+         └─ ...
 ```
 
 - **Article files** go in `text/<language>/clues/` (e.g. `text/english/clues/`).
@@ -113,7 +113,7 @@ If the current game language is not English and the corresponding `clues/` folde
 ## 5. Testing Your Clues
 
 1. Run the game with your mod loaded.
-2. Open the Pip?Boy (`P`) and click the **CLUES** tab (journal icon).
+2. Open the Pip‑Boy (`P`) and click the **CLUES** tab (journal icon).
 3. Your article titles should appear in the list.
 4. Open an article to verify that links and images work correctly.
 
@@ -131,9 +131,9 @@ This file lists every loaded article with its title and source path.
 
 - **Title uniqueness:** Duplicate titles are ignored. Matching is case-insensitive.
 - **Link resolution:** `[[Target Title]]` links are resolved at runtime. Missing targets appear as plain text and are not clickable.
-- **Automatic pagination:** Articles are split into pages automatically when they exceed the Pip?Boy screen height.
-- **Image rendering:** Images are centered and displayed with a retro scanline effect using the Pip?Boy green palette.
-- **Performance:** Keep images under **350 � 410 pixels** for best results. Larger images are clipped.
+- **Automatic pagination:** Articles are split into pages automatically when they exceed the Pip‑Boy screen height.
+- **Image rendering:** Images are centered and displayed with a retro scanline effect using the Pip‑Boy green palette.
+- **Performance:** Keep images under **350 × 410 pixels** for best results. Larger images are clipped.
 
 ---
 
@@ -152,6 +152,6 @@ This file lists every loaded article with its title and source path.
 
 ## 8. Advanced: Customizing the Green Palette
 
-The Pip?Boy image renderer uses a hardcoded `greenPalettes[]` array in the source code. Changing the palette requires recompiling FISSION.
+The Pip‑Boy image renderer uses a hardcoded `greenPalettes[]` array in the source code. Changing the palette requires recompiling FISSION.
 
 You can also adjust the `blackThreshold` value (default `4`) in `cluesRenderImage()` to change how very dark pixels are treated, but this is intended for engine developers rather than mod authors.
