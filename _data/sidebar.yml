@@ -14,6 +14,9 @@ sidebar:
   - title: Scripts
     url: /docs/scripts
 
+  - title: Clues
+    url: /docs/clues
+
   - title: GVARs
     url: /docs/gvars
 
