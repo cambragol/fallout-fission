@@ -160,15 +160,15 @@ mods/mod_mytown/
 
 ## 6. Important Notes
 
-**Stable IDs** – All encounter tables and named encounters get **deterministic hashed slots** based on your mod name and the table/encounter name. This means they won't change between game sessions or conflict with other mods.
+- **Stable IDs** – All encounter tables and named encounters get **deterministic hashed slots** based on your mod name and the table/encounter name. This means they won't change between game sessions or conflict with other mods.
 
-**Partial Tile Overrides** – You only need to specify subtiles you want to change. All other subtiles on that tile remain original.
+- **Partial Tile Overrides** – You only need to specify subtiles you want to change. All other subtiles on that tile remain original.
 
-**Message Blocks** – The base ID for your mod's worldmap messages is computed automatically from your mod name. You only provide local numbers in the `.msg` file.
+- **Message Blocks** – The base ID for your mod's worldmap messages is computed automatically from your mod name. You only provide local numbers in the `.msg` file.
 
-**Collision Detection** – If two mods accidentally generate the same hash slot, a warning message box appears and the conflicting table/encounter is skipped. Rename your mod or the table/encounter to resolve it.
+- **Collision Detection** – If two mods accidentally generate the same hash slot, a warning message box appears and the conflicting table/encounter is skipped. Rename your mod or the table/encounter to resolve it.
 
-**Vanilla Encounter Tables** – You can override existing tables by using the same `lookup_name` as a vanilla table (e.g., `Desert`). Your table will replace it globally.
+- **Vanilla Encounter Tables** – You can override existing tables by using the same `lookup_name` as a vanilla table (e.g., `Desert`). Your table will replace it globally.
 
 ---
 
