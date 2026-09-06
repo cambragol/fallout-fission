@@ -113,17 +113,9 @@ If the current game language is not English and the corresponding `clues/` folde
 ## 5. Testing Your Clues
 
 1. Run the game with your mod loaded.
-2. Open the Pip‑Boy (`P`) and click the **CLUES** tab (journal icon).
+2. Open the Pip‑Boy (`P`) and click the **CLUES** button (broken wire).
 3. Your article titles should appear in the list.
 4. Open an article to verify that links and images work correctly.
-
-If something goes wrong, check:
-
-```text
-data/lists/clues_list.txt
-```
-
-This file lists every loaded article with its title and source path.
 
 ---
 
