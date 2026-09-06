@@ -1940,18 +1940,16 @@ code.highlighter-rouge {
 .markdown-body table {
     display:block;
     overflow: auto;
-	width:fit-content;
-	
-	margin: 2px 1px 2px 0;
-	background: #d9dcdf;
-	color: #364857;
-	text-shadow: none;
-	white-space: nowrap;
-	
-	-webkit-box-shadow: rgba(0,0,0,0.5) 0 1px 2px;
-	-moz-box-shadow: rgba(0,0,0,0.5) 0 1px 2px;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
+    width:fit-content;
+    margin: 2px 1px 2px 0;
+    background: #d9dcdf;
+    color: #364857;
+    text-shadow: none;
+    /* white-space: nowrap; */
+    -webkit-box-shadow: rgba(0,0,0,0.5) 0 1px 2px;
+    -moz-box-shadow: rgba(0,0,0,0.5) 0 1px 2px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
 }
 
 .markdown-body table th {
