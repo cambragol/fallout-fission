@@ -260,4 +260,4 @@ The next time the player talks to that NPC, background **5** will be displayed a
 
 ## 9. What's Next?
 
-Once your custom NPC is working, give it a unique combat personality with the [AI Miniâ€‘Guide](https://cambragol.github.io/fallout-fission/AI_mini-guide). You can define aggression, weapon preferences, taunts, and even disposition variants (coward, defensive, aggressive, berserk) that respond to the `ai_set_disposition` script command.
+Once your custom NPC is working, give it a unique combat personality with the [AI Mini-Guide](https://cambragol.github.io/fallout-fission/AI_mini-guide). You can define aggression, weapon preferences, taunts, and even disposition variants (coward, defensive, aggressive, berserk) that respond to the `ai_set_disposition` script command.
