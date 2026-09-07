@@ -136,6 +136,128 @@ create_object(npc_pid, tile, elevation);
 
 ---
 
-## 8. What's Next?
+## 8. Dialog Heads and Backgrounds (FISSION-specific)
 
-Once your custom NPC is working, give it a unique combat personality with the [AI Mini‑Guide](https://cambragol.github.io/fallout-fission/AI_mini-guide). You can define aggression, weapon preferences, taunts, and even disposition variants (coward, defensive, aggressive, berserk) that respond to the `ai_set_disposition` script command.
+You can give any NPC a talking head and a custom background **without editing the NPC's script**. This is useful for adding heads to existing characters, companions, or flavor NPCs.
+
+### What You Need
+
+- **Head art files** (`.frm`) in `art/heads/`
+- A **`heads_<mod>.lst`** file in `art/heads/`
+- *(Optional)* **Background art files** (`.frm`) in `art/backgrnd/`
+- *(Optional)* **Global variables** defined via `gvar_<mod>.txt` for dynamic backgrounds
+
+### 8.1 Head File Naming (Vanilla Convention)
+
+The engine uses the **base name** of your head and appends two-letter codes to build the actual filenames.
+
+| Animation | Male Suffix | Female Suffix | Example |
+|-----------|-------------|---------------|---------|
+| Neutral talking | `np` | `nf` | `myheadnp.frm` |
+| Good fidget | `gvf` + frame | `gff` + frame | `myheadgvf1.frm` |
+| Bad fidget | `bvf` + frame | `bff` + frame | `myheadbvf1.frm` |
+
+> **Note:** Vanilla Fallout 2 uses these suffixes (for example, `myronnp.frm`). The engine does **not** support custom remapping for dialog heads.
+
+### 8.2 Create `heads_<mod>.lst`
+
+Place this file in `art/heads/`.
+
+**Syntax**
+
+```text
+<basename>,<good_count>,<neutral_count>,<bad_count> npc_script=<script_name> [bg_gvar=<gvar_index>] [background=<bg_index>]
+```
+
+- **`basename`** — Base name of the head (for example, `myhead`).
+- **`good_count`**, **`neutral_count`**, **`bad_count`** — Number of fidget frames for each expression (usually `3`).
+- **`npc_script`** — **Required.** Script basename without `.int`.
+- **`bg_gvar`** — *(Optional)* Global variable index for a dynamic background.
+- **`background`** — *(Optional)* Static background index used as a fallback.
+
+**Example**
+
+```text
+myhead,3,3,3 npc_script=FCMer bg_gvar=6991 background=5
+```
+
+This assigns the head **`myhead`** to any NPC using the script **`FCMer`**. If global variable `6991` contains a value other than `-1`, that value becomes the background index. Otherwise, background `5` is used.
+
+> If both `bg_gvar` and `background` are omitted, the NPC uses its normal dialog background.
+
+### 8.3 Finding Script Names
+
+FISSION generates a list of every loaded script:
+
+```text
+data/lists/scripts_list.txt
+```
+
+Use the script's **base name** (without `.int`) as the value for `npc_script=`.
+
+### 8.4 Finding Global Variable Indices
+
+If you define globals in `gvar_<mod>.txt`, FISSION assigns them stable numeric indices. You can find them in:
+
+```text
+data/lists/gvars_list.txt
+```
+
+Use the numeric index in `bg_gvar=`.
+
+### 8.5 Background Indices
+
+Backgrounds are FRM files listed in `backgrnd.lst` (or `backgrnd_<mod>.lst`).
+
+- Place custom background FRMs in `art/backgrnd/`.
+- List them in `backgrnd_<mod>.lst`.
+- The background index is its position in the list, starting from **0**.
+
+### 8.6 Precedence (Important)
+
+FISSION applies dialog heads and backgrounds in this order:
+
+1. **Head assignment** — If an NPC matches a `npc_script=` entry, that head is used.
+2. **Dynamic background** — `bg_gvar` overrides the static background whenever its value is **not** `-1`.
+3. **Static background** — Used only when no dynamic background is available.
+
+### 8.7 Example Workflow
+
+1. Create your head art files (`myheadnp.frm`, `myheadgvf1.frm`, etc.) in `art/heads/`.
+2. Create `art/heads/heads_mymod.lst`:
+
+```text
+myhead,3,3,3 npc_script=FCMer background=2
+```
+
+3. *(Optional)* Define a GVAR in `gvar_mymod.txt`:
+
+```text
+MY_BG = -1
+```
+
+4. Find its assigned index (for example, `6991`) in `gvars_list.txt` and update the entry:
+
+```text
+myhead,3,3,3 npc_script=FCMer bg_gvar=6991 background=2
+```
+
+5. Change the background from any script:
+
+```c
+set_global_var(6991, 5);   // Background index 5
+```
+
+The next time the player talks to that NPC, background **5** will be displayed automatically.
+
+### 8.8 Notes
+
+- Works with **any NPC**, including companions, merchants, and quest givers.
+- The NPC's script does **not** need to call `set_head()` or `set_background()`.
+- Multiple NPCs can share the same head by adding multiple `npc_script=` entries.
+- Head assignment is based on **script name**, not PID, making it more reliable when different NPCs share the same prototype.
+
+
+## 9. What's Next?
+
+Once your custom NPC is working, give it a unique combat personality with the [AI Miniâ€‘Guide](https://cambragol.github.io/fallout-fission/AI_mini-guide). You can define aggression, weapon preferences, taunts, and even disposition variants (coward, defensive, aggressive, berserk) that respond to the `ai_set_disposition` script command.
