@@ -39,7 +39,7 @@ mastodon_link                             :
 # Feature List                            Edit, add or remove features to be presented.
 features                                  :
 
-  - title                                 : Fallout 2 Widescreen
+  - title                                 : Fallout Widescreen
     description                           : The original game, but fine-tuned for modern, widescreen monitors.
     fontawesome_icon_name                 : magic
     
@@ -56,7 +56,7 @@ features                                  :
     fontawesome_icon_name                 : sync
 
   - title                                 : Drop in Ready
-    description                           : Drop the app into your Fallout 2 or TC install and you are ready to go!
+    description                           : Drop the app into your Fallout 1, Fallout 2, or TC install and you are ready to go!
     fontawesome_icon_name                 : adjust
   
   - title                                 : Mod Ready
