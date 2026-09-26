@@ -1,5 +1,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
+<div class="iphoneSlideshow">
+    <img class="iphoneScreen screenA hidden" src="" alt="">
+    <img class="iphoneScreen screenB hidden" src="" alt="">
+</div>
+
 <script>
     const screenshots = [
         {% for file in site.static_files %}
@@ -12,29 +17,38 @@
     $(function () {
 
         if (screenshots.length > 0) {
-            const $img = $(".iphoneScreen");
+
+            const $a = $(".screenA");
+            const $b = $(".screenB");
+
+            let front = $a;
+            let back  = $b;
             let index = 0;
 
-            $img
+            front
                 .attr("src", screenshots[0])
                 .removeClass("hidden")
-                .css({
-                    opacity: 1,
-                    transition: "opacity 1s ease-in-out"
-                });
+                .addClass("active");
+
+            back.removeClass("hidden");
 
             if (screenshots.length > 1) {
                 setInterval(function () {
 
-                    $img.css("opacity", 0);
+                    index = (index + 1) % screenshots.length;
 
-                    setTimeout(function () {
-                        index = (index + 1) % screenshots.length;
-                        $img.attr("src", screenshots[index]);
-                        $img.css("opacity", 1);
-                    }, 1000);
+                    back.attr("src", screenshots[index]);
 
-                }, 4000);
+                    // Crossfade
+                    back.addClass("active");
+                    front.removeClass("active");
+
+                    // Swap references
+                    const temp = front;
+                    front = back;
+                    back = temp;
+
+                }, 4000); // 3s display + 1s fade
             }
         }
 
@@ -46,7 +60,7 @@
         {% unless file.path contains 'assets/videos/Place-video-files-here.txt' %}
             <script>
                 $(function() {
-                    $(".iphoneScreen").addClass("hidden");
+                    $(".iphoneSlideshow").addClass("hidden");
                     $(".videoContainer").removeClass("hidden");
                     console.log("remove screenshot");
                 });
