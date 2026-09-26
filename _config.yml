@@ -1,6 +1,6 @@
 #page title
 page_title                                : Fallout FISSION                                          # Automatically populates with app name if not set and if iOS app ID is set. Otherwise enter manually.
-repository: cambragol/fission-ce
+repository                                : cambragol/fission-ce
 
 # App Info
 ios_app_id                                : 1234793120                                # Required. Enter iOS app ID to automatically populate name, price and icons (e.g. 718043190).
