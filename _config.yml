@@ -102,17 +102,17 @@ screenshots                               :
     image                                 : assets/screenshot2.png
     thumb                                 : assets/screenshot2_thumb.png
 
-  - title                                 : Widescreen Character Selection
-    description                           : Customized widescreen character graphics
+  - title                                 : Widescreen Interface
+    description                           : Customized widescreen interface graphics
     fontawesome_icon_name                 : play-circle
     image                                 : assets/screenshot3.png
     thumb                                 : assets/screenshot3_thumb.png
 
-  - title                                 : Widescreen Character Editor
-    description                           : Customized offsets for all interfaces in widescreen.
+  - title                                 : Inventory Sorting
+    description                           : New Action Menu for sorting any inventory.
     fontawesome_icon_name                 : magic
-    image                                 : assets/screenshot4.png
-    thumb                                 : assets/screenshot4_thumb.png
+    image                                 : assets/screenshot11.png
+    thumb                                 : assets/screenshot11_thumb.png
     
   - title                                 : Customized Splash Screens
     description                           : All splash screens customized for wide screens.
