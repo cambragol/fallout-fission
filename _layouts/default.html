@@ -25,19 +25,64 @@
 					<img src="/fallout-fission/assets/Fission_Mac_Icon.png" width="96" height="96" alt="" class="download-icon">
 					<!--<img src="/static/images/new.png" width="64" height="64" alt="New!" class="new" />-->
 					
-					{% assign release = site.github.latest_release %}
-					
 					<strong class="package-version">
-					  Download FISSION {{ release.tag_name }}
+					    <a id="release-link" href="https://github.com/cambragol/fission-ce/releases/latest">
+					        Download FISSION beta
+					    </a>
 					</strong><br>
 					
-					<span class="package-specs">
-					  {{ release.published_at | date: "%Y-%m-%d" }}, 10.1 MB
+					<span class="package-specs" id="release-specs">
+					    Loading latest release...
 					</span><br>
 					
 					<small class="package-architectures">
-					  for OS X, Windows, Linux and others
+					    for OS X, Windows, Linux and others
 					</small>
+					
+					<script>
+					fetch("https://api.github.com/repos/cambragol/fission-ce/releases/latest")
+					    .then(response => response.json())
+					    .then(release => {
+					
+					        // Version
+					        document.getElementById("release-link").textContent =
+					            "Download FISSION " + release.tag_name;
+					
+					        // Date
+					        const d = new Date(release.published_at);
+					        const date =
+					            d.getFullYear() + "-" +
+					            String(d.getMonth() + 1).padStart(2, "0") + "-" +
+					            String(d.getDate()).padStart(2, "0");
+					
+					        // Find the largest downloadable asset
+					        let asset = null;
+					        if (release.assets && release.assets.length > 0) {
+					            asset = release.assets.reduce((a, b) =>
+					                (a.size > b.size) ? a : b
+					            );
+					
+					            document.getElementById("release-link").href =
+					                asset.browser_download_url;
+					        }
+					
+					        // Human-readable size
+					        let size = "";
+					        if (asset) {
+					            const mb = asset.size / (1024 * 1024);
+					            size = mb.toFixed(1) + " MB";
+					        }
+					
+					        document.getElementById("release-specs").textContent =
+					            size ? `${date}, ${size}` : date;
+					
+					    })
+					    .catch(error => {
+					        console.error(error);
+					        document.getElementById("release-specs").textContent =
+					            "Latest release";
+					    });
+					</script>
 				</a>
                             
                            <!-- {% if site.playstore_link %}
