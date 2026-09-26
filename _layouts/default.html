@@ -25,9 +25,17 @@
 					<img src="/fallout-fission/assets/Fission_Mac_Icon.png" width="96" height="96" alt="" class="download-icon">
 					<!--<img src="/static/images/new.png" width="64" height="64" alt="New!" class="new" />-->
 					
-					<strong class="package-version">Download FISSION&nbsp;beta</strong><br>
-					<span class="package-specs">2026-09-25, 10.1&nbsp;MB</span><br>
-					<small class="package-architectures">for OS&nbsp;X, Windows, Linux and others</small>
+					<strong class="package-version">
+					    Download FISSION {{ site.github.latest_release.tag_name }}
+					</strong><br>
+					
+					<span class="package-specs">
+					    {{ site.github.latest_release.published_at | date: "%Y-%m-%d" }}
+					</span><br>
+					
+					<small class="package-architectures">
+					    for OS X, Windows, Linux and others
+					</small>
 				</a>
                             
                            <!-- {% if site.playstore_link %}
