@@ -114,17 +114,17 @@ screenshots                               :
     image                                 : assets/screenshot11.png
     thumb                                 : assets/screenshot11_thumb.png
     
-  - title                                 : Customized Splash Screens
+  - title                                 : Widescreen Splash Screens
     description                           : All splash screens customized for wide screens.
     fontawesome_icon_name                 : mobile
     image                                 : assets/screenshot5.png
     thumb                                 : assets/screenshot5_thumb.png
 
-  - title                                 : Customized Load Screens
-    description                           : Widescreen load/save screens with expanded slots.
+  - title                                 : Inventory Filter
+    description                           : Screen-based Inventory Filter for all inventories
     fontawesome_icon_name                 : play-circle
-    image                                 : assets/screenshot6.png
-    thumb                                 : assets/screenshot6_thumb.png
+    image                                 : assets/screenshot12.png
+    thumb                                 : assets/screenshot12_thumb.png
 
   - title                                 : Widescreen Worldmap
     description                           : World map and town screens are supported in widescreen
