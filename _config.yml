@@ -52,8 +52,8 @@ features                                  :
     description                           : Play it your way, stretched, original, aspect ratio, square pixels, or high quality.
     fontawesome_icon_name                 : play-circle
 
-  - title                                 : Extended Pipboy
-    description                           : The pipboy menus are expanded to handle data of any size, and accept keyboard input.
+  - title                                 : Extensive QOL
+    description                           : A vast array of fully integrated, and optional, quality of life improvements toggleable in fission.cfg.
     fontawesome_icon_name                 : sync
 
   - title                                 : Drop in Ready
