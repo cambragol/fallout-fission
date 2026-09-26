@@ -1,47 +1,95 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
+<div class="iphoneSlideshow">
+    <img class="iphoneScreen screenA hidden" src="" alt="">
+    <img class="iphoneScreen screenB hidden" src="" alt="">
+</div>
+
+<script>
+    const screenshots = [
+        {% for file in site.static_files %}
+            {% if file.path contains 'assets/screenshot/' %}
+                "{{ site.github.baseurl }}{{ file.path }}",
+            {% endif %}
+        {% endfor %}
+    ];
+
+    $(function () {
+
+        if (screenshots.length > 0) {
+
+            const $a = $(".screenA");
+            const $b = $(".screenB");
+
+            let front = $a;
+            let back  = $b;
+            let index = 0;
+
+            front
+                .attr("src", screenshots[0])
+                .removeClass("hidden")
+                .addClass("active");
+
+            back.removeClass("hidden");
+
+            if (screenshots.length > 1) {
+                setInterval(function () {
+
+                    index = (index + 1) % screenshots.length;
+
+                    back.attr("src", screenshots[index]);
+
+                    // Crossfade
+                    back.addClass("active");
+                    front.removeClass("active");
+
+                    // Swap references
+                    const temp = front;
+                    front = back;
+                    back = temp;
+
+                }, 4000); // 3s display + 1s fade
+            }
+        }
+
+    });
+</script>
+
 {% for file in site.static_files %}
-    {% if file.path contains 'assets/screenshot/' %}
-        <script>
-            $(function() {
-                $(".iphoneScreen").attr('src', '{{ site.github.baseurl }}{{ file.path }}');
-                $(".iphoneScreen").removeClass("hidden");
-                console.log("{{ file.path }}");
-            });
-        </script>
-    {% elsif file.path contains 'assets/videos/' %}
+    {% if file.path contains 'assets/videos/' %}
         {% unless file.path contains 'assets/videos/Place-video-files-here.txt' %}
             <script>
                 $(function() {
-                    $(".iphoneScreen").addClass("hidden");
+                    $(".iphoneSlideshow").addClass("hidden");
+                    $(".videoContainer").removeClass("hidden");
                     console.log("remove screenshot");
                 });
             </script>
         {% endunless %}
+
         {% if file.extname == ".mov" or file.extname == ".mp4" %}
             <script>
                 $(function() {
-                    $(".videoContainer").removeClass("hidden");
                     $(".screenvideo").append('<source src="{{ site.github.baseurl }}{{ file.path }}" type="video/mp4">');
                     console.log("{{ file.path }}");
                 });
             </script>
+
         {% elsif file.extname == ".ogg" %}
             <script>
                 $(function() {
-                    $(".videoContainer").removeClass("hidden");
                     $(".screenvideo").append('<source src="{{ site.github.baseurl }}{{ file.path }}" type="video/ogg">');
                     console.log("{{ file.path }}");
                 });
             </script>
+
         {% elsif file.extname == ".webm" %}
-        <script>
-            $(function() {
-                $(".videoContainer").removeClass("hidden");
-                $(".screenvideo").append('<source src="{{ site.github.baseurl }}{{ file.path }}" type="video/webm">');
-                console.log("{{ file.path }}");
-            });
-        </script>
+            <script>
+                $(function() {
+                    $(".screenvideo").append('<source src="{{ site.github.baseurl }}{{ file.path }}" type="video/webm">');
+                    console.log("{{ file.path }}");
+                });
+            </script>
         {% endif %}
     {% endif %}
 {% endfor %}
