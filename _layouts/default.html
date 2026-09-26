@@ -25,16 +25,18 @@
 					<img src="/fallout-fission/assets/Fission_Mac_Icon.png" width="96" height="96" alt="" class="download-icon">
 					<!--<img src="/static/images/new.png" width="64" height="64" alt="New!" class="new" />-->
 					
+					{% assign release = site.github.latest_release %}
+					
 					<strong class="package-version">
-					    Download FISSION {{ site.github.latest_release.tag_name }}
+					  Download FISSION {{ release.tag_name }}
 					</strong><br>
 					
 					<span class="package-specs">
-					    {{ site.github.latest_release.published_at | date: "%Y-%m-%d" }}
+					  {{ release.published_at | date: "%Y-%m-%d" }}, 10.1 MB
 					</span><br>
 					
 					<small class="package-architectures">
-					    for OS X, Windows, Linux and others
+					  for OS X, Windows, Linux and others
 					</small>
 				</a>
                             
