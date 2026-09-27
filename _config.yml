@@ -40,29 +40,29 @@ mastodon_link                             :
 # Feature List                            Edit, add or remove features to be presented.
 features                                  :
 
-  - title                                 : Fallout Widescreen
-    description                           : The original game, but fine-tuned for modern, widescreen monitors.
-    fontawesome_icon_name                 : magic
-    
-  - title                                 : Multi-platform
-    description                           : Works on macOS, Windows, Linux, and maybe even your phone!
-    fontawesome_icon_name                 : mobile
-
-  - title                                 : Pixel Perfect
-    description                           : Play it your way, stretched, original, aspect ratio, square pixels, or high quality.
-    fontawesome_icon_name                 : play-circle
-
-  - title                                 : Extensive QOL
-    description                           : A vast array of fully integrated, and optional, quality of life improvements toggleable in fission.cfg.
-    fontawesome_icon_name                 : sync
-
-  - title                                 : Drop in Ready
-    description                           : Drop the app into your Fallout 1, Fallout 2, or TC install and you are ready to go!
-    fontawesome_icon_name                 : adjust
+  - title: Fallout Widescreen
+    description: The original game, but fine-tuned for modern, widescreen monitors.
+    fontawesome_icon_name: expand
   
-  - title                                 : Mod Ready
-    description                           : Ready for mods to be created and added, and coexist without interminable configuration.
-    fontawesome_icon_name                 : star
+  - title: Multi-platform
+    description: Works on macOS, Windows, Linux, and maybe even your phone!
+    fontawesome_icon_name: laptop
+  
+  - title: Pixel Perfect
+    description: Play it your way, stretched, original, aspect ratio, square pixels, or high quality.
+    fontawesome_icon_name: crop
+  
+  - title: Extensive QOL
+    description: A vast array of fully integrated, and optional, quality of life improvements toggleable in fission.cfg.
+    fontawesome_icon_name: sliders-h
+  
+  - title: Drop in Ready
+    description: Drop the app into your Fallout 1, Fallout 2, or TC install and you are ready to go!
+    fontawesome_icon_name: plug
+  
+  - title: Mod Ready
+    description: Ready for mods to be created and added, and coexist without interminable configuration.
+    fontawesome_icon_name: puzzle-piece
 
   - title                                 : # New Feature Title
     description                           : # New Feature Description
